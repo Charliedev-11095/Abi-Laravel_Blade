@@ -2,17 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -60,3 +49,9 @@ Route::resource('formhistorico_medico',  App\Http\Controllers\HistoricosMedicosC
 
 //Formulario de Tabla Historica Medica
 Route::resource('tablamedica', App\Http\Controllers\TablaHistoricaMedicaController::class);
+
+//Formulario de Historico_Deportivo
+Route::resource('formhistorico_deportivo', App\Http\Controllers\HistoricosDeportivosController::class);
+
+//Formulario de Tabla Historica Deportiva
+Route::resource('tabladeportiva', App\Http\Controllers\TablaHistoricoDeportivoController::class);
