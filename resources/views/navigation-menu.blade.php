@@ -121,6 +121,15 @@
 
                             <div class="border-t border-gray-100"></div>
 
+
+                            <!-- Historico Medico -->
+                            <x-jet-dropdown-link href="{{ route('formhistorico_medico.index') }}">
+                                {{ __('Historial Médico') }}
+                            </x-jet-dropdown-link>
+
+
+
+
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -191,6 +200,12 @@
                         {{ __('API Tokens') }}
                     </x-jet-responsive-nav-link>
                 @endif
+
+
+                            <!-- Historico Medico -->
+                            <x-jet-dropdown-link href="{{ route('formhistorico_medico.index') }}">
+                                {{ __('Historial Médico') }}
+                            </x-jet-dropdown-link>
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
