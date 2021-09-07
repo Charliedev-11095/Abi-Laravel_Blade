@@ -50,6 +50,8 @@ Route::get('/asistencia_control', function () {
 })->name('asistencia_control');
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Formulario de Historico_Medico
+Route::resource('formhistorico_medico',  App\Http\Controllers\HistoricosMedicosController::class);
+
+//Formulario de Tabla Historica Medica
+Route::resource('tablamedica', App\Http\Controllers\TablaHistoricaMedicaController::class);
