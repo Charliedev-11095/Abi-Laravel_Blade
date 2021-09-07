@@ -37,11 +37,19 @@ Route::resource('asistencia/grupo_alumnos', App\Http\Controllers\GrupoAlumnosCon
 Route::get('/asistencia/grupo_alumnosgeneral',[App\Http\Controllers\GrupoAlumnosController::class, 'general'])->name('grupo_alumnosgeneral');
 
 
-
-
-
 //Rutas para formasistencia
 Route::get('/formasistencia',[App\Http\Controllers\AsistenciasController::class, 'index'])->name('formasistencia.index'); 
 Route::get('/formasistencia/create',[App\Http\Controllers\AsistenciasController::class, 'create'])->name('formasistencia.create'); 
 Route::post('/formasistencia',[App\Http\Controllers\AsistenciasController::class, 'store'])->name('formasistencia.store'); 
 Route::get('/formasistencia_dia',[App\Http\Controllers\AsistenciasController::class, 'dia'])->name('formasistencia_dia');
+
+
+//Rutas para Modulo asistencia
+Route::get('/asistencia_control', function () {
+    return view('asistencia.asistencia_control');
+})->name('asistencia_control');
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
