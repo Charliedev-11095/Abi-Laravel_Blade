@@ -55,3 +55,6 @@ Route::resource('formhistorico_deportivo', App\Http\Controllers\HistoricosDeport
 
 //Formulario de Tabla Historica Deportiva
 Route::resource('tabladeportiva', App\Http\Controllers\TablaHistoricoDeportivoController::class);
+
+//Formulario de USUARIOS
+Route::resource('formusuario', App\Http\Controllers\usuariosController::class);
