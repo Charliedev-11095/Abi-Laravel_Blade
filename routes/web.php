@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//rutas para  gestor de formularios
+Route::get('/forms_control', function () {
+    return view('gestorformularios.formularioscontrol');
+})->name('forms_control');
+
 //formulario tutores
 Route::resource('formtutores',App\Http\Controllers\TutoresController::class);
 //formulario entrenadores
