@@ -122,6 +122,12 @@
                             <div class="border-t border-gray-100"></div>
 
 
+     
+                            <!-- Historico Deportivo -->
+                            <x-jet-dropdown-link href="{{ route('formhistorico_deportivo.index') }}">
+                                {{ __('Progreso Deportivo') }}
+                            </x-jet-dropdown-link>
+
                             <!-- Historico Medico -->
                             <x-jet-dropdown-link href="{{ route('formhistorico_medico.index') }}">
                                 {{ __('Historial Médico') }}
@@ -201,6 +207,14 @@
                     </x-jet-responsive-nav-link>
                 @endif
 
+
+
+
+     
+                            <!-- Historico Deportivo -->
+                            <x-jet-dropdown-link href="{{ route('formhistorico_deportivo.index') }}">
+                                {{ __('Progreso Deportivo') }}
+                            </x-jet-dropdown-link>
 
                             <!-- Historico Medico -->
                             <x-jet-dropdown-link href="{{ route('formhistorico_medico.index') }}">
