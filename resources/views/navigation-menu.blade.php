@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('INICIO') }}
+                        {{ __('INCIO') }}
                     </x-jet-nav-link>
 
 
@@ -25,9 +25,14 @@
                         {{ __('CONTROL DE DATOS') }}
                     </x-jet-nav-link>
 
+
+                    @if (Auth::user()->role == 'Administrador')
                     <x-jet-nav-link href="{{ route('formusuario.index') }}" :active="request()->routeIs('register')">
                         {{ __('REGISTRAR USUARIOS') }}
                     </x-jet-nav-link>
+                    @endif
+
+
 
                 </div>
             </div>
@@ -85,7 +90,9 @@
                         </x-jet-dropdown>
                     </div>
                 @endif
-
+                {{ Auth::user()->role.':' }}
+                {{ ' '.Auth::user()->name }}
+                
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
                     <x-jet-dropdown align="right" width="48">
@@ -182,9 +189,12 @@
                 {{ __('CONTROL DE DATOS') }}
             </x-jet-responsive-nav-link>
 
+
+            @if (Auth::user()->role == 'Administrador')
             <x-jet-responsive-nav-link href="{{ route('formusuario.index') }}" :active="request()->routeIs('register')">
                 {{ __('REGISTRAR USUARIOS') }}
             </x-jet-responsive-nav-link>
+            @endif
             
         </div>
 

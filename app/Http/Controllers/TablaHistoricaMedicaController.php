@@ -21,6 +21,12 @@ use DB;
 class TablaHistoricaMedicaController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('entrena');
+    }
+
+
     public function index(Request $request)
     {
       

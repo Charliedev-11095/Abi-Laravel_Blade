@@ -18,6 +18,11 @@ use DB;
 
 class HistoricosDeportivosController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('entrena');
+    }
+
     /**
      * Display a listing of the resource.
      *
