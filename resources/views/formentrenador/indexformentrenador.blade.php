@@ -4,9 +4,9 @@
             {{_('GESTIÓN DE ENTRENADORES')}}
         </h2>
     </x-slot>
-    <a class="btn btn-danger" href="{{url('/MenuPDF')}}" target="blank">Regresar</a>
+    {{-- <a class="btn btn-danger" href="{{url('/MenuPDF')}}" target="blank">Regresar</a> --}}
     <a class="btn btn-success" href="{{url('/formentrenadores/create')}}">Agregar nuevo registro</a>
-    <a class="btn btn-info" href="{{route('pdfEntrenadores')}}" target="blank">Descargar PDF Tabla</a>
+    {{-- <a class="btn btn-info" href="{{route('pdfEntrenadores')}}" target="blank">Descargar PDF Tabla</a> --}}
 
 
             @if (Session::has('Mensaje'))
