@@ -25,6 +25,10 @@
                         {{ __('CONTROL DE DATOS') }}
                     </x-jet-nav-link>
 
+                    <x-jet-nav-link href="{{ route('formusuario.index') }}" :active="request()->routeIs('register')">
+                        {{ __('REGISTRAR USUARIOS') }}
+                    </x-jet-nav-link>
+
                 </div>
             </div>
 
@@ -176,6 +180,10 @@
 
             <x-jet-responsive-nav-link href="{{ route('forms_control') }}" :active="request()->routeIs('forms_control')">
                 {{ __('CONTROL DE DATOS') }}
+            </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="{{ route('formusuario.index') }}" :active="request()->routeIs('register')">
+                {{ __('REGISTRAR USUARIOS') }}
             </x-jet-responsive-nav-link>
             
         </div>
