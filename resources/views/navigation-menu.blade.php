@@ -12,19 +12,24 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+
+                    @if (Auth::user()->role == 'Administrador' || Auth::user()->role == 'Entrenador')
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('INCIO') }}
                     </x-jet-nav-link>
+                    @endif
 
-
+                    @if (Auth::user()->role == 'Administrador'|| Auth::user()->role == 'Entrenador')
                     <x-jet-nav-link href="{{ route('asistencia_control') }}" :active="request()->routeIs('asistencia_control')">
                         {{ __('CONTROL DE ASISTENCIAS') }}
                     </x-jet-nav-link>
+                    @endif
 
+                    @if (Auth::user()->role == 'Administrador' || Auth::user()->role == 'Entrenador')
                     <x-jet-nav-link href="{{ route('forms_control') }}" :active="request()->routeIs('forms_control')">
                         {{ __('CONTROL DE DATOS') }}
                     </x-jet-nav-link>
-
+                    @endif
 
                     @if (Auth::user()->role == 'Administrador')
                     <x-jet-nav-link href="{{ route('formusuario.index') }}" :active="request()->routeIs('register')">
@@ -124,26 +129,30 @@
                                 {{ __('Opciones de Perfil') }}
                             </x-jet-dropdown-link>
 
+                            @if (Auth::user()->role == 'Administrador' || Auth::user()->role == 'Entrenador')
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
                                     {{ __('API Tokens') }}
                                 </x-jet-dropdown-link>
                             @endif
+                            @endif
 
                             <div class="border-t border-gray-100"></div>
 
 
-     
+                            @if (Auth::user()->role == 'Administrador' || Auth::user()->role == 'Entrenador')
                             <!-- Historico Deportivo -->
                             <x-jet-dropdown-link href="{{ route('formhistorico_deportivo.index') }}">
                                 {{ __('Progreso Deportivo') }}
                             </x-jet-dropdown-link>
+                            @endif
 
+                            @if (Auth::user()->role == 'Administrador' || Auth::user()->role == 'Entrenador')
                             <!-- Historico Medico -->
                             <x-jet-dropdown-link href="{{ route('formhistorico_medico.index') }}">
                                 {{ __('Historial Médico') }}
                             </x-jet-dropdown-link>
-
+                            @endif
 
 
 
@@ -177,18 +186,24 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+
+            @if (Auth::user()->role == 'Administrador' || Auth::user()->role == 'Entrenador')
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('INICIO') }}
             </x-jet-responsive-nav-link>
+            @endif
 
+            @if (Auth::user()->role == 'Administrador' || Auth::user()->role == 'Entrenador')
             <x-jet-responsive-nav-link href="{{ route('asistencia_control') }}" :active="request()->routeIs('asistencia_control')">
                 {{ __('CONTROL DE ASISTENCIAS') }}
             </x-jet-responsive-nav-link>
+            @endif
 
+            @if (Auth::user()->role == 'Administrador' || Auth::user()->role == 'Entrenador')
             <x-jet-responsive-nav-link href="{{ route('forms_control') }}" :active="request()->routeIs('forms_control')">
                 {{ __('CONTROL DE DATOS') }}
             </x-jet-responsive-nav-link>
-
+            @endif
 
             @if (Auth::user()->role == 'Administrador')
             <x-jet-responsive-nav-link href="{{ route('formusuario.index') }}" :active="request()->routeIs('register')">
@@ -219,25 +234,29 @@
                     {{ __('Opciones de Perfil') }}
                 </x-jet-responsive-nav-link>
 
+                @if (Auth::user()->role == 'Administrador' || Auth::user()->role == 'Entrenador')
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
                         {{ __('API Tokens') }}
                     </x-jet-responsive-nav-link>
                 @endif
+                @endif
 
 
 
-
-     
+                @if (Auth::user()->role == 'Administrador' || Auth::user()->role == 'Entrenador')
                             <!-- Historico Deportivo -->
                             <x-jet-dropdown-link href="{{ route('formhistorico_deportivo.index') }}">
                                 {{ __('Progreso Deportivo') }}
                             </x-jet-dropdown-link>
+                            @endif
 
+                            @if (Auth::user()->role == 'Administrador' || Auth::user()->role == 'Entrenador')
                             <!-- Historico Medico -->
                             <x-jet-dropdown-link href="{{ route('formhistorico_medico.index') }}">
                                 {{ __('Historial Médico') }}
                             </x-jet-dropdown-link>
+                            @endif
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
