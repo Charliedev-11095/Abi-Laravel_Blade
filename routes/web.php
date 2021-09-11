@@ -58,3 +58,8 @@ Route::resource('tabladeportiva', App\Http\Controllers\TablaHistoricoDeportivoCo
 
 //Formulario de USUARIOS
 Route::resource('formusuario', App\Http\Controllers\usuariosController::class);
+
+Route::get('/alumnosPDF',[App\Http\Controllers\PDFcontroller::class, 'alumnosPDF']);
+
+ Route::get('/VistasPDF',[App\Http\Controllers\VistasPDF::class, 'alumnosPDF']); 
+
