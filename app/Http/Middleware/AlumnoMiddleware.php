@@ -17,10 +17,15 @@ class AlumnoMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+
+        if(Auth::check() && Auth::user()->role=='Administrador' || Auth::user()->role=='Entrenador'){
+            return redirect('/dashboard');
+        }
+
         if(Auth::check() && Auth::user()->role=='Alumno'){
             return $next($request);
         }
 
-        return redirect('/dashboard');
+        return redirect('/panelvisitante');
     }
 }

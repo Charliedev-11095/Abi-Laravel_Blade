@@ -472,7 +472,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '2e8c751998f06a9076e824a9f6d54d6d73ffe0fc',
+            'reference' => 'a2f1aedd77aa0319fdda23e13c557ed07295fa46',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(

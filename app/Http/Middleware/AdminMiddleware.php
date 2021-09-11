@@ -22,6 +22,17 @@ class AdminMiddleware
             return $next($request);
         }
 
-        return redirect('/dashboard');
+        if(Auth::check() && Auth::user()->role=='Entrenador' ){
+            return redirect('/dashboard');
+        }
+
+        if(Auth::check() && Auth::user()->role=='Alumno'){
+            return redirect('/panelalumno');
+        }
+
+        if(Auth::check() && Auth::user()->role=='Visitante'){
+            return redirect('/panelvisitante');
+        }
+
     }
 }
