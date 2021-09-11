@@ -19088,3 +19088,40 @@ avigation-menu.blade.php) at C:\\xampp\\htdocs\\abi\esources\\views/navigation-
 #56 /opt/lampp/htdocs/abi/public/index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #57 {main}
 "} 
+[2021-09-09 20:56:59] local.ERROR: There are no commands defined in the "ui" namespace. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\NamespaceNotFoundException(code: 0): There are no commands defined in the \"ui\" namespace. at C:\\xampp\\htdocs\\abi\\vendor\\symfony\\console\\Application.php:612)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\abi\\vendor\\symfony\\console\\Application.php(663): Symfony\\Component\\Console\\Application->findNamespace('ui')
+#1 C:\\xampp\\htdocs\\abi\\vendor\\symfony\\console\\Application.php(255): Symfony\\Component\\Console\\Application->find('ui:auth')
+#2 C:\\xampp\\htdocs\\abi\\vendor\\symfony\\console\\Application.php(167): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 C:\\xampp\\htdocs\\abi\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(92): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 C:\\xampp\\htdocs\\abi\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(129): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 C:\\xampp\\htdocs\\abi\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#6 {main}
+"} 
+[2021-09-09 22:02:36] local.ERROR: Header may not contain more than a single header, new line detected {"userId":2,"exception":"[object] (ErrorException(code: 0): Header may not contain more than a single header, new line detected at C:\\xampp\\htdocs\\abi\\vendor\\symfony\\http-foundation\\Response.php:359)
+[stacktrace]
+#0 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Header may not ...', 'C:\\\\xampp\\\\htdocs...', 359, Array)
+#1 C:\\xampp\\htdocs\\abi\\vendor\\symfony\\http-foundation\\Response.php(359): header('Location: https...', false, 302)
+#2 C:\\xampp\\htdocs\\abi\\vendor\\symfony\\http-foundation\\Response.php(393): Symfony\\Component\\HttpFoundation\\Response->sendHeaders()
+#3 C:\\xampp\\htdocs\\abi\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\HigherOrderTapProxy.php(34): Symfony\\Component\\HttpFoundation\\Response->send()
+#4 C:\\xampp\\htdocs\\abi\\public\\index.php(53): Illuminate\\Support\\HigherOrderTapProxy->__call('send', Array)
+#5 {main}
+"} 
+[2021-09-09 22:08:24] local.ERROR: Header may not contain more than a single header, new line detected {"userId":2,"exception":"[object] (ErrorException(code: 0): Header may not contain more than a single header, new line detected at C:\\xampp\\htdocs\\abi\\vendor\\symfony\\http-foundation\\Response.php:359)
+[stacktrace]
+#0 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Header may not ...', 'C:\\\\xampp\\\\htdocs...', 359, Array)
+#1 C:\\xampp\\htdocs\\abi\\vendor\\symfony\\http-foundation\\Response.php(359): header('Location: https...', false, 302)
+#2 C:\\xampp\\htdocs\\abi\\vendor\\symfony\\http-foundation\\Response.php(393): Symfony\\Component\\HttpFoundation\\Response->sendHeaders()
+#3 C:\\xampp\\htdocs\\abi\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\HigherOrderTapProxy.php(34): Symfony\\Component\\HttpFoundation\\Response->send()
+#4 C:\\xampp\\htdocs\\abi\\public\\index.php(53): Illuminate\\Support\\HigherOrderTapProxy->__call('send', Array)
+#5 {main}
+"} 
+[2021-09-09 22:16:32] local.ERROR: Header may not contain more than a single header, new line detected {"userId":2,"exception":"[object] (ErrorException(code: 0): Header may not contain more than a single header, new line detected at C:\\xampp\\htdocs\\abi\\vendor\\symfony\\http-foundation\\Response.php:359)
+[stacktrace]
+#0 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Header may not ...', 'C:\\\\xampp\\\\htdocs...', 359, Array)
+#1 C:\\xampp\\htdocs\\abi\\vendor\\symfony\\http-foundation\\Response.php(359): header('Location: https...', false, 302)
+#2 C:\\xampp\\htdocs\\abi\\vendor\\symfony\\http-foundation\\Response.php(393): Symfony\\Component\\HttpFoundation\\Response->sendHeaders()
+#3 C:\\xampp\\htdocs\\abi\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\HigherOrderTapProxy.php(34): Symfony\\Component\\HttpFoundation\\Response->send()
+#4 C:\\xampp\\htdocs\\abi\\public\\index.php(53): Illuminate\\Support\\HigherOrderTapProxy->__call('send', Array)
+#5 {main}
+"} 

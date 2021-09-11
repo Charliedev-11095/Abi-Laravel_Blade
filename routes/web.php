@@ -6,6 +6,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+Route::get('/dashboard',[App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
+
+//Validacion panel de Alumno
+Route::get('/panelalumno',[App\Http\Controllers\PanelAlumnoController::class, 'index'])->name('panelalumno.index');
+
+
+//Validacion panel de Visitante
+
+Route::get('/panelvisitante',[App\Http\Controllers\PanelVisitanteController::class, 'index'])->name('panelvisitante.index');
+
+
+
 //rutas para  gestor de formularios
 Route::get('/forms_control', function () {
     return view('gestorformularios.formularioscontrol');
@@ -20,9 +38,6 @@ Route::resource('formreg_med', App\Http\Controllers\RegistrosMedicosController::
 //formulario alumno
 Route::resource('formalumnos', App\Http\Controllers\AlumnosController::class);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
 
 Route::resource('asistencia/grupos', App\Http\Controllers\GruposController::class);
 
@@ -58,3 +73,6 @@ Route::resource('tabladeportiva', App\Http\Controllers\TablaHistoricoDeportivoCo
 
 //Formulario de USUARIOS
 Route::resource('formusuario', App\Http\Controllers\usuariosController::class);
+Auth::routes();
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
