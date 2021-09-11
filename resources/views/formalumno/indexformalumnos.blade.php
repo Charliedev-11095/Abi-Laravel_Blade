@@ -6,6 +6,7 @@
     </x-slot>
     {{-- <a class="btn btn-danger" href="{{url('/MenuPDF')}}" target="blank">Regresar</a> --}}
     <a class="btn btn-success" href="{{url('/formalumnos/create')}}">Agregar nuevo registro</a>
+    <a class="btn btn-primary" href="{{url('/alumnosPDF')}}">Descargar PDF</a>
     {{-- <a class="btn btn-secondary" href="{{route('PDFalumnos')}}" target="blank">abrir Tabla</a>  --}}
     <button>
  {{--    <a class="btn btn-info" href="{{route('PdfAlumnos')}}" target="blank">Descargar PDF Tabla</a> --}}
@@ -24,7 +25,7 @@
     <thead class="thead-dark">
         <tr>
             <th>ID</th>
-            <th>Nombres</>
+            <th>Nombres</th>
             <th>Apellido Paterno</th>
             <th>Apellido Materno</th>
             <th>calle</th>
