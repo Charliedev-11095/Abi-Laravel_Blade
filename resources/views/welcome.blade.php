@@ -23,6 +23,14 @@
             body {
                 font-family: Arial, Helvetica, sans-serif;
             }
+            @media screen and (max-width: 767px) {
+    .botonpequeno{
+        width: 7rem;
+        height: 2.1rem;
+        font-size: 70%;
+    }
+}
+            
         </style>
     </head>
     <body class="antialiased">
@@ -147,11 +155,11 @@
 </html>
 <div class="absolute flex items-top justify-center min-h-screen sm:items-center py-4 sm:pt-0">
     @if (Route::has('login'))
-        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+        <div class=" fixed top-0 right-0 px-6 py-4 sm:block">
             @auth
                 <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
             @else
-                <a class="btn btn-primary" href="{{ route('login') }}">INICIAR SESIÓN</a>
+                <a class="btn btn-primary botonpequeno" href="{{ route('login') }}">INICIAR SESIÓN</a>
                 {{-- @if (Route::has('register'))
                     <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
                 @endif --}}
