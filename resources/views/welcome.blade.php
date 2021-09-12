@@ -132,9 +132,9 @@
                     {{-- <p><a class="btn btn-primary btn-outline with-arrow" href="#">Learn More <i class="icon-arrow-right"></i></a></p> --}}
                 </div>
 
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3755.822143685127!2d-101.2169521!3d19.7201949!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842d0ef3c5e8ec19%3A0x29982457f9a0371a!2sCoronel%20Manuel%20S%C3%A1nchez%2036%2C%20Unidos%20Santa%20Cruz%2C%2058149%20Morelia%2C%20Mich.!5e0!3m2!1ses!2smx!4v1624516081039!5m2!1ses!2smx" width="800" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60150.683580222656!2d-101.74184912595496!3d19.5665966988659!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842a5f3e1eb35cb7%3A0x3bc7650cf34be0d4!2sMichoac%C3%A1n!5e0!3m2!1ses-419!2smx!4v1631405441030!5m2!1ses-419!2smx" width="900" height="300" style="border:1;" allowfullscreen="" loading="lazy"></iframe>
             <div class="row copyright">
+
                 <div class="col-md-12 text-center">
                         &copy; 2021 derechos reservados.
                 </div>
