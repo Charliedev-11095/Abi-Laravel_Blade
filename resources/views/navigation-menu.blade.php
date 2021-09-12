@@ -125,9 +125,11 @@
                                 {{ __('Administrar cuenta') }}
                             </div>
 
+                            @if (!Auth::user()->role == 'Visitante' )
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Opciones de Perfil') }}
                             </x-jet-dropdown-link>
+                            @endif
 
                             @if (Auth::user()->role == 'Administrador' || Auth::user()->role == 'Entrenador')
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -230,9 +232,12 @@
 
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
+                @if (!Auth::user()->role == 'Visitante' )
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                     {{ __('Opciones de Perfil') }}
                 </x-jet-responsive-nav-link>
+                @endif
+
 
                 @if (Auth::user()->role == 'Administrador' || Auth::user()->role == 'Entrenador')
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())

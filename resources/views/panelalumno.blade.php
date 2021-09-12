@@ -19,7 +19,7 @@
                                 <div class="col-md-6 col-md-8 col-md-offset-2 text-center fh5co-heading">
                                     <div class="display-t">
                                         <div class="display-tc animate-box" data-animate-effect="fadeIn">
-                                            <h1 style="color:rgb(255, 255, 255);"><br> <strong>BIENVENIDO ENTRENADOR</strong></h1>
+                                            <h1 style="color:rgb(255, 255, 255);"><br> <strong>BIENVENIDO ALUMNO</strong></h1>
                                         </div>
                                     </div>
                                 </div>
