@@ -25,9 +25,11 @@ Route::get('/panelvisitante',[App\Http\Controllers\PanelVisitanteController::cla
 
 
 //rutas para  gestor de formularios
-Route::get('/forms_control', function () {
-    return view('gestorformularios.formularioscontrol');
-})->name('forms_control');
+
+Route::get('/forms_control',[App\Http\Controllers\FormsController::class, 'index'])->name('forms_control');
+
+
+
 
 //formulario tutores
 Route::resource('formtutores',App\Http\Controllers\TutoresController::class);
@@ -54,9 +56,7 @@ Route::get('/formasistencia_dia',[App\Http\Controllers\AsistenciasController::cl
 
 
 //Rutas para Modulo asistencia
-Route::get('/asistencia_control', function () {
-    return view('asistencia.asistencia_control');
-})->name('asistencia_control');
+Route::get('/asistencia_control',[App\Http\Controllers\ControlAsistenciaController::class, 'index'])->name('asistencia_control');
 
 
 //Formulario de Historico_Medico
