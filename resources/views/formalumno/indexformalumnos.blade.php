@@ -1,4 +1,5 @@
 <x-app-layout>
+   
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{_('GESTIÓN DE ALUMNOS')}}
@@ -6,7 +7,7 @@
     </x-slot>
     {{-- <a class="btn btn-danger" href="{{url('/MenuPDF')}}" target="blank">Regresar</a> --}}
     <a class="btn btn-success" href="{{url('/formalumnos/create')}}">Agregar nuevo registro</a>
-    <a class="btn btn-primary" href="{{url('/alumnosPDF')}}"target="_blank">Descargar PDF</a>
+    <a class="btn btn-primary" href="{{url('alumnosPDF')}}"target="_blank">Descargar PDF</a>
     {{-- <a class="btn btn-secondary" href="{{route('PDFalumnos')}}" target="blank">abrir Tabla</a>  --}}
     <button>
  {{--    <a class="btn btn-info" href="{{route('PdfAlumnos')}}" target="blank">Descargar PDF Tabla</a> --}}

@@ -7,7 +7,7 @@
     </x-slot>
     {{-- <a class="btn btn-danger" href="{{url('/MenuPDF')}}" target="blank">Regresar</a> --}}
     <a class="btn btn-success" href="{{url('/formtutores/create')}}">Agregar nuevo registro</a>
-    {{-- <a class="btn btn-info" href="{{route('PdfTutores')}}" target="blank">Descargar PDF Tabla</a> --}}
+    <a class="btn btn-primary" href="{{url('tutoresPDF')}}"target="_blank">Descargar PDF</a>
 
     @if (Session::has('Mensaje'))
         {{Session::get('Mensaje')}}

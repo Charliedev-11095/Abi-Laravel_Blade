@@ -74,7 +74,18 @@ Route::resource('tabladeportiva', App\Http\Controllers\TablaHistoricoDeportivoCo
 //Formulario de USUARIOS
 Route::resource('formusuario', App\Http\Controllers\usuariosController::class);
 
-Route::get('/alumnosPDF',[App\Http\Controllers\PDFcontroller::class, 'alumnosPDF']);
 
- Route::get('/VistasPDF',[App\Http\Controllers\VistasPDF::class, 'alumnosPDF']); 
+Route::get('/alumnosPDF',[App\Http\Controllers\PDFcontroller::class, 'alumnosPDF'])->name('alumnosPDF');
+
+ Route::get('/VistalumnoPDF',[App\Http\Controllers\VistasPDF::class, 'alumnosPDF']); 
+
+
+ Route::get('/tutoresPDF',[App\Http\Controllers\PDFcontroller::class, 'tutoresPDF'])->name('tutoresPDF');
+
+ Route::get('/VistatutoresPDF',[App\Http\Controllers\VistasPDF::class, 'tutoresPDF']); 
+
+
+ Route::get('/entrenadoresPDF',[App\Http\Controllers\PDFcontroller::class, 'entrenadoresPDF'])->name('entrenadoresPDF');
+
+ Route::get('/VistaentrenadoresPDF',[App\Http\Controllers\VistasPDF::class, 'entrenadoresPDF']);
 

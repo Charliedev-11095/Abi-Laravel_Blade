@@ -19,17 +19,17 @@ use Barryvdh\DomPDF\Facade as PDF;
 class VistasPDF extends Controller
 {
      
-     public function alumnosPDf(){
+     public function alumnosPDF(){
         $formalumno=alumnos::paginate(5);
   return view('formalumno.alumnosPDF',compact('formalumno'));
      }
   
-     public function TutoresPDF(){
+     public function tutoresPDF(){
         $formtutor=tutores::paginate(5);
-  return view('formtutor.TutoresPDF',compact('formtutor'));
+  return view('formtutor.tutoresPDF',compact('formtutor'));
      }
   
-     public function EntrenadoresPDF(){
+     public function entrenadoresPDF(){
         $formentrenador=entrenadores::paginate(5);
   return view('formentrenador.EntrenadoresPDF',compact('formentrenador'));
      }

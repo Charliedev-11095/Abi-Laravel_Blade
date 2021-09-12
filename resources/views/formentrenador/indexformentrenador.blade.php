@@ -6,6 +6,7 @@
     </x-slot>
     {{-- <a class="btn btn-danger" href="{{url('/MenuPDF')}}" target="blank">Regresar</a> --}}
     <a class="btn btn-success" href="{{url('/formentrenadores/create')}}">Agregar nuevo registro</a>
+    <a class="btn btn-primary" href="{{url('entrenadoresPDF')}}"target="_blank">Descargar PDF</a>
     {{-- <a class="btn btn-info" href="{{route('pdfEntrenadores')}}" target="blank">Descargar PDF Tabla</a> --}}
 
 
