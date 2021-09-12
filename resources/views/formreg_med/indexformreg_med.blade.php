@@ -23,6 +23,7 @@
 <table class="table table-bordered">
     <thead class="thead-dark">
         <tr>
+            <th>Acciones</th>
             <th>ID</th>
             <th>Alumno</th>
             <th>estatura</th>
@@ -36,13 +37,23 @@
             <th>conducta</th>
             <th>impedimento físico</th>
             <th>condición fisica</th>
-            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
      
         @foreach ($formreg_med as $regmed)
         <tr>
+            <td>
+                <a class="btn btn-warning" href="{{url('/formreg_med/'.$regmed->id.'/edit')}}">
+                    Editar
+                </a>
+                <form method="post" action="{{url('/formreg_med/'.$regmed->id)}}" >
+                    {{@csrf_field() }}
+                    {{@method_field('DELETE')}}
+                    
+                </form>
+                
+            </td>
             <td>{{$loop->iteration}}</td>
             <td>{{$regmed->nombres}} {{$regmed->apellido_paterno}} {{$regmed->apellido_materno}}</td>
             <td>{{$regmed->estatura}}</td>
@@ -56,17 +67,6 @@
             <td>{{$regmed->conducta}}</td>
             <td>{{$regmed->impedimento_fisico}}</td>
             <td>{{$regmed->condicion_fisica}}</td>
-            <td>
-                <a class="btn btn-warning" href="{{url('/formreg_med/'.$regmed->id.'/edit')}}">
-                    Editar
-                </a>
-                <form method="post" action="{{url('/formreg_med/'.$regmed->id)}}" >
-                    {{@csrf_field() }}
-                    {{@method_field('DELETE')}}
-                    
-                </form>
-                
-            </td>
         </tr>
         @endforeach
     </tbody>

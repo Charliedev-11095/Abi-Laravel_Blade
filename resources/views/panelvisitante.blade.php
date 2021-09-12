@@ -53,21 +53,21 @@
                          </div>
                         
 
-                        <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                           <h3>La pagina web es de uso exclusivo para usuarios y clubs autorizados.</h3> 
+                        <div class="col-md-8 col-md-offset-2 text-center fh5co-heading " style=”text-align: justify;”>
+                           <h3>La pagina web es de uso exclusivo<br><strong>para usuarios y clubs autorizados.</strong></h3> 
                         </div>
 
-                        <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                        <div class="col-md-8 col-md-offset-2 text-center fh5co-heading"style=”text-align: justify;”>
                             <p>
                                 <h3>
-                                Si te interesa mantenerte al tanto y pedir informacion, comunícate con nosotros a través de <a href="https://www.facebook.com/Academia-Basquetbol-Integral-117194377233584"><h3>Facebook</h3></a> y visita nuestra página de contacto.
+                                Si te interesa mantenerte al tanto<br> y pedir informacion <br>comunícate con nosotros a través<br>de <a href="https://www.facebook.com/Academia-Basquetbol-Integral-117194377233584"><h3>Facebook</h3></a> y visita nuestra página de contacto.
                                 </h3>
                             </p>
                                 
                             
                              
                         </div>
-                        <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                        <div class="col-md-8 col-md-offset-2 text-center fh5co-heading"style=”text-align: justify;”>
                            <h3>Comencemos a trabajar juntos!!!!
                             
                             </h3> 

@@ -25,6 +25,7 @@
 <table class="table table-bordered table-hover card-heading">
     <thead class="thead-dark">
         <tr>
+            <th>Acciones</th>
             <th>ID</th>
             <th>Nombres</th>
             <th>Apellido Paterno</th>
@@ -39,12 +40,23 @@
             <th>curp</th>
             <th>fecha de nacimiento</th>
             <th>teléfono</th>
-            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($formalumno as $alumno)
         <tr>
+            <td>
+                <p>
+                <a class="btn btn-warning" href="{{url('/formalumnos/'.$alumno->id.'/edit')}}">
+                    Editar
+                </a>
+            </p>
+                <form method="post" action="{{url('/formalumnos/'.$alumno->id)}}" style="">
+                    {{@csrf_field() }}
+                    {{@method_field('DELETE')}}
+                   
+                </form>
+            </td>
             <td>{{$loop->iteration}}</td>
             <td>{{$alumno->nombres}}</td>
             <td>{{$alumno->apellido_paterno}}</td>
@@ -59,18 +71,6 @@
             <td>{{$alumno->curp}}</td>
             <td>{{$alumno->fecha_de_nacimiento}}</td>
             <td>{{$alumno->telefono}}</td>
-            <td>
-                <p>
-                <a class="btn btn-warning" href="{{url('/formalumnos/'.$alumno->id.'/edit')}}">
-                    Editar
-                </a>
-            </p>
-                <form method="post" action="{{url('/formalumnos/'.$alumno->id)}}" style="">
-                    {{@csrf_field() }}
-                    {{@method_field('DELETE')}}
-                   
-                </form>
-            </td>
         </tr>
         @endforeach
     </tbody>

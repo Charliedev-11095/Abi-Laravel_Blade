@@ -23,7 +23,8 @@
         <table class="table table-bordered">
             <thead class="thead-dark">
         <tr>
-            <th>#</th>
+            <th>Acciones</th>
+            <th>ID</th>
             <th>Nombres</th>
             <th>Apellido Paterno</th>
             <th>Apellido Materno</th>
@@ -37,12 +38,22 @@
             <th>curp</th>
             <th>fecha de nacimiento</th>
             <th>telefono</th>
-            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($formtutor as $tutor)
         <tr>
+            <td>
+                <p>
+                <a class="btn btn-warning" href="{{url('/formtutores/'.$tutor->id.'/edit')}}">
+                    Editar
+                </a>
+                </p>
+                <form method="post" action="{{url('/formtutores/'.$tutor->id)}}" style="display:inline" >
+                    {{@csrf_field() }}
+                    {{@method_field('DELETE')}}
+                    </form>
+            </td>
             <td>{{$loop->iteration}}</td>
             <td>{{$tutor->nombres}}</td>
             <td>{{$tutor->apellido_paterno}}</td>
@@ -57,17 +68,6 @@
             <td>{{$tutor->curp}}</td>
             <td>{{$tutor->fecha_de_nacimiento}}</td>
             <td>{{$tutor->telefono}}</td>
-            <td>
-                <p>
-                <a class="btn btn-warning" href="{{url('/formtutores/'.$tutor->id.'/edit')}}">
-                    Editar
-                </a>
-                </p>
-                <form method="post" action="{{url('/formtutores/'.$tutor->id)}}" style="display:inline" >
-                    {{@csrf_field() }}
-                    {{@method_field('DELETE')}}
-                    </form>
-            </td>
         </tr>
         @endforeach
     </tbody>

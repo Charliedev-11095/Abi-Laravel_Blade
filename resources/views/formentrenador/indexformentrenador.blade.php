@@ -26,6 +26,7 @@
             <thead class="thead-dark">
         <tr>
             <tr>
+                <th>Acciones</th>
                 <th>ID</th>
                 <th>Nombres</>
                 <th>Apellido Paterno</th>
@@ -40,13 +41,22 @@
                 <th>curp</th>
                 <th>fecha de nacimiento</th>
                 <th>teléfono</th>
-                <th>Acciones</th>
             </tr>
         </tr>
     </thead>
     <tbody>
         @foreach ($formentrenador as $entrenador)
         <tr>
+            <td>
+                <a class="btn btn-warning" href="{{url('/formentrenadores/'.$entrenador->id.'/edit')}}">
+                    Editar
+                </a>
+                <form method="post" action="{{url('/formentrenadores/'.$entrenador->id)}}" >
+                    {{@csrf_field() }}
+                    {{@method_field('DELETE')}}
+                    </form>
+                
+            </td>
             <td>{{$loop->iteration}}</td>
             <td>{{$entrenador->nombres}}</td>
             <td>{{$entrenador->apellido_paterno}}</td>
@@ -61,16 +71,6 @@
             <td>{{$entrenador->curp}}</td>
             <td>{{$entrenador->fecha_de_nacimiento}}</td>
             <td>{{$entrenador->telefono}}</td>
-            <td>
-                <a class="btn btn-warning" href="{{url('/formentrenadores/'.$entrenador->id.'/edit')}}">
-                    Editar
-                </a>
-                <form method="post" action="{{url('/formentrenadores/'.$entrenador->id)}}" >
-                    {{@csrf_field() }}
-                    {{@method_field('DELETE')}}
-                    </form>
-                
-            </td>
         </tr>
         @endforeach
     </tbody>
