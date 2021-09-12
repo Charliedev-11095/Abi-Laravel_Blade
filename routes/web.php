@@ -89,3 +89,8 @@ Route::get('/alumnosPDF',[App\Http\Controllers\PDFcontroller::class, 'alumnosPDF
 
  Route::get('/VistaentrenadoresPDF',[App\Http\Controllers\VistasPDF::class, 'entrenadoresPDF']);
 
+
+ Route::get('/reg_medPDF',[App\Http\Controllers\PDFcontroller::class, 'reg_medPDF'])->name('reg_medPDF');
+
+ Route::get('/Vistareg_medPDF',[App\Http\Controllers\VistasPDF::class, 'reg_medPDF']);
+

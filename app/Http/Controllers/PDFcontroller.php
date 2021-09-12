@@ -36,5 +36,12 @@ class PDFcontroller extends Controller
       $formentrenador=entrenadores::all();
       $pdf = PDF::loadView('formentrenador.entrenadoresPDF',compact('formentrenador'));
       return $pdf->setPAper('a4','portrait')->stream('Reporte-entrenador.pdf');
+
+   }
+   public function reg_medPDF(){
+      $formreg_med=registros_medicos::all();
+      $pdf = PDF::loadView('formreg_med.reg_medPDF',compact('formreg_med'));
+      return $pdf->setPAper('a4','portrait')->stream('Reporte-entrenador.pdf');
+
    }
 }

@@ -14,37 +14,37 @@
             </div>
         @endif
 
-
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
+                <div class="table-responsive">
                 <table class="table table-bordered table-hover" >
                     <thead class="thead-dark" >
                         <div class="card-heading">
                             <H2 class="title">Usuarios existentes</H2>
                         </div>
                         <tr>
+                            <th class="card-title">Acción</th>
                             <th class="cartextd-">ID de usuario</th>
                             <th class="card-text">Nombre</th>
                             <th class="card-title">Email</th>
-                            <th class="card-title">Acción</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($usuarios as $usuario)
             
-                            <tr>    
+                            <tr>    <td>
+                                <a class="btn btn-warning" href="{{url('/formusuario/'.$usuario->id.'/edit')}}">
+                                    Editar
+                                </a>
+                            </td>
                                 <td>{{$usuario->id}}</td>
                                 <td>{{$usuario->name}}</td>
                                 <td>{{$usuario->email}}</td>
-                                <td>
-                                    <a class="btn btn-warning" href="{{url('/formusuario/'.$usuario->id.'/edit')}}">
-                                        Editar
-                                    </a>
-                                </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
     </div>

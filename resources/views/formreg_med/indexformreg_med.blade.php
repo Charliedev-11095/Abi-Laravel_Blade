@@ -10,6 +10,7 @@
 
     <a class="btn btn-danger" href="{{url('/MenuPDF')}}" target="blank">Regresar</a>
     <a class="btn btn-success" href="{{url('/formreg_med/create')}}">Agregar nuevo registro</a>
+    <a class="btn btn-primary" href="{{url('reg_medPDF')}}"target="_blank">Descargar PDF</a>
 {{-- <a class="btn btn-secondary" href="{{route('PDFReg_Med')}}" target="blank">abrir Tabla</a>  --}}
     {{-- <a class="btn btn-info" href="{{route('pdfReg_med')}}" target="blank">Descargar PDF Tabla</a> --}}
 
