@@ -7,10 +7,7 @@
                     <a href="{{url('/')}}"> <img src="images/icons/back-icon.png"> </a>
                     <h2 class="title">Formulario de Registro </h2>
                 </div>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+        
 
         <x-jet-validation-errors class="mb-4" />
         <div class="card-body">
@@ -80,7 +77,6 @@
             </div>
         </form>
         </div>
-    </x-jet-authentication-card>
     </div>
     </div>
     </div>
