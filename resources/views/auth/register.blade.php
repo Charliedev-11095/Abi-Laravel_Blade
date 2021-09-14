@@ -1,32 +1,55 @@
 <x-guest-layout>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+        <div class="wrapper wrapper--w790">
+            <div class="card card-5">
+                <div class="card-heading">
+                    <a href="{{url('/')}}"> <img src="images/icons/back-icon.png"> </a>
+                    <h2 class="title">Formulario de Registro </h2>
+                </div>
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
-
+        <div class="card-body">
         <form method="POST" action="{{ route('register') }}">
             @csrf
-
-            <div>
-                <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <div class="form-row wrap-input100 validate-input">
+                <x-jet-label class="name" value="{{ __('Nombre(s)') }}" />
+                <div class="input-group wrap-input100 validate-input">
+                    <x-jet-input id="name" class="input100 block mt-1 w-full input100" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder=" Ingresa tu Nombre" />
+                    <span class="focus-input100 "></span>
+                            <span class="symbol-input100">
+                            <i class="fa fa-user"></i>
+                    </span>
+            </div>
             </div>
 
-            <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+            <div class="form-row wrap-input100 validate-input">
+                <x-jet-label class="name" value="{{ __('Correo') }}" />
+                <div class="input-group wrap-input100 validate-input">
+                <x-jet-input id="email" class="input100 block mt-1 w-full" type="email" name="email" :value="old('email')" required placeholder=" Ingresa tu Correo" />
+                <span class=" focus-input100 "></span>
+                <span class="symbol-input100">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                </span>
+                </div>
             </div>
 
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+            <div class="form-row wrap-input100 validate-input">
+                <x-jet-label class="name" value="{{ __('Contraseña') }}" />
+                <div class="input-group wrap-input100 validate-input">
+                <x-jet-input id="password" class="input101 block mt-1 w-full" type="password" name="password" required autocomplete="new-password" placeholder="Ingresa la contraseña" />
+                </div>
             </div>
 
-            <div class="mt-4">
-                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+            <div class="form-row wrap-input100 validate-input">
+                <x-jet-label class="name" value="{{ __('Confirmar contraseña') }}" />
+                <div class="input-group wrap-input100 validate-input">
+                <x-jet-input id="password_confirmation" class="input101 block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Ingresala nuevamente"/>
+                </div>
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
@@ -48,13 +71,17 @@
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
+                    {{ __('¿Ya estabas registrad@?') }}
                 </a>
 
                 <x-jet-button class="ml-4">
-                    {{ __('Register') }}
+                    {{ __('Registrar') }}
                 </x-jet-button>
             </div>
         </form>
+        </div>
     </x-jet-authentication-card>
+    </div>
+    </div>
+    </div>
 </x-guest-layout>
