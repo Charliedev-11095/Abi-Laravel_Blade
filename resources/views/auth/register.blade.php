@@ -25,7 +25,7 @@
             </div>
 
             <div class="form-row wrap-input100 validate-input">
-                <x-jet-label class="name" value="{{ __('Correo') }}" />
+                <x-jet-label class="name" value="{{ __('Correo Electrónico') }}" />
                 <div class="input-group wrap-input100 validate-input">
                 <x-jet-input id="email" class="input100 block mt-1 w-full" type="email" name="email" :value="old('email')" required placeholder=" Ingresa tu Correo" />
                 <span class=" focus-input100 "></span>

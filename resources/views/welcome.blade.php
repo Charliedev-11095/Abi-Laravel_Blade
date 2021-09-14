@@ -129,7 +129,7 @@
 
                     <p>
                         <ul class="fh5co-social-icons">
-                            <li><a href="https://www.facebook.com/CIDDEBA.AGUILASMORELIA/photos/?ref=page_internal" target="_blank"><i class="icon-facebook"></i></a></li>
+                            <li><a href="https://www.facebook.com/Academia-Basquetbol-Integral-117194377233584" target="_blank"><i class="icon-facebook"></i></a></li>
                             
                         </ul>
                     </p>
