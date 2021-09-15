@@ -60,20 +60,7 @@
                                 </div>
                             </div>
                             <br>
-                            <div class="card card-5">
-                                <div class="card-heading">
-                                                    
-                                <H2 class="title">ACCESO RÁPIDO A HISTORIALES</H2>
-                                </div>
-                                <div class="card-body">
-                                    <center><p><a href="{{ url('/formhistorico_deportivo') }}" class="btn btn-primary btn-lg with-arrow" >PROGRESO DEPORTIVO</a></p></center>
-                                    <br>
-<center><p><a href="{{ url('/formhistorico_medico') }}" class="btn btn-primary btn-lg with-arrow" >HISTORIAL MÉDICO</a></p></center>
-<br>
 
-
-                                </div>
-                            </div>
                             
                             <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
                                     
