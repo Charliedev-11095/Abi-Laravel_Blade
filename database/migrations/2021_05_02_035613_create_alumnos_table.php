@@ -25,6 +25,7 @@ class CreateAlumnosTable extends Migration
             $table->string('ciudad',30);
             $table->string('estado',25);
             $table->integer('codigo_postal');
+            $table->string('email')->unique();
             $table->string('curp',19);
             $table->date('fecha_de_nacimiento');
             $table->char('telefono',15);

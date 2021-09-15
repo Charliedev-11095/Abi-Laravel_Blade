@@ -133,6 +133,17 @@
         </div>
 </div>
 
+
+
+<div class="form-row wrap-input100 validate-input">
+    <div class="name ">Correo electrónico</div>
+        <div class="input-group wrap-input100 validate-input">
+            <input id="email" class="input101" type="email" name="email" value="{{isset($alumno->email)?$alumno->email:''}}" required autofocus autocomplete="email">
+            <span class="focus-input100 "></span>
+        </div>
+</div>
+
+
 <div class=" form-row m-b-55 wrap-input100 validate-input ">
     <div class="name ">Extras</div>
     <div class="input-group wrap-input100 validate-input">

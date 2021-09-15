@@ -70,7 +70,7 @@ class RegistrosMedicosController extends Controller
 
        $datosformreg_med=request()->except('_token');
        registros_medicos::insert($datosformreg_med);
-        return redirect('dashboard')->with('Mensaje','registro medico agregado con exito');
+        return redirect('dashboard')->with('Mensaje','Registro médico agregado con éxito');
 
     }
 
