@@ -102,6 +102,7 @@
                     </a>
                 </div>
             </div>
+    
         </div>
     </div>
 
@@ -123,13 +124,9 @@
                 <div class="col-md-4 fh5co-widget">
                    
                     <h3>MAPA DE UBICACIÓN.</h3>
-                    <p>Coronel Manuel Sánchez 36, Unidos Santa Cruz, 58149 Morelia, Mich.</p>
-                    <p>cancha santa cruz<br>
-                    Abierto todo el día</p>
-
                     <p>
                         <ul class="fh5co-social-icons">
-                            <li><a href="https://www.facebook.com/CIDDEBA.AGUILASMORELIA/photos/?ref=page_internal" target="_blank"><i class="icon-facebook"></i></a></li>
+                            <li><a href="https://www.facebook.com/Academia-Basquetbol-Integral-117194377233584" target="_blank"><i class="icon-facebook"></i></a>Página oficial de ABI en Facebook</li>
                             
                         </ul>
                     </p>

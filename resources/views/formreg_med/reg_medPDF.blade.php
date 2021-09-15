@@ -118,7 +118,7 @@ header {
         <header class="">
             TABLA DE CONTENIDO
         </header>
-        <h1>TABLA ENTRENADOR</h1>
+        <h1>TABLA REGISTRO MÉDICO</h1>
         <footer>
             Copyright &copy; <?php echo date("Y");?> 
         </footer>
@@ -133,7 +133,11 @@ header {
                     <tr class="border-bottom border-right border-top" style="background:#353940;color:#FFF;">
                         <td width="2%" class="pad-center"><strong>ID</strong></td>
                         <td width="2%" style="text-align:center;background:#ffffff;color:rgb(0, 0, 0);">{{$loop->iteration}}</td>
-                        
+                     </tr>
+
+                     <tr class="border-bottom border-right border-top" style="background:#353940;color:#FFF;">
+                        <td width="2%" class="pad-center"><strong>Nombre</strong></td>
+                        <td width="2%" style="text-align:center;background:#ffffff;color:rgb(0, 0, 0);">{{$regmed->nombres}} {{$regmed->apellido_paterno}} {{$regmed->apellido_materno}}</td>
                      </tr>
                 
                 <tr class="border-bottom border-right" style="background:#353940;color:#FFF;">
@@ -184,10 +188,10 @@ header {
                  <tr class="border-bottom border-right" style="background:#353940;color:#FFF;">
                     <td class="pad-center"><strong> Condición Fisica</strong></td>
                     <td width="2%" style="text-align:center;background:#ffffff;color:rgb(0, 0, 0);">{{$regmed->condicion_fisica}}</td>
-                 </tr>
+                 </tr> 
                 </tbody>
-              
                 </table>
+                <br><br>
                 <br><br>
                 @endforeach
                 

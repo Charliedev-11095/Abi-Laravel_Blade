@@ -14,6 +14,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        
 
         <!--===============================================================================================-->
 <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
