@@ -319,32 +319,31 @@
 <table class="table table-light table-bordered table-hover" >
 <thead class="thead-dark">
     <div class="card-heading">
-       {{--  <a class="btn btn-info" href="{{route('pdfReghisto_dep')}}" target="blank">Descargar PDF Tabla</a> --}}
+    <a class="btn btn-info" href="{{route('historial_DeportivoPDF')}}" target="blank">Descargar tabla en PDF</a>
         <H2 class="title">Regístros Históricos Deportivos existentes</H2>
     </div>
     <tr>
+        <th class="card-title">ACCIONES</th>
         <th class="card-title">ID DE REGISTRO</th>
         <th class="card-title">ALUMNO</th>
         <th class="card-title">OBSERVACIONES</th>
         <th class="card-title">FECHA DE CREACIÓN</th>
         <th class="card-title">ACTUALIZADO EN</th>
-        <th class="card-title">ACCIONES</th>
     </tr>
 </thead>
     <tbody>
         @foreach ($datos2 as $dato2)       
-        <tr>    
+        <tr> 
+            <td>
+                <a class="btn btn-warning" href="{{url('/formhistorico_deportivo/'.$dato2->id.'/edit')}}">
+                    Editar
+                </a>
+            </td>   
             <td>{{$dato2->id}}</td>
             <td>{{$dato2->identificadoralumno}} {{$dato2->nombres}} {{$dato2->apellido_paterno}} {{$dato2->apellido_materno}} </td>
             <td>{{$dato2->observaciones}}</td>
             <td>{{$dato2->fecha_creacion}}</td>
             <td>{{$dato2->updated_at}}</td>
-            <td>
-                <a class="btn btn-warning" href="{{url('/formhistorico_deportivo/'.$dato2->id.'/edit')}}">
-                    Editar
-                </a>
-
-            </td>
         </tr>
         @endforeach
     </tbody>

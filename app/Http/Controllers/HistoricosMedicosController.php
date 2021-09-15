@@ -54,8 +54,6 @@ class HistoricosMedicosController extends Controller
         ->select('historicos_medicos.*','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno')
         ->get();
 
-
-
         return view('formhistorico_medico.indexhistorico_medico')->with('alumnos',$alumnos)
         ->with('historicos_medicos2',$historicos_medicos2)
         ->with('historicos_medicos',$historicos_medicos);

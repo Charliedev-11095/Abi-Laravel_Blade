@@ -500,14 +500,6 @@
     {!! $errors->first('observaciones','<div class="invalid-feedback">:message</div>') !!}
 </div>
 
-
-
-
-
-
-
-
-
 {{-- ESTE ES EL LIMITE DE LOS SELECT, Y EMPIEZA EL BOTON  --}}
 
 <input type="submit" class="btn btn-success" value="{{$Modo=='crear' ? 'Agregar':'Modificar'}}">

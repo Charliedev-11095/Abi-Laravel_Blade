@@ -141,36 +141,33 @@
 <table class="table table-light table-bordered table-hover"  >
 <thead class="thead-dark">
     <div class="card-heading">
- {{--        <a class="btn btn-info" href="{{route('pdfReghisto_HistMed')}}" target="blank">Descargar Tabla PDF </a> --}}
+        <a class="btn btn-info" href="{{route('historial_MedicoPDF')}}" target="blank">Descargar PDF</a>
         <H2 class="title">Regístros históricos médicos existentes</H2>
     </div>
     <tr>
+        <th class="card-title">Acciones</th>
         <th class="card-title">Id de registro</th>
         <th class="card-title">Alumno</th>
         <th class="card-title">Comentarios</th>
         <th class="card-title">Fecha de creación</th>
         <th class="card-title">Fecha de actualización</th>
-        <th class="card-title">Acciones</th>
     </tr>
 
 </thead>
     <tbody>
         @foreach ($historicos_medicos as $historicos_medico)
             
-        <tr>    
+        <tr>
+            <td>
+                <a class="btn btn-warning" href="{{url('/formhistorico_medico/'.$historicos_medico->id.'/edit')}}">
+                    Editar
+                </a>
+            </td>    
             <td>{{$historicos_medico->id}}</td>
             <td>{{$historicos_medico->nombres}} {{$historicos_medico->apellido_paterno}} {{$historicos_medico->apellido_materno}}</td>
             <td>{{$historicos_medico->comentarios}}</td>
             <td>{{$historicos_medico->fecha_creacion}}</td>
             <td>{{$historicos_medico->updated_at}}</td>
-            <td>
-                <a class="btn btn-warning" href="{{url('/formhistorico_medico/'.$historicos_medico->id.'/edit')}}">
-                    Editar
-                </a>
-                
-
-            </td>
-            
         </tr>
         @endforeach
 

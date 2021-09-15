@@ -38,20 +38,20 @@ class VistasPDF extends Controller
         $formreg_med=registros_medicos::paginate(5);
   return view('formreg_med.reg_medPDF',compact('formreg_med'));
      }
-     public function Reghisto_depPDF(){
+     public function historial_DeportivoPDF(){
   
         $datos2 =DB::table('historicos_deportivos')
           ->join('alumnos','alumnos.id', '=','historicos_deportivos.alumnos_id')
           ->select('historicos_deportivos.id','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno','alumnos.id as identificadoralumno','historicos_deportivos.observaciones','historicos_deportivos.fecha_creacion','historicos_deportivos.updated_at')
           ->get();
-  return view('formhistorico_deportivo.Reghisto_depPDF',compact('datos2'));
+  return view('formhistorico_deportivo.historial_DeportivoPDF',compact('datos2'));
      }
-     public function Reg_HistMedPDF(){
-        $historicos_medicos =DB::table('historicos_medicos')
-        ->join('alumnos','alumnos.id', '=','historicos_medicos.alumnos_id')
-        ->select('historicos_medicos.*','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno')
-        ->get();
-  return view('formhistorico_medico.Reghisto_medPDF',compact('historicos_medicos'));
+     public function historial_MedicoPDF(){
+      $historicos_medicos =DB::table('historicos_medicos')
+      ->join('alumnos','alumnos.id', '=','historicos_medicos.alumnos_id')
+      ->select('historicos_medicos.*','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno')
+      ->get();
+  return view('formhistorico_medico.historial_MedicoPDF',compact('historicos_medicos'));
      }
      public function GruposAsignadosPDF(){
         $datos =DB::table('grupo_alumnos')
