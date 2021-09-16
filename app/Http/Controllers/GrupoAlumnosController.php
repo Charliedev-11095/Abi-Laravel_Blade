@@ -59,7 +59,6 @@ class GrupoAlumnosController extends Controller
         $alumnos = alumnos::all();
         $entrenadores = entrenadores::all();
         $grupos = grupos::all();
-
         return view('asistencia.creategrupo_alumno',)->with('alumnos',$alumnos)
         ->with('entrenadores',$entrenadores)
         ->with('grupos',$grupos);

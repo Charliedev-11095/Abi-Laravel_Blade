@@ -24,8 +24,6 @@ class GruposController extends Controller
     {
         // $datos['grupos']=grupos::paginate(Numero_elementos_para_mostrar);
         $datos['grupos']=grupos::paginate();
-
-
         return view('asistencia.listadogrupos',$datos);
     }
 

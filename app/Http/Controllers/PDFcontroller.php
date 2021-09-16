@@ -59,4 +59,5 @@ class PDFcontroller extends Controller
       $pdf = PDF::loadView('formhistorico_medico.historial_MedicoPDF',compact('historicos_medicos'));
       return $pdf->setPAper('a4','landscape')->stream('Reporte-Médico.pdf');
 }
+
 }

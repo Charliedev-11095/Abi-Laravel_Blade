@@ -141,6 +141,13 @@
 
                             <div class="border-t border-gray-100"></div>
 
+                            <!-- Descargar pdf -->
+                            @if (Auth::user()->role == 'Administrador' || Auth::user()->role == 'Entrenador')
+                            <x-jet-dropdown-link href="{{ route('MenuPdf') }}">
+                                {{ __('Menú de opciones PDF') }}
+                            </x-jet-dropdown-link>
+                            @endif
+
 
                             @if (Auth::user()->role == 'Administrador' || Auth::user()->role == 'Entrenador')
                             <!-- Historico Deportivo -->
