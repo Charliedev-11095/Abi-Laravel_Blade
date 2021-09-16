@@ -54,7 +54,7 @@
     </div>
     <br>
     <div class="card card-5">
-
+        <div class="table-responsive">   
     <table class="table table-light table-bordered table-hover"  >
         <thead class="thead-dark">
             <div class="card-heading">
@@ -62,32 +62,29 @@
                 <H2 class="title">ASIGNACIONES GLOBALES, DE ALUMNOS A GRUPOS</H2>
             </div>
             <tr>
-                
+                <th class="card-title">ACCIONES</th>
                 <th class="card-title">ID DE REGISTRO</th>
                 <th class="card-title">ALUMNOS</th>
                 <th class="card-title">GRUPO</th>
                 <th class="card-title">ENTRENADOR</th>
                 <th class="card-title">ESTADO</th>
-                <th class="card-title">ACCIONES</th>
+                
              
             </tr>
         
         </thead>
             <tbody>
                 @foreach($datos as $dato)
-                <tr>
+                <tr> <td>
+                    <a class="btn btn-warning" href="{{ url('/asistencia/grupo_alumnos/' . $dato->idregistro . '/edit') }}">
+                        Editar
+                    </a>
+                    </td>
                     <td>{{$dato->idregistro}}</td>
                     <td>{{$dato -> nombres}} {{$dato -> apellido_paterno}} {{$dato -> apellido_materno}}</td>
                     <td>{{$dato -> nivel}} {{$dato -> grado}} {{$dato -> seccion}}</td>
                     <td>{{$dato -> nombresentrenador}} {{$dato -> paternoentrenador}} {{$dato -> maternoentrenador}}</td>
                     <td>{{$dato -> estado}}</td>
-                    <td>
-              
-                    
-                    <a class="btn btn-warning" href="{{ url('/asistencia/grupo_alumnos/' . $dato->idregistro . '/edit') }}">
-                        Editar
-                    </a>
-                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -103,6 +100,7 @@
   
 <div class="wrapper wrapper--w790">
     <div class="card card-5">
+        <div class="table-responsive">   
         <table class="table table-light table-bordered table-hover"  >
             <thead class="thead-dark">
                 <div class="card-heading">
@@ -124,7 +122,8 @@
                     </tr>
                     @endforeach
                 </tbody>
-            </table>       
+            </table>
+        </div>       
         </div>
     </div>
     
@@ -137,6 +136,7 @@
 
 <div class="wrapper wrapper--w790">
     <div class="card card-5">
+        <div class="table-responsive">   
         <table class="table table-light table-bordered table-hover"  >
             <thead class="thead-dark">
                 <div class="card-heading">
@@ -159,7 +159,7 @@
                     @endforeach                               
                 </tbody>       
             </table>        
-
+        </div>
         </div>
     </div>
     
@@ -173,6 +173,7 @@
 
     <div class="wrapper wrapper--w790">
         <div class="card card-5">
+            <div class="table-responsive">   
         <table class="table table-light table-bordered table-hover"  >
             <thead class="thead-dark">
                 <div class="card-heading">
@@ -201,7 +202,8 @@
                     </tr>
                     @endforeach            
                 </tbody>            
-            </table>            
+            </table> 
+            </div>
         </div>
     </div>
     

@@ -20,49 +20,44 @@
         @endif
 
 
-
-
-
-
-
-
-
-
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
+                <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead class="table-dark">
                         <div class="card-heading">
                             <H2 class="title">Grupos existentes</H2>
                         </div>
                         <tr>
-                            <th class="card-title">#</th>
+
+                            <th class="card-title">Acciones</th>
+                            <th class="card-title">ID</th>
                             <th class="card-title">Nivel</th>
                             <th class="card-title">Grado</th>
                             <th class="card-title">Sección</th>                        
                             <th class="card-title">Estado</th>
-                            <th class="card-title">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($grupos as $grupo)
 
                             <tr class="table-bordered">
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $grupo->nivel }}</td>
-                                <td>{{ $grupo->grado }}</td>
-                                <td>{{ $grupo->seccion }}</td>
-                                <td>{{ $grupo->estado }}</td>
                                 <td>
                                     <a class="btn btn-warning" href="{{ url('/asistencia/grupos/' . $grupo->id . '/edit') }}">
                                         Editar
                                     </a>
 
                                 </td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $grupo->nivel }}</td>
+                                <td>{{ $grupo->grado }}</td>
+                                <td>{{ $grupo->seccion }}</td>
+                                <td>{{ $grupo->estado }}</td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
     </div>
