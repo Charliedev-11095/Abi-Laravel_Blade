@@ -58,7 +58,7 @@
     <table class="table table-light table-bordered table-hover"  >
         <thead class="thead-dark">
             <div class="card-heading">
-{{--                 <a class="btn btn-info" href="{{route('pdfGruposAsignados')}}" target="blank">DESCARGAR TABLA PDF</a> --}}
+                <a class="btn btn-info" href="{{route('GruposAsignadosPDF')}}" target="blank">DESCARGAR TABLA PDF</a>
                 <H2 class="title">ASIGNACIONES GLOBALES, DE ALUMNOS A GRUPOS</H2>
             </div>
             <tr>

@@ -58,6 +58,25 @@ class PDFcontroller extends Controller
       ->get();
       $pdf = PDF::loadView('formhistorico_medico.historial_MedicoPDF',compact('historicos_medicos'));
       return $pdf->setPAper('a4','landscape')->stream('Reporte-Médico.pdf');
+   }
+   public function GruposAsignadosPDF(){
+   $datos =DB::table('grupo_alumnos')
+   ->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
+   ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+   ->join('entrenadores','entrenadores.id', '=','grupo_alumnos.entrenadores_id')
+   ->select('grupo_alumnos.id as idregistro','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno','grupos.nivel','grupos.grado','grupos.seccion','entrenadores.nombres as nombresentrenador' ,'entrenadores.apellido_paterno as paternoentrenador' ,'entrenadores.apellido_materno as maternoentrenador' )
+   ->get();
+   $pdf = PDF::loadView('asistencia.AlumnosYGruposPDF',compact('datos'));
+   return $pdf->setPAper('a4','landscape')->stream('Reporte-Registro_GrupoAlumnos.pdf');
 }
-
+public function listaGrupoPDF(){
+   $datos =DB::table('grupo_alumnos')
+   ->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
+   ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+   ->join('entrenadores','entrenadores.id', '=','grupo_alumnos.entrenadores_id')
+   ->select('grupo_alumnos.id as idregistro','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno','grupos.nivel','grupos.grado','grupos.seccion','entrenadores.nombres as nombresentrenador' ,'entrenadores.apellido_paterno as paternoentrenador' ,'entrenadores.apellido_materno as maternoentrenador' )
+   ->get();
+   $pdf = PDF::loadView('asistencia.listaGrupoPDF',compact('datos'));
+   return $pdf->setPAper('a4','landscape')->stream('Reporte-Registro_listaGrupoAlumnos.pdf');
+}
 }

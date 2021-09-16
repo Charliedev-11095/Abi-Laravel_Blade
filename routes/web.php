@@ -87,12 +87,21 @@ Route::get('/alumnosPDF',[App\Http\Controllers\PDFcontroller::class, 'alumnosPDF
 
  Route::get('/Vistahistorial_DeportivoPDF',[App\Http\Controllers\VistasPDF::class, 'historial_DeportivoPDF']);
  
-
  Route::get('/historial_MedicoPDF',[App\Http\Controllers\PDFcontroller::class, 'historial_DeportivoPDF'])->name('historial_DeportivoPDF');
 
  Route::get('/Vistahistorial_DeportivoPDF',[App\Http\Controllers\VistasPDF::class, 'historial_DeportivoPDF']);
 
-
  Route::get('/historial_MedicoPDF',[App\Http\Controllers\PDFcontroller::class, 'historial_MedicoPDF'])->name('historial_MedicoPDF');
 
  Route::get('/Vistahistorial_MedicoPDF',[App\Http\Controllers\VistasPDF::class, 'historial_MedicoPDF']);
+
+ Route::get('/GruposAsignadosPDF',[App\Http\Controllers\PDFcontroller::class, 'GruposAsignadosPDF'])->name('GruposAsignadosPDF');
+
+ Route::get('/VistaGruposAsignadosPDF',[App\Http\Controllers\VistasPDF::class, 'GruposAsignadosPDF']);
+
+
+ Route::get('/listaGrupoPDF',[App\Http\Controllers\PDFcontroller::class, 'listaGrupoPDF'])->name('listaGrupoPDF');
+
+ Route::get('/VistalistaGrupoPDF',[App\Http\Controllers\VistasPDF::class, 'listaGrupoPDF']);
+
+ 

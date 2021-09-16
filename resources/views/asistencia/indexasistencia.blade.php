@@ -57,7 +57,7 @@
 
                     <thead class="thead-dark" style="background-color:#000000;color:white;border:1px solid #BDB76B;">
                         <div class="card-heading">
-                         {{--    <a class="btn btn-info" href="{{route('pdflistaGrupo')}}" target="blank">Descargar PDF Tabla</a> --}}
+                            <a class="btn btn-info" href="{{route('listaGrupoPDF')}}" target="blank">Descargar PDF Tabla</a>
                             <H2 class="title">LISTA DE GRUPO</H2>
                         </div>
                         <tr>
