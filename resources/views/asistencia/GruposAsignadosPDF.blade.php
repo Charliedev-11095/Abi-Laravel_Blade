@@ -118,7 +118,7 @@ header {
         <header class="">
             TABLA DE CONTENIDO
         </header>
-        <h1>TABLA ALUMNO</h1>
+        <h3>ASIGNACIONES GLOBALES, DE ALUMNOS A GRUPOS</h3>
         <footer>
             Copyright &copy; <?php echo date("Y");?> 
         </footer>
@@ -126,7 +126,7 @@ header {
 
         <!-- Wrap the content of your PDF inside a main tag -->
         <main>
-         @foreach($datos as $dato)
+            @foreach($datos as $dato)
          
             <table width="100%">
                 <tbody> 
@@ -141,13 +141,17 @@ header {
                    
                 </tr>
                 <tr class="border-bottom border-right" style="background:#353940;color:#FFF;">
-                   <td class="pad-center"><strong>Nivel</strong></td>
-                   <td style="text-align:center;background:#ffffff;color:rgb(0, 0, 0);">{{$dato->nivel}}{{ ' '.$dato->grado}}{{$dato->seccion}}</td>
+                   <td class="pad-center"><strong>Grupo</strong></td>
+                   <td style="text-align:center;background:#ffffff;color:rgb(0, 0, 0);">{{$dato->nivel}}{{$dato->grado}}{{$dato->seccion}}</td>
                 </tr>
                 <tr class="border-bottom border-right" style="background:#353940;color:#FFF;">
                     <td width="2%" class="pad-center"><strong>Entrenador</strong></td>
                     <td width="2%"style="text-align:center;background:#ffffff;color:rgb(0, 0, 0);">{{$dato->nombresentrenador}} {{$dato->paternoentrenador}} {{$dato->maternoentrenador}}</td>
-                    
+                 </tr>
+
+                 <tr class="border-bottom border-right" style="background:#353940;color:#FFF;">
+                    <td class="pad-center"><strong>Estado</strong></td>
+                    <td style="text-align:center;background:#ffffff;color:rgb(0, 0, 0);">{{$dato->estado}}</td>
                  </tr>
                  
                 </tbody>

@@ -81,10 +81,10 @@
                     </a>
                     </td>
                     <td>{{$dato->idregistro}}</td>
-                    <td>{{$dato -> nombres}} {{$dato -> apellido_paterno}} {{$dato -> apellido_materno}}</td>
-                    <td>{{$dato -> nivel}} {{$dato -> grado}} {{$dato -> seccion}}</td>
-                    <td>{{$dato -> nombresentrenador}} {{$dato -> paternoentrenador}} {{$dato -> maternoentrenador}}</td>
-                    <td>{{$dato -> estado}}</td>
+                    <td>{{$dato->nombres}} {{$dato->apellido_paterno}} {{$dato->apellido_materno}}</td>
+                    <td>{{$dato->nivel}} {{$dato->grado}} {{$dato ->seccion}}</td>
+                    <td>{{$dato->nombresentrenador}} {{$dato->paternoentrenador}} {{$dato->maternoentrenador}}</td>
+                    <td>{{$dato->estado}}</td>
                 </tr>
                 @endforeach
             </tbody>
