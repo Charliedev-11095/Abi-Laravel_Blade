@@ -66,5 +66,14 @@ return view('asistencia.listaGrupoPDF',compact('grupos'));
       ->get();
   return view('asistencia.GruposAsignadosPDF',compact('datos'));
      }
-     
+     public function listaGrupoAlumnosPDF(){
+
+      $datos =DB::table('grupo_alumnos')
+              ->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
+              ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+              ->join('entrenadores','entrenadores.id', '=','grupo_alumnos.entrenadores_id')
+              ->select('grupo_alumnos.id as idregistro','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno','grupos.nivel','grupos.grado','grupos.seccion','entrenadores.nombres as nombresentrenador' ,'entrenadores.apellido_paterno as paternoentrenador' ,'entrenadores.apellido_materno as maternoentrenador','grupo_alumnos.estado')
+              ->get();
+              return view('asistencia.listaGrupoAlumnosPDF',compact('datos'));
+     }
 }

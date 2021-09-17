@@ -26,11 +26,9 @@ class AsistenciasController extends Controller
      */
     public function index(Request $request)
     {
+        $listalumno=$request->get('buscarpor');
         $nombregrupo=$request->get('buscarpor');
-        $alumnos = alumnos::all();
-        $entrenadores = entrenadores::all();
         $grupos = grupos::all();
-        $grupoalumnos = grupo_alumnos::all();
         $datos =DB::table('alumnos')
         ->join('grupo_alumnos','grupo_alumnos.alumnos_id', '=','alumnos.id')
         ->join('entrenadores','entrenadores.id', '=','grupo_alumnos.entrenadores_id')
@@ -40,7 +38,8 @@ class AsistenciasController extends Controller
         ->get();
 
         return view('asistencia.indexasistencia')->with('datos',$datos)
-        ->with('grupos',$grupos);
+        ->with('grupos',$grupos)
+        ->with('listalumno',$listalumno);
 
     }
 

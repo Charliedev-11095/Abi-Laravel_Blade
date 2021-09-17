@@ -74,4 +74,15 @@ class PDFcontroller extends Controller
    $pdf = PDF::loadView('asistencia.GruposAsignadosPDF',compact('datos'));
    return $pdf->setPAper('a4','landscape')->stream('Reporte-Registro_GrupoAlumnos.pdf');
 }
+public function listaGrupoAlumnosPDF(){
+
+$datos =DB::table('grupo_alumnos')
+        ->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
+        ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+        ->join('entrenadores','entrenadores.id', '=','grupo_alumnos.entrenadores_id')
+        ->select('grupo_alumnos.id as idregistro','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno','grupos.nivel','grupos.grado','grupos.seccion','entrenadores.nombres as nombresentrenador' ,'entrenadores.apellido_paterno as paternoentrenador' ,'entrenadores.apellido_materno as maternoentrenador','grupo_alumnos.estado')
+        ->get();
+        $pdf = PDF::loadView('asistencia.listaGrupoAlumnosPDF',compact('datos'));
+   return $pdf->setPAper('a4','landscape')->stream('Reporte-Registro_GrupoAlumnos.pdf');
+}
 }
