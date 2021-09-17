@@ -118,7 +118,7 @@ header {
         <header class="">
             TABLA DE CONTENIDO
         </header>
-        <h1>LISTA DE GRUPO</h1>
+        <h1>GRUPOS EXISTENTES</h1>
         <footer>
             Copyright &copy; <?php echo date("Y");?> 
         </footer>
@@ -126,32 +126,29 @@ header {
 
         <!-- Wrap the content of your PDF inside a main tag -->
         <main>
-            @foreach ($grupos as $grupo)
+            @foreach ($datos as $dato)
          
             <table width="100%">
                 <tbody> 
                     <tr class="border-bottom border-right border-top" style="background:#353940;color:#FFF;">
                         <td width="2%" class="pad-center"><strong>ID</strong></td>
-                        <td width="2%" style="text-align:center;background:#ffffff;color:rgb(0, 0, 0);">{{ $loop->iteration }}</td>
+                        <td width="2%" style="text-align:center;background:#ffffff;color:rgb(0, 0, 0);">{{ $dato->idregistro }}</td>
                         
                      </tr>
                 <tr class="border-bottom border-right" style="background:#353940;color:#FFF;">
-                   <td width="2%" class="pad-center"><strong>Nivel</strong></td>
-                   <td width="2%" style="text-align:center;background:#ffffff;color:rgb(0, 0, 0);">{{ $grupo->nivel }}</td>
+                   <td width="2%" class="pad-center"><strong>Alumno</strong></td>
+                   <td width="2%" style="text-align:center;background:#ffffff;color:rgb(0, 0, 0);">{{ $dato->nombres }} {{ $dato->apellido_paterno }}
+                    {{ $dato->apellido_materno }}</td>
                    
                 </tr>
                 <tr class="border-bottom border-right" style="background:#353940;color:#FFF;">
-                   <td class="pad-center"><strong>Grado</strong></td>
-                   <td style="text-align:center;background:#ffffff;color:rgb(0, 0, 0);">{{ $grupo->grado }}</td>
+                   <td class="pad-center"><strong>Grupo</strong></td>
+                   <td style="text-align:center;background:#ffffff;color:rgb(0, 0, 0);"> {{ $dato->nivel }} {{ ' '.$dato->grado }} {{ $dato->seccion }}</td>
                 </tr>
                 <tr class="border-bottom border-right" style="background:#353940;color:#FFF;">
-                    <td width="2%" class="pad-center"><strong>Seccion</strong></td>
-                    <td width="2%"style="text-align:center;background:#ffffff;color:rgb(0, 0, 0);">{{ $grupo->seccion }}</td>
-                 </tr>
-
-                 <tr class="border-bottom border-right" style="background:#353940;color:#FFF;">
-                    <td width="2%" class="pad-center"><strong>Estado</strong></td>
-                    <td width="2%"style="text-align:center;background:#ffffff;color:rgb(0, 0, 0);">{{$grupo->estado}}</td>
+                    <td width="2%" class="pad-center"><strong>Entrenador</strong></td>
+                    <td width="2%"style="text-align:center;background:#ffffff;color:rgb(0, 0, 0);">{{ $dato->nombresentrenador }} {{ $dato->paternoentrenador }}
+                        {{ $dato->maternoentrenador }}</td>
                  </tr>
                 </tbody>
               
