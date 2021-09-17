@@ -100,9 +100,12 @@ Route::get('/alumnosPDF',[App\Http\Controllers\PDFcontroller::class, 'alumnosPDF
 
  Route::get('/VistaGruposAsignadosPDF',[App\Http\Controllers\VistasPDF::class, 'GruposAsignadosPDF']);
 
-
  Route::get('/listaGrupoPDF',[App\Http\Controllers\PDFcontroller::class, 'listaGrupoPDF'])->name('listaGrupoPDF');
 
  Route::get('/VistalistaGrupoPDF',[App\Http\Controllers\VistasPDF::class, 'listaGrupoPDF']);
+
+ Route::get('/listaGrupoAlumnosPDF',[App\Http\Controllers\PDFcontroller::class, 'listaGrupoAlumnosPDF'])->name('listaGrupoAlumnosPDF');
+
+ Route::get('/VistalistaGrupoAlumnosPDF',[App\Http\Controllers\VistasPDF::class, 'listaGrupoAlumnosPDF']);
 
  
