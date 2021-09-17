@@ -66,32 +66,31 @@ class AlumnosController extends Controller
 
          $alumnos =DB::table('alumnos')
          ->where('alumnos.email', '=', $nombrecorreo)
-        
          ->get(array('id'));
 
          $users =DB::table('users')
-         ->where('users.email', '=', $nombrecorreo)
-        
+         ->where('users.email', '=', $nombrecorreo)   
          ->get(array('id'));
 
+
+         $valora = '';
+         $valorb = '';
+
          foreach ($alumnos as $a) {
-             $a->id;
+            $valora = $a->id;
         }
 
         foreach ($users as $b) {
-            $b->id;
+            $valorb = $b->id;
         }
 
           $datosUsuarioPivote=[
             //->get('alumnos_id'),
-            'alumnos_id'=>$a,
-            'users_id'=>$b,
+            'alumnos_id'=>$valora,
+            'users_id'=>$valorb,
         ];
      
         AlumnosPivote::insert($datosUsuarioPivote); 
-        print $alumnos;
-        print $users;
-        print_r($datosUsuarioPivote);
 ////////////////////////////
 
         return redirect('formreg_med/create');

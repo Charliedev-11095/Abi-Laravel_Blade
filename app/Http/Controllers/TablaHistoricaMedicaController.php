@@ -35,27 +35,20 @@ class TablaHistoricaMedicaController extends Controller
 
         $alumnos=alumnos::all();
 
-   
-
-
         $tablasmedicas =DB::table('historicos_medicos')
         ->join('alumnos','alumnos.id', '=','historicos_medicos.alumnos_id')
         ->where('alumnos.id', '=', $nombrealumno)
         ->select('historicos_medicos.*','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno')
         ->get();
 
-
         $nombrecompleto =DB::table('alumnos')
         ->where('alumnos.id', '=', $nombrealumno)
         ->select('alumnos.*')
         ->get();
 
-
         return view('tablamedica.indextablamedica')->with('alumnos',$alumnos)
         ->with('nombrecompleto',$nombrecompleto)
         ->with('tablasmedicas',$tablasmedicas);
-        
-      
     }
 
     /**

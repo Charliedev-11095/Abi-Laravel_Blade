@@ -46,15 +46,8 @@
                                 <H2 class="title">PANEL ALUMNO</H2>
                                 </div>
                                 <div class="card-body">
-                                    <center><p><a href="{{ url('/formtutores/create') }}" class="btn btn-primary btn-lg with-arrow" >REGISTRAR ALUMNO</a></p></center>
+                                    <center><p><a href="{{ url('/consultamedica_alumno') }}" class="btn btn-primary btn-lg with-arrow" >CONSULTAR REGISTRO MEDICO</a></p></center>
                                     <br>
-<center><p><a href="{{ url('/formasistencia/create') }}" class="btn btn-primary btn-lg with-arrow" >TOMAR ASISTENCIA</a></p></center>
-<br>
-<center><p><a href="{{ url('/formhistorico_deportivo/create') }}" class="btn btn-primary btn-lg with-arrow" >EVALUAR ACTIVIDADES</a></p></center>
-<br>
-<center><p><a href="{{ url('/formhistorico_medico/create') }}" class="btn btn-primary btn-lg with-arrow" >CREAR REGISTRO DE SALUD</a></p></center>
-
-
 
 
                                 </div>
