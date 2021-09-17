@@ -26,6 +26,7 @@
                 <table class="table table-bordered table-hover">
                     <thead class="table-dark">
                         <div class="card-heading">
+                            <a class="btn btn-primary" href="{{url('listaGrupoPDF')}}"target="_blank">Descargar PDF</a>
                             <H2 class="title">Grupos existentes</H2>
                         </div>
                         <tr>
@@ -46,13 +47,12 @@
                                     <a class="btn btn-warning" href="{{ url('/asistencia/grupos/' . $grupo->id . '/edit') }}">
                                         Editar
                                     </a>
-
                                 </td>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $grupo->nivel }}</td>
                                 <td>{{ $grupo->grado }}</td>
                                 <td>{{ $grupo->seccion }}</td>
-                                <td>{{ $grupo->estado }}</td>
+                                <td>{{$grupo->estado}}</td>
                             </tr>
                         @endforeach
                     </tbody>
