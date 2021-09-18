@@ -26,6 +26,7 @@
                             <th class="card-title">Acción</th>
                             <th class="cartextd-">ID de usuario</th>
                             <th class="card-text">Nombre</th>
+                            <th class="card-text">Rol</th>
                             <th class="card-title">Email</th>
                         </tr>
                     </thead>
@@ -39,6 +40,7 @@
                             </td>
                                 <td>{{$usuario->id}}</td>
                                 <td>{{$usuario->name}}</td>
+                                <td>{{$usuario->role}}</td>
                                 <td>{{$usuario->email}}</td>
                             </tr>
                         @endforeach

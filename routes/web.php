@@ -108,4 +108,7 @@ Route::get('/alumnosPDF',[App\Http\Controllers\PDFcontroller::class, 'alumnosPDF
 
  Route::get('/VistalistaGrupoAlumnosPDF',[App\Http\Controllers\VistasPDF::class, 'listaGrupoAlumnosPDF']);
 
+ //Formulario Teams/Equipos de trabajo
+Route::resource('teams',App\Http\Controllers\TeamsController::class);
+
  

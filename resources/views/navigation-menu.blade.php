@@ -15,7 +15,7 @@
 
                     @if (Auth::user()->role == 'Administrador' || Auth::user()->role == 'Entrenador')
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('INCIO') }}
+                        {{ __('INICIO') }}
                     </x-jet-nav-link>
                     @endif
 
