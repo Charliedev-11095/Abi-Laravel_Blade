@@ -29,7 +29,7 @@ class CreateAlumnosTable extends Migration
             $table->string('curp',19);
             $table->date('fecha_de_nacimiento');
             $table->char('telefono',15);
-
+            $table->bigInteger('alta_usuario')->unsigned()->nullable();
 
             $table->bigInteger('tutores_id')->unsigned()->index()->nullable();
 

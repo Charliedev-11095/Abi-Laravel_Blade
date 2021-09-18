@@ -39,6 +39,7 @@
                     <form action="{{url('/formalumnos')}}" method="POST" enctype="multipart/form-data">
                         {{csrf_field()}}
                         @include('formalumno.formalumnos',['modo'=>'crear'])
+                        <input type="hidden"  name="alta_usuario"  class="input101" value="{{Auth::user()->id}}">
                 </form>
             </div>
         </div>

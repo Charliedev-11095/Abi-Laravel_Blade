@@ -46,7 +46,7 @@ class TutoresController extends Controller
      */
     public function store(Request $request)
     {
-        //$datosformtutores=request()->all();
+        //$datosformtutores=request()->all();   
 
         $datosformtutor=request()->except('_token');
         tutores::insert($datosformtutor);

@@ -26,6 +26,8 @@ class CreateRegistrosMedicosTable extends Migration
             $table->string('conducta',60);
             $table->string('impedimento_fisico',150);
             $table->string('condicion_fisica',150);
+            $table->bigInteger('alta_usuario')->unsigned()->nullable();
+
 
             $table->bigInteger('alumnos_id')->unsigned()->index()->nullable();
 

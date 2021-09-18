@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\AlumnosPivote;
 use DB;
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -30,7 +32,17 @@ class AlumnosController extends Controller
      */
     public function index()
     {
-        $datos['formalumno']=alumnos::paginate();
+
+
+        $id = Auth::id();
+        $datos['formalumno']=DB::table('alumnos')
+        ->where('alumnos.alta_usuario', '=', $id)
+        ->select('alumnos.*')
+        ->get();
+
+
+       // $datos['formalumno']=alumnos::paginate();
+
         return view('formalumno.indexformalumnos',$datos);
     }
 
