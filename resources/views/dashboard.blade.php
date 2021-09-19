@@ -19,7 +19,7 @@
                                 <div class="col-md-6 col-md-8 col-md-offset-2 text-center fh5co-heading">
                                     <div class="display-t">
                                         <div class="display-tc animate-box" data-animate-effect="fadeIn">
-                                            <h1 style="color:rgb(255, 255, 255);"><br> <strong>BIENVENIDO ENTRENADOR</strong></h1>
+                                            <h1 style="color:rgb(255, 255, 255);"><br> <strong>BIENVENIDO {{Auth::user()->role}}</strong></h1>
                                         </div>
                                     </div>
                                 </div>
@@ -27,8 +27,7 @@
                         </div>
                     </header>
                     <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
-
-
+    
 
                     <div id="fh5co-services" class="fh5co-bg-section">
                         
@@ -40,6 +39,26 @@
                         
                         <div class="container">
                             
+
+                            @if (Auth::user()->role == 'Administrador')
+                            <div class="card card-5">
+                                <div class="card-heading">
+                                                    
+                                <H2 class="title">ACCESO RÁPIDO</H2>
+                                </div>
+                                <div class="card-body">
+                                    <center><p><a href="{{ url('/teams/create') }}" class="btn btn-primary btn-lg with-arrow" >CREAR EQUIPO DE TRABAJO</a></p></center>
+                                    <br>
+                            <center><p><a href="{{ url('/formentrenadores/create') }}" class="btn btn-primary btn-lg with-arrow" >CREAR USUARIO ENTRENADOR</a></p></center>
+                        
+                            
+                                </div>
+                            </div>
+                            <br>
+                            @endif
+
+
+
                             <div class="card card-5">
                                 <div class="card-heading">
                                                     
