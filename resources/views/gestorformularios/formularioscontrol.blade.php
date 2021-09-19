@@ -35,14 +35,14 @@
                     </div>
                     <br>
 
-                    <div>
+{{--                     <div>
                       
 
                         <a href="{{ url('/formentrenadores') }}"><input
                                 class="btn btn--radius-2 login100-form-btn validate-form btn-primary" type="submit"
                                 value=" ENTRENADOR"></a>
                     </div>
-                    <br>
+                    <br> --}}
 
                     <div>
                       

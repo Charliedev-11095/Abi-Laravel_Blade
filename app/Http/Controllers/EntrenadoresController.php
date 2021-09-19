@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\entrenadores;
 use App\Models\User;
+use App\Models\EntrenadoresPivote;
 use DB;
+use Illuminate\Support\Facades\Hash;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -13,9 +15,10 @@ class EntrenadoresController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('entrena');
+        $this->middleware('admin');
     }
 
+    //
     /**
      * Display a listing of the resource.
      *
@@ -49,7 +52,53 @@ class EntrenadoresController extends Controller
         //$datosformentrenadores=request()->all();
         $datosformentrenadores=request()->except('_token');
         entrenadores::insert($datosformentrenadores);
-        //return response()->json($datosformentrenadores);
+     /////////////////////////////////////////////////////////////
+     $datosUsuario=[
+        'name'=>request('nombres').' '.request('apellido_paterno').' '.request('apellido_materno'),
+        'email'=>request('email'),
+        'role'=>"Entrenador",
+        'password'=>Hash::make($request->curp),
+    ];
+     User::insert($datosUsuario);
+
+     $nombrecorreo=$request->get('email');
+
+     $entrenadores =DB::table('entrenadores')
+     ->where('entrenadores.email', '=', $nombrecorreo)
+     ->get(array('id'));
+
+     $users =DB::table('users')
+     ->where('users.email', '=', $nombrecorreo)   
+     ->get(array('id'));
+
+
+     $valora = '';
+     $valorb = '';
+
+     foreach ($entrenadores as $a) {
+        $valora = $a->id;
+    }
+
+    foreach ($users as $b) {
+        $valorb = $b->id;
+    }
+
+      $datosUsuarioPivote=[
+        //->get('alumnos_id'),
+        'entrenadores_id'=>$valora,
+        'users_id'=>$valorb,
+    ];
+ 
+    EntrenadoresPivote::insert($datosUsuarioPivote); 
+
+
+//////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
         return redirect('formentrenadores')->with('Mensaje','entrenador agregado con exito');
     }
 

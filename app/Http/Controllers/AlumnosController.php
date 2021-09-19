@@ -67,7 +67,7 @@ class AlumnosController extends Controller
         alumnos::insert($datosformalumnos);
 ///////////////////////////////////////////
         $datosUsuario=[
-            'name'=>request('nombres'),
+            'name'=>request('nombres').' '.request('apellido_paterno').' '.request('apellido_materno'),
             'email'=>request('email'),
             'role'=>"Alumno",
             'password'=>Hash::make($request->curp),

@@ -32,8 +32,8 @@
                     @endif
 
                     @if (Auth::user()->role == 'Administrador')
-                    <x-jet-nav-link href="{{ route('formusuario.index') }}" :active="request()->routeIs('register')">
-                        {{ __('REGISTRAR USUARIOS') }}
+                    <x-jet-nav-link href="{{ route('administrador_control') }}" :active="request()->routeIs('register')">
+                        {{ __('OPCIONES DE ADMINISTRADOR') }}
                     </x-jet-nav-link>
                     @endif
 
@@ -215,8 +215,8 @@
             @endif
 
             @if (Auth::user()->role == 'Administrador')
-            <x-jet-responsive-nav-link href="{{ route('formusuario.index') }}" :active="request()->routeIs('register')">
-                {{ __('REGISTRAR USUARIOS') }}
+            <x-jet-responsive-nav-link href="{{ route('administrador_control') }}" :active="request()->routeIs('register')">
+                {{ __('OPCIONES DE ADMINISTRADOR') }}
             </x-jet-responsive-nav-link>
             @endif
             

@@ -26,17 +26,10 @@ class CreateEntrenadoresTable extends Migration
             $table->string('estado',25);
             $table->integer('codigo_postal');
             $table->string('curp',19);
+            $table->string('email')->unique();
             $table->date('fecha_de_nacimiento');
             $table->char('telefono',15);
-
-            $table->bigInteger('users_id')->unsigned()->index()->nullable();
-
             $table->timestamps();
-
-//Forma de referenciar las llaves foraneas
-$table->foreign('users_id')->references('id')->on('users');
-
-
 
         });
     }

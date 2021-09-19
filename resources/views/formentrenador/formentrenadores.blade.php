@@ -140,6 +140,19 @@
     </div>
 </div>
 
+
+
+<div class="form-row wrap-input100 validate-input">
+    <div class="name ">Correo electrónico</div>
+        <div class="input-group wrap-input100 validate-input">
+            <input id="email" class="input101" type="email" name="email" value="{{isset($alumno->email)?$alumno->email:''}}" required autofocus autocomplete="email">
+            <span class="focus-input100 "></span>
+        </div>
+</div>
+
+
+
+
 <div class=" form-row m-b-55 wrap-input100 validate-input ">
     <div class="name ">fecha de nacimiento</div>
     <div class="input-group wrap-input100 validate-input ">
@@ -164,7 +177,7 @@
     </div>
 </div>
 
-<div class="form-row wrap-input100 validate-input">
+{{-- <div class="form-row wrap-input100 validate-input">
     <div class="name ">Perfil</div>
 
     <div class="form-row wrap-input100 validate-input">
@@ -185,7 +198,7 @@
            <i class="fa fa-arrow-down"></i>
        </span>
    </div>
-</div>
+</div> --}}
 
 <div class="container-login100-form-btn ">
     <input class="btn btn--radius-2 btn--red login100-form-btn validate-form " type="submit" value="{{$modo=='crear'?'agregar':'editar'}} ">
