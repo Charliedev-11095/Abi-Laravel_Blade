@@ -65,7 +65,7 @@ class GruposController extends Controller
          grupos::insert($datosGrupo);
  //DB::insert('insert into users (id, name) values (?, ?)', [1, 'Dayle'])
         // return response()->json($datosGrupo);
-         return redirect('asistencia/grupos')->with('Mensaje','Grupo agregado con exito');
+         return redirect('asistencia/grupos')->with('Mensaje','Grupo agregado con éxito');
 
     }
 

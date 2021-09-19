@@ -19,7 +19,7 @@ class CreateAlumnosPivotesTable extends Migration
 
             $table->bigInteger('alumnos_id')->unsigned()->index()->nullable();
             $table->bigInteger('users_id')->unsigned()->index()->nullable();
-
+            
             $table->timestamps();
 
 

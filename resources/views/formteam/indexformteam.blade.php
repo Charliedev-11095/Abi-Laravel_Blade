@@ -52,7 +52,7 @@
 
                             <tr class="table-bordered">
                                 <td>
-                                    <a class="btn btn-warning" href="{{ url('/asistencia/grupos/' . $team->id . '/edit') }}">
+                                    <a class="btn btn-warning" href="{{ url('/teams/' . $team->id . '/edit') }}">
                                         Editar
                                     </a>
                                 </td>

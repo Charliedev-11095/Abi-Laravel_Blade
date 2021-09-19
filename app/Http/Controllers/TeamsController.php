@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Teams;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 class TeamsController extends Controller
 {
@@ -23,7 +25,15 @@ class TeamsController extends Controller
      */
     public function index()
     {
-        $datos['teams']=Teams::paginate();
+
+
+        $id = Auth::id();
+        $datos['teams']=DB::table('teams')
+        ->where('teams.alta_usuario', '=', $id)
+        ->select('teams.*')
+        ->get();
+
+      
         return view('formteam.indexformteam',$datos);
     }
 
@@ -45,7 +55,10 @@ class TeamsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    
+        $datosformalumnos=request()->except('_token');
+        Teams::insert($datosformalumnos);
+        return redirect('teams')->with('Mensaje','Equipo agregado con éxito');
     }
 
     /**
@@ -65,9 +78,10 @@ class TeamsController extends Controller
      * @param  \App\Models\Teams  $teams
      * @return \Illuminate\Http\Response
      */
-    public function edit(Teams $teams)
+    public function edit($id)
     {
-        //
+        $team=Teams::findOrFail($id);
+        return view('formteam.editformteam',compact('team'));
     }
 
     /**
@@ -77,9 +91,11 @@ class TeamsController extends Controller
      * @param  \App\Models\Teams  $teams
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Teams $teams)
+    public function update(Request $request, $id)
     {
-        //
+        $datosformteams=request()->except(['_token','_method']);
+        Teams::where('id','=',$id)->update($datosformteams);
+        return redirect('teams')->with('Mensaje','Equipo de trabajo modificado con éxito');
     }
 
     /**
