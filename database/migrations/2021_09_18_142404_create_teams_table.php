@@ -26,6 +26,7 @@ class CreateTeamsTable extends Migration
             $table->integer('codigo_postal')->nullable();
             $table->string('email_contacto');
             $table->char('telefono',15);
+            $table->char('status', 8);
             $table->bigInteger('alta_usuario')->unsigned()->nullable();
             $table->timestamps();
         });

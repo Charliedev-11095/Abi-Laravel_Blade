@@ -120,8 +120,16 @@
     </div>
     
 
-
-
+    <div class="form-group">
+        <label class="control-label" for="status">Status</label>
+        <select class="input100 {{$errors->has('status')?'waiting-form':old('status')}}" type="text" value="{{ isset($team->status)?$team->status:'' }}" name="status" id="status" required>
+        <option class="invalid-feedback2" {{$Modo=='editar' ? 'value:""':''}}>{{ isset($team->status)?$team->status: 'selecciona una opción' }}</option>
+        <option>Activo</option>
+        <option>Inactivo</option>
+    </select>    
+    
+        {!! $errors->first('status','<div class="invalid-feedback">:message</div>') !!}
+    </div>
 
 
 <input type="submit" class="btn btn-success" value="{{$Modo=='crear' ? 'Agregar':'Modificar'}}">

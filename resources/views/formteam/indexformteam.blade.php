@@ -44,6 +44,7 @@
                             <th class="card-title">C.P.</th>
                             <th class="card-title">Correo de contacto</th>
                             <th class="card-title">Telefono</th>
+                            <th class="card-title">Status</th>
 
                         </tr>
                     </thead>
@@ -68,6 +69,7 @@
                                 <td>{{ $team->codigo_postal }}</td>
                                 <td>{{ $team->email_contacto }}</td>
                                 <td>{{$team->telefono}}</td>
+                                <td>{{$team->status}}</td>
                             </tr>
                         @endforeach
                     </tbody>

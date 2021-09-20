@@ -111,7 +111,9 @@ Route::get('/alumnosPDF',[App\Http\Controllers\PDFcontroller::class, 'alumnosPDF
  //Formulario Teams/Equipos de trabajo
 Route::resource('teams',App\Http\Controllers\TeamsController::class);
 
-//Rutas para Modulo asistencia
+//Rutas para Administrador_control
 Route::get('/administrador_control',[App\Http\Controllers\OpcionesAdminController::class, 'index'])->name('administrador_control');
 
- 
+//Ruta para Modulo de Teams_entrenador
+Route::resource('team_entrenadores', App\Http\Controllers\TeamEntrenadoresController::class);
+//ejemplo Route::get('/asistencia/grupo_alumnosgeneral',[App\Http\Controllers\GrupoAlumnosController::class, 'general'])->name('grupo_alumnosgeneral');
