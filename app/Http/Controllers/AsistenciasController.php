@@ -26,9 +26,14 @@ class AsistenciasController extends Controller
      */
     public function index(Request $request)
     {
+
+        $grupos =DB::table('grupos')
+        ->where('grupos.estado', '=', 'Activo')
+        ->select('grupos.*')
+        ->get();
         $listalumno=$request->get('buscarpor');
         $nombregrupo=$request->get('buscarpor');
-        $grupos = grupos::all();
+        //$grupos = grupos::all();
         $datos =DB::table('alumnos')
         ->join('grupo_alumnos','grupo_alumnos.alumnos_id', '=','alumnos.id')
         ->join('entrenadores','entrenadores.id', '=','grupo_alumnos.entrenadores_id')
