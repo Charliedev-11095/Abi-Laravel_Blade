@@ -8,7 +8,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 PROGRESO DEPORTIVO
             </h2>
-            <a class="btn btn-danger" href="{{url('/formhistorico_medico')}}" >Regresar</a>
+            <a class="btn btn-danger" href="{{url('/formhistorico_deportivo')}}" >Regresar</a>
         </x-slot>
 
 
