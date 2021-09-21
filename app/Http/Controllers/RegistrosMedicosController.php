@@ -43,8 +43,12 @@ class RegistrosMedicosController extends Controller
      */
     public function create()
     {
-        $alumnos = alumnos::all();
-
+        $id = Auth::id();
+        // $alumnos = alumnos::all();
+        $alumnos=DB::table('alumnos')
+        ->where('alumnos.alta_usuario', '=', $id)
+        ->select('alumnos.*')
+        ->get();
         return view('formreg_med.createformreg_med')
         ->with('alumnos',$alumnos);
     }
