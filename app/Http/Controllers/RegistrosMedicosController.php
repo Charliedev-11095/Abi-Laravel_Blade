@@ -6,7 +6,7 @@ use App\Models\registros_medicos;
 use App\Models\alumnos;
 use App\Models\historicos_medicos;
 use DB;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -26,10 +26,11 @@ class RegistrosMedicosController extends Controller
      */
     public function index()
     {
+        $id = Auth::id();
         // $datos['formreg_med']=registros_medicos::paginate(5);
-
         $formreg_med=DB::table('registros_medicos')
         ->join('alumnos','alumnos.id', '=','registros_medicos.alumnos_id')
+        ->where('alumnos.alta_usuario', '=', $id)
         ->select('registros_medicos.*','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno')
         ->get();
         return view('formreg_med.indexformreg_med')->with('formreg_med',$formreg_med);
