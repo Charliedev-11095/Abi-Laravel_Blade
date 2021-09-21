@@ -34,6 +34,7 @@
                     <form action="{{url('/formentrenadores')}}" method="POST" enctype="multipart/form-data">
                         {{csrf_field()}}
                         @include('formentrenador.formentrenadores',['modo'=>'crear'])
+                        <input type="hidden"  name="alta_usuario"  class="input101" value="{{Auth::user()->id}}">
                 </form>
             </div>
         </div>

@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\EntrenadoresPivote;
 use DB;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -26,7 +26,12 @@ class EntrenadoresController extends Controller
      */
     public function index()
     {
-        $datos['formentrenador']=entrenadores::paginate(5);
+        $id = Auth::id();
+        // $datos['formentrenador']=entrenadores::paginate(5);
+        $datos['formentrenador']=DB::table('entrenadores')
+        ->where('entrenadores.alta_usuario', '=', $id)
+        ->select('entrenadores.*')
+        ->get();
         return view('formentrenador.indexformentrenador',$datos);
     }
 

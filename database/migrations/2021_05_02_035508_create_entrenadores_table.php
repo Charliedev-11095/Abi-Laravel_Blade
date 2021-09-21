@@ -29,8 +29,8 @@ class CreateEntrenadoresTable extends Migration
             $table->string('email')->unique();
             $table->date('fecha_de_nacimiento');
             $table->char('telefono',15);
+            $table->bigInteger('alta_usuario')->unsigned()->nullable();
             $table->timestamps();
-
         });
     }
 
