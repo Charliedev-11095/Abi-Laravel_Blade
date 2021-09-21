@@ -14,9 +14,6 @@
                         {{csrf_field()}}
                       
 
-                
-
-
                         @include('formtutor.formtutores',['modo'=>'crear'])
                     
                         <input type="hidden"  name="alta_usuario"  class="input101" value="{{Auth::user()->id}}">

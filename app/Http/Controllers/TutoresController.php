@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\tutores;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use DB;
 class TutoresController extends Controller
 {
 
@@ -22,7 +23,12 @@ class TutoresController extends Controller
      */
     public function index()
     {
-        $datos['formtutor']=tutores::paginate(5);
+        $id = Auth::id();
+        // $datos['formtutor']=tutores::paginate(5);
+        $datos['formtutor']=DB::table('tutores')
+        ->where('tutores.alta_usuario', '=', $id)
+        ->select('tutores.*')
+        ->get();
         return view('formtutor.indexformtutor',$datos);
     }
     
