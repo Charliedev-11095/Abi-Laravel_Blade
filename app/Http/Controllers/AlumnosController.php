@@ -49,9 +49,12 @@ class AlumnosController extends Controller
 
     public function create()
     {
-
-        $tutores = tutores::all();
-
+        $id = Auth::id();
+        // $tutores = tutores::all();
+        $tutores=DB::table('tutores')
+        ->where('tutores.alta_usuario', '=', $id)
+        ->select('tutores.*')
+        ->get();
         return view('formalumno.createformalumnos')->with('tutores',$tutores);
     }
 
