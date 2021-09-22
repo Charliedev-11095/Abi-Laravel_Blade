@@ -1,1 +1,1 @@
-var ulr = "http://localhost/RepoPrueba/public";
+var ulr = "http://localhost/abi/public";
