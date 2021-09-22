@@ -7,7 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 //use Illuminate\Support\Facades\Auth;
 
-
+use DB;
 use Auth;
 
 
@@ -45,19 +45,24 @@ class LoginController extends Controller
 
 
     public function redirectPath(){
-        if(Auth::user()->role=='Administrador' || Auth::user()->role=='Entrenador'){ 
+       
+
+        if(Auth::user()->role=='Administrador'){ 
             
             return '/dashboard';
+        }
+        if(Auth::user()->role=='Entrenador'){ 
+            
+ 
+            return '/dashboard';
+
         }
         if(Auth::user()->role=='Alumno'){ 
             
             return '/panelalumno';
         }
-
-
-
         return '/panelvisitante';
-       
+    
     }
 
 

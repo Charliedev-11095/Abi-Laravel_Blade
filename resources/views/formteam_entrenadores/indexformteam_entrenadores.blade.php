@@ -14,7 +14,7 @@
         </div>
         <div class="row">
             <div class="">
-                <a href="{{url('/asistencia/grupo_alumnos/create')}}" class="btn btn-success">Asignar entrenador a un Equipo de trabajo</a>
+                <a href="{{url('/team_entrenadores/create')}}" class="btn btn-success">Asignar entrenador a un Equipo de trabajo</a>
             </div>
         </div>
        

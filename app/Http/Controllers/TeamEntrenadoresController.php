@@ -15,11 +15,8 @@ class TeamEntrenadoresController extends Controller
     {
         $this->middleware('admin');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
+
     public function index()
     {
         $entrenadores = entrenadores::all();
@@ -45,29 +42,29 @@ class TeamEntrenadoresController extends Controller
      */
     public function create()
     {
-        //
+ 
+        $entrenadores = entrenadores::all();
+        $teams = Teams::all();
+        return view('formteam_entrenadores.createteam_entrenadores',)
+        ->with('entrenadores',$entrenadores)
+        ->with('teams',$teams);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
+
     public function store(Request $request)
     {
-        //
+        $datosteam_entrenador=request()->except('_token');
+
+        Team_entrenadores::insert($datosteam_entrenador);
+        return redirect('team_entrenadores')->with('Mensaje','Entrenador asignado con éxito');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Team_entrenadores  $team_entrenadores
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Team_entrenadores $team_entrenadores)
+ 
+    
+    public function show()
     {
-        //
+
     }
 
     /**
@@ -76,31 +73,33 @@ class TeamEntrenadoresController extends Controller
      * @param  \App\Models\Team_entrenadores  $team_entrenadores
      * @return \Illuminate\Http\Response
      */
-    public function edit(Team_entrenadores $team_entrenadores)
+    public function edit($id)
     {
-        //
+        
+        $teams = Teams::all();
+        $team_entrenadores=Team_entrenadores::findOrFail($id);
+
+        $datos =DB::table('team_entrenadores')
+        ->join('entrenadores','entrenadores.id', '=','team_entrenadores.entrenadores_id')
+        ->join('teams','teams.id', '=','team_entrenadores.teams_id')
+        ->where('team_entrenadores.id', '=', $id)
+        ->select('entrenadores.nombres','entrenadores.apellido_paterno','entrenadores.apellido_materno','teams.nombre','team_entrenadores.status')
+        ->get();
+
+        return view('formteam_entrenadores.editformteam_entrenadores',compact('team_entrenadores'))->with('teams',$teams)
+        ->with('datos',$datos);
+
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Team_entrenadores  $team_entrenadores
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Team_entrenadores $team_entrenadores)
+
+
+    public function update(Request $request, $id)
     {
-        //
+        $datosTeamEntrenador=request()->except(['_token','_method']);
+        Team_entrenadores::where('id', '=', $id)->update($datosTeamEntrenador);
+        return redirect('team_entrenadores')->with('Mensaje','Registro modificado con exito');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Team_entrenadores  $team_entrenadores
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Team_entrenadores $team_entrenadores)
-    {
-        //
-    }
+
 }

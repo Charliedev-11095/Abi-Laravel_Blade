@@ -5,7 +5,7 @@
 
         <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                GESTIÓN DE ASIGNACIÓN DE GRUPOS
+                GESTIÓN DE ASIGNACIÓN DE EQUIPOS DE TRABAJO
             </h2>
         </x-slot>
 
@@ -23,22 +23,22 @@
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
                 <div class="card-heading">
-                    <a href="{{url('/asistencia/grupo_alumnos')}}"><img src="{{asset('images/icons/back-icon.png')}}"></a>
-                    <H2 class="title">ASIGNACIÓN A GRUPO</H2>
+                    <a href="{{url('/team_entrenadores')}}"><img src="{{asset('images/icons/back-icon.png')}}"></a>
+                    <H2 class="title">ASIGNACIÓN A EQUIPO DE TRABAJO</H2>
                 </div>
                 <div class="card-body">
 
-                    <form method="POST" action="{{ route('grupo_alumnos.store') }}">
+                    <form method="POST" action="{{ route('team_entrenadores.store') }}">
                         {{ csrf_field() }}
 
 
                         <div class="form-group">
-                            <label for="Grupo">Nivel</label>
-                            <select name="grupos_id" id="grupos_id" class=" input101 ">
-                                @foreach ($grupos as $grupo)
+                            <label for="Grupo">Equipo de trabajo</label>
+                            <select name="teams_id" id="teams_id" class=" input101 ">
+                                @foreach ($teams as $team)
 
-                                    <option value="{{ $grupo->id }}">
-                                        <p>{{ $grupo->nivel }}{{ ' '.$grupo->grado }}{{ $grupo->seccion }} </p>
+                                    <option value="{{ $team->id }}">
+                                        <p>{{ $team->nombre }} </p>
                                     </option>
 
                                 @endforeach
@@ -46,21 +46,7 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="Alumnos">Alumnos</label>
-                            <select name="alumnos_id" id="alumnos_id" class=" input101 ">
-                                @foreach ($alumnos as $alumno)
-
-
-                                    <option value="{{ $alumno->id }}">
-                                        {{ $alumno->nombres }} {{ $alumno->apellido_paterno }}
-                                        {{ $alumno->apellido_materno }}
-
-                                    </option>
-                                @endforeach
-
-                            </select>
-                        </div>
+    
 
                         <div class="form-group">
                             <label for="">Entrenadores</label>
@@ -77,14 +63,14 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Estado</label>
-                            <select name="estado" id="estado" class=" input101 ">
+                            <label>Estatus</label>
+                            <select name="status" id="status" class=" input101 ">
                             
                                     <option >Activo</option>
                                     <option >Inactivo</option>
                             </select>
                         </div>
-
+                        <input type="hidden"  name="alta_usuario"  class="input101" value="{{Auth::user()->id}}">
                         <br>
 
                         <div>
