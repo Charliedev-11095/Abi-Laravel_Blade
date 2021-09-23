@@ -19,6 +19,22 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/table.css') }}">
         {{-- ---------------------------------------- --}}
+        {{-- estilos del calendario --}}
+
+        <link href='{{asset('core/main.css')}}' rel='stylesheet' />
+        <link href='{{asset('daygrid/main.css')}}' rel='stylesheet' />
+        <link href='{{asset('timegrid/main.css')}}' rel='stylesheet' />
+        <script src='{{asset('list/main.css')}}'></script>
+        <script src='{{asset('core/main.js')}}'></script>
+        <script src='{{asset('core/locales/es.js')}}'></script>
+        <script src='{{asset('interaction/main.js')}}'></script>
+        <script src='{{asset('daygrid/main.js')}}'></script>
+        <script src='{{asset('timegrid/main.js')}}'></script>
+        <script src='{{asset('list/main.js')}}'></script>
+        <link rel="stylesheet" href="{{ asset('css/table.css') }}">
+
+    
+       {{-- ---------------------------------------- --}}
         <!-- Animate.css -->
         <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
          <!-- Icomoon Icon Fonts-->
@@ -79,6 +95,9 @@
             @endif
 
             <!-- Page Content -->
+            <script src="{{ asset('js/calendar.js') }}" defer></script>
+            <script src="{{ asset('js/url.js') }}" defer></script>
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
             <main>
                 {{ $slot }}
             </main>

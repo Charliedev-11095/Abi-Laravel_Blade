@@ -108,6 +108,15 @@ Route::get('/alumnosPDF',[App\Http\Controllers\PDFcontroller::class, 'alumnosPDF
 
  Route::get('/VistalistaGrupoAlumnosPDF',[App\Http\Controllers\VistasPDF::class, 'listaGrupoAlumnosPDF']);
 
+//EJERCICIO FULLCALENDAR 
+Route::get('/calendario',[App\Http\Controllers\EventoController::class,'index'])->name('calendario');
+//no borrar porque este depende que se muestren
+Route::get('/calendario/show',[App\Http\Controllers\EventoController::class,'show'])->name('/calendario/show');
+
+//De aqui en adelante crear las rutas a partir de su tipo de solicitud y 
+// no por las rutas de tipo resource
+Route::resource('/eventos', App\Http\Controllers\EventoController::class);
+
  //Formulario Teams/Equipos de trabajo
 Route::resource('teams',App\Http\Controllers\TeamsController::class);
 
