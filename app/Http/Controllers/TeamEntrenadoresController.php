@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Team_entrenadores;
 use App\Models\entrenadores;
 use App\Models\Teams;
+use App\Models\Grupos;
 use Illuminate\Http\Request;
 use DB;
 
@@ -45,7 +46,7 @@ class TeamEntrenadoresController extends Controller
  
         $entrenadores = entrenadores::all();
         $teams = Teams::all();
-        return view('formteam_entrenadores.createteam_entrenadores',)
+        return view('formteam_entrenadores.createteam_entrenadores')
         ->with('entrenadores',$entrenadores)
         ->with('teams',$teams);
     }
@@ -65,6 +66,40 @@ class TeamEntrenadoresController extends Controller
     public function show()
     {
 
+    }
+
+    public function especifico(Request $request)
+    {
+
+        $nombreteam=$request->get('buscarpor');
+
+
+        $idteam=$request->get('idteam');
+        $actualizargrupo=request()->except(['_token','_method','idteam','buscarpor']);
+         Teams::where('id','=',$idteam)->update($actualizargrupo);
+
+        $datos =DB::table('grupo_alumnos')
+        ->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
+        ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+        ->join('entrenadores','entrenadores.id', '=','grupo_alumnos.entrenadores_id')
+        ->where('grupos.id', '=', $nombreteam)
+        ->select('grupo_alumnos.id as idregistro','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno','grupos.nivel','grupos.grado','grupos.seccion','entrenadores.nombres as nombresentrenador' ,'entrenadores.apellido_paterno as paternoentrenador' ,'entrenadores.apellido_materno as maternoentrenador','grupo_alumnos.estado')
+        ->get();
+
+        $datosteams =DB::table('teams') 
+        ->where('teams.id', '=', $nombreteam)
+        ->select('teams.*')
+        ->get();
+
+        $teams = Teams::all();
+        return view('formteam_entrenadores.editformteam_especifico')->with('datos',$datos)
+        ->with('datosteams',$datosteams)
+        ->with('teams',$teams);
+
+
+
+
+        
     }
 
     /**

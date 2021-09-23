@@ -9,7 +9,7 @@
 
         <div class="row">
             <div class="">
-                <a href="{{ url('/asistencia/grupo_alumnosgeneral') }}" class="btn btn-warning">Modificar Equipo de trabajo especifico</a>
+                <a href="{{ url('/team_entrenadoresespecifico') }}" class="btn btn-warning">Modificar Equipo de trabajo especifico</a>
             </div>
         </div>
         <div class="row">

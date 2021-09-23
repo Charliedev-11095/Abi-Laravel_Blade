@@ -116,4 +116,4 @@ Route::get('/administrador_control',[App\Http\Controllers\OpcionesAdminControlle
 
 //Ruta para Modulo de Teams_entrenador
 Route::resource('team_entrenadores', App\Http\Controllers\TeamEntrenadoresController::class);
-//ejemplo Route::get('/asistencia/grupo_alumnosgeneral',[App\Http\Controllers\GrupoAlumnosController::class, 'general'])->name('grupo_alumnosgeneral');
+Route::get('/team_entrenadoresespecifico',[App\Http\Controllers\TeamEntrenadoresController::class, 'especifico'])->name('team_entrenadoresespecifico');
