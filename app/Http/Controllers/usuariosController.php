@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\entrenadores;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use DB;
 
 class usuariosController extends Controller
 {
@@ -96,6 +98,64 @@ class usuariosController extends Controller
         ];
         
         User::where('id', '=', $id)->update($datosUsuario);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   //Obtener el id del usuario por medio de su correo
+   $nombrecorreo=$request->get('email');
+
+   $usuarios =DB::table('users')
+   ->where('users.email', '=', $nombrecorreo)
+   ->get(array('id'));
+
+   $valorid = '';
+
+   foreach ($usuarios as $a) {
+      $valorid = $a->id;
+  }
+
+  //Obtener el id del entrenador por medio de id del usuario 
+  $entrenadoresid =DB::table('entrenadores_pivotes')
+  ->join('entrenadores','entrenadores.id', '=','entrenadores_pivotes.entrenadores_id')
+  ->where('entrenadores_pivotes.users_id', '=', $valorid)
+  ->select('entrenadores.id as entrenadorid')
+  ->get(array('entrenadorid'));
+
+  $identrenador = '';
+
+  foreach ($entrenadoresid as $item) {
+     $identrenador = $item->entrenadorid;
+ }
+
+ //Obtener el emails de usuario y entrenador, por medio de sus ids
+  $entrenadorescorreo =DB::table('entrenadores')
+  ->where('entrenadores.id', '=', $identrenador)
+  ->get(array('email'));
+
+  $userscorreo =DB::table('users')
+  ->where('users.id', '=', $valorid)
+  ->get(array('email'));
+
+  $valoremail = '';
+  $valorbmail = '';
+
+  foreach ($entrenadorescorreo as $e) {
+     $valoremail = $e->email;
+ }
+
+ foreach ($userscorreo as $u) {
+   $valorbmail = $u->email;
+   }
+
+
+   //Compara los emails de entrenador y usuario, si son distintos, se actualiza el correo de usuario
+ if ($valoremail  != $valorbmail) {
+   $datosEntrenador=[
+       'email'=>$valorbmail,
+   ];
+   entrenadores::where('id',$identrenador)->update($datosEntrenador);
+ }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         return redirect('formusuario')->with('Mensaje','Usuario modificado con exito');
     }

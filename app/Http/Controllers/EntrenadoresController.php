@@ -95,16 +95,8 @@ class EntrenadoresController extends Controller
     ];
  
     EntrenadoresPivote::insert($datosUsuarioPivote); 
-
-
 //////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-        return redirect('formentrenadores')->with('Mensaje','entrenador agregado con exito');
+        return redirect('team_entrenadores/create')->with('Mensaje','entrenador agregado con exito');
     }
 
     /**
@@ -142,7 +134,64 @@ class EntrenadoresController extends Controller
     {
         $datosformentrenadores=request()->except(['_token','_method']);
         entrenadores::where('id','=',$id)->update($datosformentrenadores);
+/////////////////////////////////////////////////////////////////////////////
+   //Obtener el id del entrenador por medio de su correo
+$nombrecorreo=$request->get('email');
 
+        $entrenadores =DB::table('entrenadores')
+        ->where('entrenadores.email', '=', $nombrecorreo)
+        ->get(array('id'));
+
+        $valorid = '';
+   
+        foreach ($entrenadores as $a) {
+           $valorid = $a->id;
+       }
+   
+       //Obtener el id del usuario por medio de id del entrenador
+       $usersid =DB::table('entrenadores_pivotes')
+       ->join('users','users.id', '=','entrenadores_pivotes.users_id')
+       ->where('entrenadores_pivotes.entrenadores_id', '=', $valorid)
+       ->select('users.id as userid')
+       ->get(array('userid'));
+
+       $idusuario = '';
+   
+       foreach ($usersid as $item) {
+          $idusuario = $item->userid;
+      }
+
+      //Obtener el emails de usuario y entrenador, por medio de sus ids
+       $entrenadorescorreo =DB::table('entrenadores')
+       ->where('entrenadores.id', '=', $valorid)
+       ->get(array('email'));
+
+       $userscorreo =DB::table('users')
+       ->where('users.id', '=', $idusuario)
+       ->get(array('email'));
+
+       $valoremail = '';
+       $valorbmail = '';
+   
+       foreach ($entrenadorescorreo as $e) {
+          $valoremail = $e->email;
+      }
+
+      foreach ($userscorreo as $u) {
+        $valorbmail = $u->email;
+        }
+  
+
+        //Compara los emails de entrenador y usuario, si son distintos, se actualiza el correo de usuario
+      if ($valorbmail != $valoremail) {
+        $datosUsuario=[
+            'email'=>$valoremail,
+        ];
+        User::where('id',$idusuario)->update($datosUsuario);
+      }
+
+
+/////////////////////////////////////////////////////////////////////////////
         //$entrenador=entrenadores::findOrFail($id);
         //return view('formentrenador.editformentrenador',compact('entrenador'));
         return redirect('formentrenadores')->with('Mensaje','entrenador modificado con exito');

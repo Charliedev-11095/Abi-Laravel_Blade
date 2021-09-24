@@ -60,11 +60,13 @@
         </div>
 
         <!-- Email -->
+        @if (Auth::user()->role == 'Administrador')
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="email" value="{{ __('Correo Electrónico') }}" />
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
         </div>
+        @endif
     </x-slot>
 
     <x-slot name="actions">
