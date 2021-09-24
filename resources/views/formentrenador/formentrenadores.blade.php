@@ -145,7 +145,7 @@
 <div class="form-row wrap-input100 validate-input">
     <div class="name ">Correo electrónico</div>
         <div class="input-group wrap-input100 validate-input">
-            <input id="email" class="input101" type="email" name="email" value="{{isset($alumno->email)?$alumno->email:''}}" required autofocus autocomplete="email">
+            <input id="email" class="input101" type="email" name="email" value="{{isset($entrenador->email)?$entrenador->email:''}}" required autofocus autocomplete="email">
             <span class="focus-input100 "></span>
         </div>
 </div>

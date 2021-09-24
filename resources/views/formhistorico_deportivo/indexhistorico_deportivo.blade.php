@@ -340,7 +340,7 @@
                 </a>
             </td>   
             <td>{{$dato2->id}}</td>
-            <td>{{$dato2->identificadoralumno}} {{$dato2->nombres}} {{$dato2->apellido_paterno}} {{$dato2->apellido_materno}} </td>
+            <td>{{$dato2->nombres}} {{$dato2->apellido_paterno}} {{$dato2->apellido_materno}} </td>
             <td>{{$dato2->observaciones}}</td>
             <td>{{$dato2->fecha_creacion}}</td>
             <td>{{$dato2->updated_at}}</td>

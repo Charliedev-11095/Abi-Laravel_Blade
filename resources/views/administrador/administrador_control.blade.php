@@ -27,7 +27,17 @@
 
                         <a href="{{ url('/teams') }}"><input
                                 class="btn btn--radius-2 login100-form-btn validate-form btn-danger" type="submit"
-                                value="EQUIPOS DE TRABAJO"></a>
+                                value="GESTIÓN DE EQUIPOS DE TRABAJO"></a>
+                    </div>
+                    <br>
+
+
+                    <div>
+                     
+
+                        <a href="{{ url('/team_entrenadores') }}"><input
+                                class="btn btn--radius-2 login100-form-btn validate-form btn-primary" type="submit"
+                                value="GESTIÓN DE ASIGNACIONES EN EQUIPOS DE TRABAJO"></a>
                     </div>
                     <br>
 
@@ -36,7 +46,7 @@
 
                         <a href="{{ url('/formentrenadores') }}"><input
                                 class="btn btn--radius-2 login100-form-btn validate-form btn-secondary" type="submit"
-                                value="ENTRENADOR"></a>
+                                value="GESTIÓN DE ENTRENADOR"></a>
                     </div>
                     <br>
 
@@ -45,7 +55,7 @@
 
                         <a href="{{ url('/formusuario') }}"><input
                                 class="btn btn--radius-2 login100-form-btn validate-form btn-info" type="submit"
-                                value="USUARIOS"></a>
+                                value="GESTIÓN DE USUARIOS"></a>
                     </div>
                     <br>
 

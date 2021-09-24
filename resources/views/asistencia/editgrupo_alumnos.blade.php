@@ -71,7 +71,7 @@
                     </div>
 
                     <div>
-                        <button class="btn btn--radius-2 btn--red login100-form-btn validate-form" type="submit">Crear registro</button>
+                        <button class="btn btn--radius-2 btn--red login100-form-btn validate-form" type="submit">Modificar registro</button>
                     </div>
                 </form>
             </div>

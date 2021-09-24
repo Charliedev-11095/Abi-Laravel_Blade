@@ -43,20 +43,30 @@ class EntrenadorMiddleware
             $datos =DB::table('team_entrenadores')
             ->join('entrenadores','entrenadores.id', '=','team_entrenadores.entrenadores_id')
             ->where('team_entrenadores.entrenadores_id', '=', $identrenador)
-            ->select('team_entrenadores.*')
+            ->select('team_entrenadores.status')
+            ->get(array('status'));
+
+            $datosteam =DB::table('team_entrenadores')
+            ->join('teams','teams.id', '=','team_entrenadores.teams_id')
+            ->where('team_entrenadores.entrenadores_id', '=', $identrenador)
+            ->select('teams.status')
             ->get(array('status'));
     
             $status = '';
+            $statusteam = '';
 
             foreach ($datos as $dato) {
                 $status = $dato->status;
            }
 
-           if ($status=='Activo') {
+           foreach ($datosteam as $datoteam) {
+            $statusteam = $datoteam->status;
+       }
+
+           if ($status=='Activo' && $statusteam=='Activo') {
                 return $next($request);
             } 
             Auth::logout();
-            // redirect to homepage
             return redirect('/')->with('msg', 'El usuario se encuentra dado de baja, contacte al Administrador!.');
             
         }
