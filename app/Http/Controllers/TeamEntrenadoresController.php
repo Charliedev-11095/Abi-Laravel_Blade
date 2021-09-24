@@ -78,12 +78,11 @@ class TeamEntrenadoresController extends Controller
         $actualizargrupo=request()->except(['_token','_method','idteam','buscarpor']);
          Teams::where('id','=',$idteam)->update($actualizargrupo);
 
-        $datos =DB::table('grupo_alumnos')
-        ->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
-        ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
-        ->join('entrenadores','entrenadores.id', '=','grupo_alumnos.entrenadores_id')
-        ->where('grupos.id', '=', $nombreteam)
-        ->select('grupo_alumnos.id as idregistro','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno','grupos.nivel','grupos.grado','grupos.seccion','entrenadores.nombres as nombresentrenador' ,'entrenadores.apellido_paterno as paternoentrenador' ,'entrenadores.apellido_materno as maternoentrenador','grupo_alumnos.estado')
+        $datos =DB::table('team_entrenadores')
+        ->join('teams','teams.id', '=','team_entrenadores.teams_id')
+        ->join('entrenadores','entrenadores.id', '=','team_entrenadores.entrenadores_id')
+        ->where('teams.id', '=', $nombreteam)
+        ->select('team_entrenadores.id as idregistro','entrenadores.nombres as nombresentrenador' ,'entrenadores.apellido_paterno as paternoentrenador' ,'entrenadores.apellido_materno as maternoentrenador','team_entrenadores.status')
         ->get();
 
         $datosteams =DB::table('teams') 
