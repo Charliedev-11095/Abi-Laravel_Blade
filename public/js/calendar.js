@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // $("#btnEliminar").prop("disabled", false);
             $("#btnEliminar").show();
 
-         
+
 
             $('#id').val(info.event.id);
             $('#title').val(info.event.title);
@@ -83,8 +83,8 @@ document.addEventListener('DOMContentLoaded', function() {
             $('#modelId').modal();
         },
 
-        
-        events: ulr+"/calendario/show"
+
+        events: ulr + "/calendario/show"
     });
 
     calendar.setOption('locale', 'es');
@@ -92,19 +92,20 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar.render();
 
     $('#btnGuardar').click(function() {
+        var alta_usuario;
         var objEvento;
         objEvento = recolectarDatosGUI("POST");
-       
-        EnviarInformacion('', objEvento);
+
+        EnviarInformacion('', objEvento, alta_usuario);
 
     });
-    
+
     $('#btnModificar').click(function() {
         objEvento = recolectarDatosGUI("PATCH");
-        EnviarInformacion( '/' + $('#id').val(),objEvento);
-        
+        EnviarInformacion('/' + $('#id').val(), objEvento);
+
     });
-    
+
     $('#btnEliminar').click(function() {
         objEvento = recolectarDatosGUI("DELETE");
         EnviarInformacion('/' + $('#id').val(), objEvento);
@@ -114,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function recolectarDatosGUI(method) {
         NuevoEvento = {
             id: $('#id').val(),
+            alta_usuario: $('#alta_usuario').val(),
             title: $('#title').val(),
             descripcion: $('#descripcion').val(),
             color: $('#color').val(),
@@ -126,24 +128,24 @@ document.addEventListener('DOMContentLoaded', function() {
         return NuevoEvento;
     }
 
-    function EnviarInformacion( id,objEvento) {
+    function EnviarInformacion(id, objEvento) {
         console.log(objEvento);
-        
+
         $.ajax({
-            url: ulr+"/eventos"+id,
+            url: ulr + "/eventos" + id,
             method: "POST",
             data: objEvento,
             success: function(msg) {
                 console.log(msg);
                 $('#modelId').modal('toggle');
                 calendar.refetchEvents();
-                
+
                 Swal.fire({
                     title: "Bien!",
                     text: msg,
                     icon: "success",
                 });
-                
+
             },
             error: function() { console.log("error"); }
         });

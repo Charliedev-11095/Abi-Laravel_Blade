@@ -32,10 +32,15 @@
                         </button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
-                        <div class="hide">
-                          <label for="">ID:</label>
+                        <form action="{{url('/eventos')}}" method="POST" enctype="multipart/form-data" id="formalta"name="formalta">
+                            {{csrf_field()}}
+                            
+                        <div>
+                        {{-- <div class="hide"> --}}
+                          <label for="">ID EVENTO:</label>
                           <input type="text" id="id" name="id">
+                          <label for="">ID USUARIO:</label>
+                          <input type="text"  id="alta_usuario" name="alta_usuario" value="{{Auth::user()->id}}">
                      
                           <label for="fecha">fecha</label>
                           <input type="text"  id="fecha" name="fecha" name="fecha" >
@@ -61,8 +66,8 @@
                         <div class="form-group col-md- col-12">
                           <label for="color">Color de linea</label>
                           <input type="color" class="form-control" id="color" name="color" >
-                     
                         </div>
+
                     </form>
                 </div>
                 <div class="modal-footer">

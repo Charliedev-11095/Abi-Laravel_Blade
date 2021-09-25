@@ -21,6 +21,7 @@ class CreateEventosTable extends Migration
             $table->string('textColor',20);
             $table->dateTime('start');
             $table->dateTime('end');
+            $table->bigInteger('alta_usuario')->unsigned()->nullable();
             $table->timestamps();
         });
     }
