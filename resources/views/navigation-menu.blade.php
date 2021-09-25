@@ -37,7 +37,7 @@
                     </x-jet-nav-link>
                     @endif
 
-
+                    
 
                 </div>
             </div>
@@ -47,6 +47,15 @@
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Teams Dropdown -->
+                @if (Auth::user()->role == 'Entrenador')
+                <div class="ml-3 relative">
+                
+                <x-jet-nav-link href="{{ route('panelteam.index') }}" :active="request()->routeIs('register')">
+                    {{ __('EQUIPO DE TRABAJO') }}
+                </x-jet-nav-link>
+                </div>
+                @endif
+
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ml-3 relative">
                         <x-jet-dropdown align="right" width="60">
@@ -95,9 +104,10 @@
                         </x-jet-dropdown>
                     </div>
                 @endif
+                <div class="ml-3 relative">
                 {{ Auth::user()->role.':' }}
                 {{ ' '.Auth::user()->name }}
-                
+            </div>
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
                     <x-jet-dropdown align="right" width="48">

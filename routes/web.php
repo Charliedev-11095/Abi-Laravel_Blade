@@ -126,3 +126,7 @@ Route::get('/administrador_control',[App\Http\Controllers\OpcionesAdminControlle
 //Ruta para Modulo de Teams_entrenador
 Route::resource('team_entrenadores', App\Http\Controllers\TeamEntrenadoresController::class);
 Route::get('/team_entrenadoresespecifico',[App\Http\Controllers\TeamEntrenadoresController::class, 'especifico'])->name('team_entrenadoresespecifico');
+
+
+//Validacion panel de Alumno
+Route::get('/panelteam',[App\Http\Controllers\PanelTeamController::class, 'index'])->name('panelteam.index');
