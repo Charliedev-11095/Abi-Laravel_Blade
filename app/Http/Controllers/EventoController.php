@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Evento;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 class EventoController extends Controller
 {
@@ -40,7 +42,7 @@ class EventoController extends Controller
     public function show(evento $evento)
     {
 
-        
+        $id = Auth::id(); 
       $data['eventos']=evento::all();
        return response()->json($data['eventos']);
     }
