@@ -35,8 +35,8 @@
                         <form action="{{url('/eventos')}}" method="POST" enctype="multipart/form-data" id="formalta"name="formalta">
                             {{csrf_field()}}
                             
-                        <div>
-                        {{-- <div class="hide"> --}}
+                        
+                         <div class="hide">
                           <label for="">ID EVENTO:</label>
                           <input type="text" id="id" name="id">
                           <label for="">ID USUARIO:</label>
@@ -72,8 +72,12 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" id="btnGuardar">Guardar</button>
+                    @if (Auth::user()->role == 'Administrador')
                     <button type="button" class="btn btn-warning " id="btnModificar">Modificar</button>
+                   @endif
+                    @if (Auth::user()->role == 'Administrador')
                     <button type="button" class="btn btn-danger" id="btnEliminar">Borrar</button>
+                    @endif
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancelar">Cerrar</button>
                 </div>
             </div>
