@@ -130,3 +130,8 @@ Route::get('/team_entrenadoresespecifico',[App\Http\Controllers\TeamEntrenadores
 
 //Validacion panel de Alumno
 Route::get('/panelteam',[App\Http\Controllers\PanelTeamController::class, 'index'])->name('panelteam.index');
+
+
+//Ruta para fechaprueba
+Route::resource('fechaprueba', App\Http\Controllers\PruebaFechaController::class);
+
