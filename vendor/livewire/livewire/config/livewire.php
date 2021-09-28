@@ -53,8 +53,8 @@ return [
     | Examples: "/assets", "myurl.com/app".
     |
     */
-
-    'asset_url' => null,
+    'asset_url' => 'http://localhost/abi/public',
+    
 
     /*
     |--------------------------------------------------------------------------
