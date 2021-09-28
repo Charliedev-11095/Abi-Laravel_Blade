@@ -32,12 +32,12 @@ $nombresMeses = array(1=>"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio
 $inicio =  DateTime::createFromFormat('Y-m-d',  $fecha1);
 // establecemos la fecha final (fecha de inicio + dias que queramos)
 $fin =  DateTime::createFromFormat('Y-m-d', $fecha2);
-$fin->modify( '+10 day' );
+$fin->modify( '+1 day' );
 
 // creamos el periodo de fechas
 $periodo = new DatePeriod($inicio, new DateInterval('P1D') ,$fin);
 
-// recorremos las dechas del periodo
+// recorremos las fechas del periodo
 foreach($periodo as $date){
     // definimos la variables para verlo mejor
     $nombreDia = $nombresDias[$date->format("w")];
@@ -47,6 +47,38 @@ foreach($periodo as $date){
     // mostramos los datos
     echo $nombreDia.' '.$numeroDia.' de '.$nombreMes.' de '.$anyo.'<br>';
 }
+
+$day = date("l");
+switch ($day) {
+    case "Sunday":
+           echo "Hoy es domingo";
+    break;
+    case "Monday":
+           echo "Hoy es lunes";
+    break;
+    case "Tuesday":
+           echo "Hoy es martes";
+    break;
+    case "Wednesday":
+           echo "Hoy es miercoles";
+    break;
+    case "Thursday":
+           echo "Hoy es jueves";
+    break;
+    case "Friday":
+           echo "Hoy es viernes";
+    break;
+    case "Saturday":
+           echo "Hoy es sabado";
+    break;
+}
+
+
+
+
+
+
+
 
     }
 

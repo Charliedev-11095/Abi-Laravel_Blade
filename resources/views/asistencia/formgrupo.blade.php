@@ -61,6 +61,31 @@
 
 
 <div class="form-group">
+    <label class="control-label" for="descripcion">Descripcion</label>
+    <input class="input100 {{$errors->has('descripcion')?'waiting-form':old('descripcion')}}" type="text" value="{{ isset($grupo->descripcion)?$grupo->descripcion:'' }}" name="descripcion" id="descripcion" required />
+
+    {!! $errors->first('estado','<div class="invalid-feedback">:message</div>') !!}
+</div>
+
+
+<div class="form-group">
+    <label class="control-label" for="fecha_inicio">Fecha de inicio</label>
+    <input class="input100 {{$errors->has('fecha_inicio')?'waiting-form':old('fecha_inicio')}}" type="date" value="{{ isset($grupo->fecha_inicio)?$grupo->fecha_inicio:'' }}" name="fecha_inicio" id="fecha_inicio" required />
+
+    {!! $errors->first('fecha_inicio','<div class="invalid-feedback">:message</div>') !!}
+</div>
+
+
+
+<div class="form-group">
+    <label class="control-label" for="fecha_fin">Fecha de fin</label>
+    <input class="input100 {{$errors->has('fecha_fin')?'waiting-form':old('fecha_fin')}}" type="date" value="{{ isset($grupo->fecha_fin)?$grupo->fecha_fin:'' }}" name="fecha_fin" id="fecha_fin" required />
+
+    {!! $errors->first('fecha_fin','<div class="invalid-feedback">:message</div>') !!}
+</div>
+
+
+<div class="form-group">
     <label class="control-label" for="estado">Estado</label>
     <select class="input100 {{$errors->has('estado')?'waiting-form':old('estado')}}" type="text" value="{{ isset($grupo->estado)?$grupo->estado:'' }}" name="estado" id="estado" required>
     <option class="invalid-feedback2" value="{{ isset($grupo->estado)?$grupo->estado:'' }}">{{ isset($grupo->estado)?$grupo->estado: 'selecciona una opción' }}</option>
@@ -70,6 +95,7 @@
 
     {!! $errors->first('estado','<div class="invalid-feedback">:message</div>') !!}
 </div>
+
 
 
 
