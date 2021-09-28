@@ -43,7 +43,11 @@ class EventoController extends Controller
     {
 
         $id = Auth::id(); 
-      $data['eventos']=evento::all();
+    //   $data['eventos']=evento::all();
+      $data['eventos']=DB::table('eventos')
+        ->where('eventos.alta_usuario', '=', $id)
+        ->select('eventos.*')
+        ->get();
        return response()->json($data['eventos']);
     }
 

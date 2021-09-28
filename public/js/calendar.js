@@ -17,16 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
             center: 'title',
             right: 'today,timeGridDay,timeGridWeek,dayGridMonth, list'
         },
-        customButtons: {
-            Miboton: {
-                text: "Agregar evento",
-                click: function() {
-                    alert("Crea tu evento");
-                    $('#modelId').modal();
-                    console.log(info);
-                }
-            }
-        },
 
         dateClick: function(info) {
 

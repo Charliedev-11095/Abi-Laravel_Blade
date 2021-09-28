@@ -37,7 +37,11 @@
                     </x-jet-nav-link>
                     @endif
 
-                    
+                    @if (Auth::user()->role == 'Administrador')
+                    <x-jet-nav-link href="{{ route('calendario') }}" :active="request()->routeIs('calendario')">
+                        {{ __('CALENDARIO') }}
+                    </x-jet-nav-link>
+                    @endif
 
                 </div>
             </div>
@@ -173,8 +177,6 @@
                             </x-jet-dropdown-link>
                             @endif
 
-
-
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -229,6 +231,12 @@
                 {{ __('OPCIONES DE ADMINISTRADOR') }}
             </x-jet-responsive-nav-link>
             @endif
+
+            @if (Auth::user()->role == 'Administrador')
+            <x-jet-responsive-nav-link href="{{ route('calendario') }}" :active="request()->routeIs('calendario')">
+                {{ __('CALENDARIO') }}
+            </x-jet-responsive-nav-link>
+            @endif
             
         </div>
 
@@ -278,6 +286,7 @@
                             <x-jet-dropdown-link href="{{ route('formhistorico_medico.index') }}">
                                 {{ __('Historial Médico') }}
                             </x-jet-dropdown-link>
+                            
                             @endif
 
                 <!-- Authentication -->
