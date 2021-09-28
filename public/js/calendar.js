@@ -80,7 +80,11 @@ document.addEventListener('DOMContentLoaded', function() {
             $('#fecha').val(anio + "-" + mes + "-" + dia);
             $('#hora').val(horario);
 
-            $('#modelId').modal();
+
+            if ($("#rol_usuario").val() === 'Administrador') {
+                $('#modelId').modal();
+            }
+
         },
 
 

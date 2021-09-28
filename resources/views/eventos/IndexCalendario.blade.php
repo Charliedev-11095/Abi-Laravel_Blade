@@ -32,16 +32,20 @@
                         </button>
                 </div>
                 <div class="modal-body">
-                        <form action="{{url('/eventos')}}" method="POST" enctype="multipart/form-data" id="formalta"name="formalta">
+                    <div class="hide">
+                    <label for="">rol:</label>
+                    <input type="text" id="rol_usuario" name="rol_usuario" value="{{Auth::user()->role}}">
+                    </div>    
+                    <form action="{{url('/eventos')}}" method="POST" enctype="multipart/form-data" id="formalta"name="formalta">
                             {{csrf_field()}}
                             
-                        
                          <div class="hide">
                           <label for="">ID EVENTO:</label>
                           <input type="text" id="id" name="id">
                           <label for="">ID USUARIO:</label>
                           <input type="text"  id="alta_usuario" name="alta_usuario" value="{{Auth::user()->id}}">
-                     
+                         
+                          
                           <label for="fecha">fecha</label>
                           <input type="text"  id="fecha" name="fecha" name="fecha" >
                         </div>
