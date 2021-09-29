@@ -37,7 +37,7 @@
                     </x-jet-nav-link>
                     @endif
 
-                    @if (Auth::user()->role == 'Administrador')
+                    @if (Auth::user()->role == 'Administrador'|| Auth::user()->role == 'Entrenador')
                     <x-jet-nav-link href="{{ route('calendario') }}" :active="request()->routeIs('calendario')">
                         {{ __('CALENDARIO') }}
                     </x-jet-nav-link>
