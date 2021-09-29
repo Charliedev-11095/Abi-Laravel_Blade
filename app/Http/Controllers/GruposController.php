@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Grupos;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use DateTime;
+use DateTimeZone;
+use DatePeriod;
+use DateInterval;
 
 class GruposController extends Controller
 {
@@ -46,26 +50,71 @@ class GruposController extends Controller
     public function store(Request $request)
     {
 
-
-        $campos=[
-            'grado'=>'required|string|max:2',
-            'seccion'=>'required|string|max:1',
-            'nivel'=>'required|string|max:10',
-            'estado'=>'required|string|max:8',
-
-        ];
-
-
-         $Mensaje=["required"=>'El campo :attribute es requerido'];
-         $this->validate($request,$campos,$Mensaje);
         
-         //$datosGrupo=request()->all();
          $datosGrupo=request()->except('_token');
 
+
+         //Obtenemos el valor activo/inactivo de los dias de entrenamiento
+         $do=$request->get('domingo');
+         $lu=$request->get('lunes');
+         $ma=$request->get('martes');
+         $mi=$request->get('miercoles');
+         $ju=$request->get('jueves');
+         $vi=$request->get('viernes');
+         $sa=$request->get('sabado');
+
+//Establecemos los dias de la semana
+         $nombresDias = array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" );
+
+        //Obtenemos los valores de fechas de inicio y fin de curso
+         $fecha1=$request->get('fecha_inicio');
+         $fecha2=$request->get('fecha_fin');
+
+// establecemos la fecha de inicio
+$inicio =  DateTime::createFromFormat('Y-m-d',  $fecha1);
+// establecemos la fecha final (fecha de inicio + dias que queramos)
+$fin =  DateTime::createFromFormat('Y-m-d', $fecha2);
+$fin->modify( '+1 day' );
+
+// creamos el periodo de fechas
+$periodo = new DatePeriod($inicio, new DateInterval('P1D') ,$fin);
+
+//Declaramos un contador, para que lleve la cuenta
+$cuenta = 0;
+
+foreach($periodo as $date){
+    // definimos la variables para verlo mejor
+    $nombreDia = $nombresDias[$date->format("w")];
+   
+if ($nombreDia == 'Sunday' && $do=='Activo') {
+    $cuenta += 1;
+}
+if ($nombreDia == 'Monday' && $lu=='Activo') {
+    $cuenta += 1;
+}
+if ($nombreDia == 'Tuesday' && $ma=='Activo') {
+    $cuenta += 1;
+}
+if ($nombreDia == 'Wednesday' && $mi=='Activo') {
+    $cuenta += 1;
+}
+if ($nombreDia == 'Thursday' && $ju=='Activo') {
+    $cuenta += 1;
+}
+if ($nombreDia == 'Friday' && $vi=='Activo') {
+    $cuenta += 1;
+}
+if ($nombreDia == 'Saturday' && $sa=='Activo') {
+    $cuenta += 1;
+    
+}
+
+}
+echo $cuenta.'<br>';
+
+
          grupos::insert($datosGrupo);
- //DB::insert('insert into users (id, name) values (?, ?)', [1, 'Dayle'])
-        // return response()->json($datosGrupo);
-         return redirect('asistencia/grupos')->with('Mensaje','Grupo agregado con éxito');
+         //return redirect('asistencia/grupos')->with('Mensaje','Grupo agregado con éxito');
 
     }
 
