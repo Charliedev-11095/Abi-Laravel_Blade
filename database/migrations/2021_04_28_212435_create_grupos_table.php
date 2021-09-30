@@ -21,13 +21,13 @@ class CreateGruposTable extends Migration
             $table->char('descripcion', 100);
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
-            $table->char('lunes', 8)->default('Inactiva');
-            $table->char('martes', 8)->default('Inactiva');
-            $table->char('miercoles', 8)->default('Inactiva');
-            $table->char('jueves', 8)->default('Inactiva');
-            $table->char('viernes', 8)->default('Inactiva');
-            $table->char('sabado', 8)->default('Inactiva');
-            $table->char('domingo', 8)->default('Inactiva');
+            $table->char('lunes', 8)->default('Inactiva')->nullable();
+            $table->char('martes', 8)->default('Inactiva')->nullable();
+            $table->char('miercoles', 8)->default('Inactiva')->nullable();
+            $table->char('jueves', 8)->default('Inactiva')->nullable();
+            $table->char('viernes', 8)->default('Inactiva')->nullable();
+            $table->char('sabado', 8)->default('Inactiva')->nullable();
+            $table->char('domingo', 8)->default('Inactiva')->nullable();
 
             $table->char('estado', 8);
             $table->timestamp('updated_at')->nullable();
