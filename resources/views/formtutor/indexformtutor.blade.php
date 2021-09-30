@@ -24,7 +24,7 @@
             <thead class="thead-dark">
         <tr>
             <th>Acciones</th>
-            <th>ID</th>
+            <th>ID tutor</th>
             <th>Nombres</th>
             <th>Apellido Paterno</th>
             <th>Apellido Materno</th>
@@ -37,7 +37,7 @@
             <th>codigo postal</th>
             <th>curp</th>
             <th>fecha de nacimiento</th>
-            <th>telefono</th>
+            <th>teléfono</th>
         </tr>
     </thead>
     <tbody>

@@ -209,6 +209,15 @@
        </span>
 </div>
 </div>
+
+
+<div class="hide">
+    <div class="input-group wrap-input100 validate-input">
+        <input id="alta_usuario" class="input101" type="text" name="alta_usuario" value="{{Auth::user()->id}}"/>
+        <span class="focus-input100 "></span>
+    </div>
+</div>
+
 <div class="container-login100-form-btn ">
     <input class="btn btn--radius-2 btn--red login100-form-btn validate-form " type="submit" value="{{$modo=='crear'?'agregar':'editar'}} ">
 </div>

@@ -16,6 +16,13 @@
                     <H2 class="title">ADMINISTRAR DATOS</H2>
                 </div>
                 <div class="card-body">
+                    
+                    <div>
+                        <a href="{{ url('/formtutores') }}"><input
+                                class="btn btn--radius-2 login100-form-btn validate-form btn-warning" type="submit"
+                                value=" TUTOR"></a>
+                    </div>
+                    <br>
 
                     <div>
                       
@@ -25,16 +32,6 @@
                                 value=" ALUMNO"></a>
                     </div>
                     <br>
-
-                    <div>
-
-
-                        <a href="{{ url('/formtutores') }}"><input
-                                class="btn btn--radius-2 login100-form-btn validate-form btn-warning" type="submit"
-                                value=" TUTOR"></a>
-                    </div>
-                    <br>
-
 {{--                     <div>
                       
 

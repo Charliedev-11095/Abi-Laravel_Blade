@@ -11,6 +11,7 @@ use App\Models\historicos_deportivos;
 use App\Models\asistencias;
 use App\Models\grupo_alumnos;
 use App\Models\Grupos;
+use Illuminate\Support\Facades\Auth;
 use DB;
 
 
@@ -23,7 +24,8 @@ class PDFcontroller extends Controller
      }
 
      public function tutoresPDF(){
-        $formtutor = tutores::all();
+      $id = Auth::id();
+      $formtutor = tutores::all();
         $pdf = PDF::loadView('formtutor.tutoresPDF',compact('formtutor'));
         return $pdf->setPAper('a4','portrait')->stream('Reporte-tutor.pdf');
      }

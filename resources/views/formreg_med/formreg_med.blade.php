@@ -177,6 +177,15 @@
                                  </div>
                              </div>
                          </div>
+
+
+            <div class="hide">
+                <div class="input-group wrap-input100 validate-input">
+                    <input id="alta_usuario" class="input101" type="text" name="alta_usuario" value="{{Auth::user()->id}}"/>
+                    <span class="focus-input100 "></span>
+                </div>
+            </div>
+
                          
                          </div>
  

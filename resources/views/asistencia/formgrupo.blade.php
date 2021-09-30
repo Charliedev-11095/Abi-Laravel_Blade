@@ -62,7 +62,7 @@
 
 <div class="form-group">
     <label class="control-label" for="descripcion">Descripcion</label>
-    <input class="input100 {{$errors->has('descripcion')?'waiting-form':old('descripcion')}}" type="text" value="{{ isset($grupo->descripcion)?$grupo->descripcion:'' }}" name="descripcion" id="descripcion" required />
+    <input class="input101 {{$errors->has('descripcion')?'waiting-form':old('descripcion')}}" type="text" value="{{ isset($grupo->descripcion)?$grupo->descripcion:'' }}" name="descripcion" id="descripcion" required />
 
     {!! $errors->first('descripcion','<div class="invalid-feedback">:message</div>') !!}
 </div>
