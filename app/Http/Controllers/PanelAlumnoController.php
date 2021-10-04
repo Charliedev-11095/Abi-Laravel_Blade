@@ -63,6 +63,32 @@ class PanelAlumnoController extends Controller
 
 
 
+    public function consulta_asistencia(Request $request){
+        //Obtener el id actual de usuario en curso
+        $id = Auth::id();
+
+        //Obtener el id del alumno y guardarlo, de usuario actual
+        $alumnos =DB::table('alumnos_pivotes')
+        ->where('alumnos_pivotes.users_id', '=', $id)
+        ->get(array('alumnos_id'));
+
+        $valoralumno = '';
+
+        foreach ($alumnos as $a) {
+            $valoralumno = $a->alumnos_id;
+        }
+
+       // return  $valoralumno;
+
+        $tablasmedicas =DB::table('historicos_medicos')
+        ->join('alumnos','alumnos.id', '=','historicos_medicos.alumnos_id')
+        ->where('alumnos.id', '=', $valoralumno)
+        ->select('historicos_medicos.*','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno')
+        ->get(); 
+
+        return view('consulta_alumnos.consulta_asistencia')->with('tablasmedicas',$tablasmedicas);
+        
+    }
 
 
 

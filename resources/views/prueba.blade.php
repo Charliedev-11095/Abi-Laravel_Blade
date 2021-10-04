@@ -1,50 +1,86 @@
 <x-app-layout>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+
+
+
         <x-slot name="header">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{_('PRUEBA')}}
-            </h2>
-        </x-slot>
-    
-    
 
-        @if (count($errors)>0)
-            <div class="alert alert-warning alert-dismissable" role="alert">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
+            <div class="row">
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                   PRUEBA DE ASISTENCIA
+                </h2>
             </div>
-        @endif
+ 
+        </x-slot>
+
         <div class="wrapper wrapper--w790">
+            <div style="background-color:#555055bf;border: 1px solid rgb(0, 0, 0);width:100%;text-align:center;padding:20px;">
+                <div class="row">
+                    <label for=""> <h4 style="color:#f9fbfc;">Consultar lista de Grupo</h4></label>
+                </div>
+            <div class="row" >
+                <form class="form-inline">
+                    <div>
+                        <label for="" style="color:#f9fbfc;">Seleccione un grupo, solo para consultar los alumnos que lo integran</label>
+                        <select name="buscarpor">
+                            
+                            @foreach ($grupos as $grupo)
+
+                                <option value="{{ $grupo->id }}">
+
+                                    {{ $grupo->nivel }} {{ ' '.$grupo->grado }} {{ $grupo->seccion }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <button type="submit" class="btn btn-danger ">BUSCAR</button>
+                    </div>
+                </form>
+            </div>
+   
+            </div>
+            <br>
             <div class="card card-5">
-                <div class="card-heading">
-                    <H2 class="title">Prueba de fecha</H2>
-                </div>
-                <div class="card-body">
-                    <form action="{{url('/fechaprueba')}}" class="form-horizontal" method="POST" enctype="multipart/form-data">
-                        {{csrf_field()}}
+                <table class="table table-light table-bordered table-hover">
 
-                        <div class="form-row wrap-input100 validate-input ">
-    <div class="name">Fecha de Inicio</div>
-    <div class="input-group wrap-input100 validate-input">
-    <input id="inicio" class="input101 " type="date" name="inicio" />
-    </div>
-</div>
+                    <thead class="thead-dark" style="background-color:#000000;color:white;border:1px solid #BDB76B;">
+                        <div class="card-heading">
+                            <a class="btn btn-info" href="{{route('listaGrupoAlumnosPDF')}}" target="blank">Descargar PDF Tabla</a>
+                            <H2 class="title">LISTA DE GRUPO</H2>
+                        </div>
+                        <tr>
 
-<div class="form-row wrap-input100 validate-input ">
-    <div class="name">Fecha de final</div>
-    <div class="input-group wrap-input100 validate-input">
-    <input id="fin" class="input101 " type="date" name="fin" />
-    </div>
-</div>
+                            <th class="card-title">ID DE REGISTRO</th>
+                            <th class="card-title">ALUMNOS</th>
+                            <th class="card-title">GRUPO</th>
+                            <th class="card-title">ENTRENADOR</th>
+                            <th class="card-title">PORCENTAJE DE ASISTENCIA</th>
+                        </tr>
 
-<input type="submit" class="btn btn-success" value="Enviar">
-
-                    </form> 
-                </div>
+                    </thead>
+                    <tbody>
+                        @foreach ($datos as $dato)
+                            <tr>
+                                <td>{{ $dato->idregistro }}</td>
+                                <td>{{ $dato->nombres }} {{ $dato->apellido_paterno }}
+                                    {{ $dato->apellido_materno }}</td>
+                                <td>
+                                    {{ $dato->nivel }} {{ ' '.$dato->grado }} {{ $dato->seccion }}
+                                </td>
+                                <td>
+                                    {{$dato->nombresentrenador}} {{$dato->paternoentrenador }}
+                                    {{ $dato->maternoentrenador }}
+                                </td>
+                                <td>  {{$dato->calificacion_asistencias.'% de asistencia '}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
+
+
+
     </div>
 </x-app-layout>

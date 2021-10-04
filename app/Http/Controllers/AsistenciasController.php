@@ -31,6 +31,8 @@ class AsistenciasController extends Controller
         ->where('grupos.estado', '=', 'Activo')
         ->select('grupos.*')
         ->get();
+
+        //Se obtiene el id del grupo
         $listalumno=$request->get('buscarpor');
         $nombregrupo=$request->get('buscarpor');
         //$grupos = grupos::all();
@@ -39,12 +41,56 @@ class AsistenciasController extends Controller
         ->join('entrenadores','entrenadores.id', '=','grupo_alumnos.entrenadores_id')
         ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
         ->where('grupo_alumnos.grupos_id', '=', $nombregrupo)
-        ->select('grupos.*','grupo_alumnos.id as idregistro','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno', 'entrenadores.nombres as nombresentrenador' ,'entrenadores.apellido_paterno as paternoentrenador' ,'entrenadores.apellido_materno as maternoentrenador')
+        ->select('grupos.*','grupo_alumnos.id as idregistro','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno', 'entrenadores.nombres as nombresentrenador' ,'entrenadores.apellido_paterno as paternoentrenador' ,'entrenadores.apellido_materno as maternoentrenador','grupo_alumnos.calificacion_asistencias')
         ->get();
 
-        return view('asistencia.indexasistencia')->with('datos',$datos)
-        ->with('grupos',$grupos)
-        ->with('listalumno',$listalumno);
+
+
+        //Obtener el valor maximo de las asistencias, en la tabla de grupo
+        $datosgrupos =DB::table('grupos')
+        ->where('grupos.id', '=', $nombregrupo)
+        ->select('grupos.dias_entrenamiento')
+        ->get(array('dias_entrenamiento'));
+
+        $valormaximo = 0;
+              foreach ($datosgrupos as $valor) {
+              $valormaximo = $valor->dias_entrenamiento;
+              }
+       
+       
+
+//Obtener las id de los alumnos en el grupo
+$datosalumnos =DB::table('alumnos')
+        ->join('grupo_alumnos','grupo_alumnos.alumnos_id', '=','alumnos.id')
+        ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+        ->where('grupo_alumnos.grupos_id', '=', $nombregrupo)
+        ->select('grupo_alumnos.id as idalumnos')
+        ->get(array('idalumnos'));
+
+        $valorb = '';
+
+        foreach ($datosalumnos as $a) {
+           $valorb = $a->idalumnos;
+
+           $contador_asistencias = DB::table('asistencias')
+           ->join('grupo_alumnos','grupo_alumnos.id', '=','asistencias.relacion_grupo_alumnos')
+           ->where('asistencias.relacion_grupo_alumnos', '=', $valorb)
+           ->where('asistencias.asistencia', '=', 'Marcada')
+           ->count();
+
+           $resultado=(100/$valormaximo)*$contador_asistencias;
+           $datosGrupoAlumno=[
+              'asistencias'=>$contador_asistencias,
+              'calificacion_asistencias'=>$resultado,
+          ];
+           grupo_alumnos::where('id','=',$valorb)->update($datosGrupoAlumno);
+
+       }
+
+       return view('asistencia.indexasistencia')->with('datos',$datos)
+       ->with('grupos',$grupos)
+       ->with('listalumno',$listalumno);
+
 
     }
 

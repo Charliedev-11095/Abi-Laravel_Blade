@@ -15,9 +15,10 @@ Route::get('/dashboard',[App\Http\Controllers\DashboardController::class, 'index
 //Validacion panel de Alumno
 Route::get('/panelalumno',[App\Http\Controllers\PanelAlumnoController::class, 'index'])->name('panelalumno.index');
 Route::get('/consultamedica_alumno',[App\Http\Controllers\PanelAlumnoController::class, 'consultamedica_alumno'])->name('panelalumno.consultamedica');
+Route::get('/consulta_asistencia',[App\Http\Controllers\PanelAlumnoController::class, 'consulta_asistencia'])->name('panelalumno.consulta_asistencia');
+
 
 //Validacion panel de Visitante
-
 Route::get('/panelvisitante',[App\Http\Controllers\PanelVisitanteController::class, 'index'])->name('panelvisitante.index');
 
 //rutas para  gestor de formularios
@@ -133,5 +134,5 @@ Route::get('/panelteam',[App\Http\Controllers\PanelTeamController::class, 'index
 
 
 //Ruta para fechaprueba
-Route::resource('fechaprueba', App\Http\Controllers\PruebaFechaController::class);
+Route::resource('asistenciaprueba', App\Http\Controllers\PruebaFechaController::class);
 

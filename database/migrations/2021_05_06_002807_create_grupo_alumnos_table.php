@@ -22,6 +22,8 @@ class CreateGrupoAlumnosTable extends Migration
             $table->bigInteger('grupos_id')->unsigned()->index()->nullable();
             $table->bigInteger('alumnos_id')->unsigned()->index()->nullable();
             $table->bigInteger('entrenadores_id')->unsigned()->index()->nullable();
+            $table->Integer('asistencias')->unsigned()->nullable();
+            $table->float('calificacion_asistencias')->nullable();
             $table->timestamp('updated_at')->nullable();
             $table->char('estado', 8);
 

@@ -51,7 +51,7 @@ class GruposController extends Controller
     {
 
         
-         $datosGrupo=request()->except('_token');
+         //$datosGrupo=request()->except('_token');
 
 
          //Obtenemos el valor activo/inactivo de los dias de entrenamiento
@@ -110,11 +110,33 @@ if ($nombreDia == 'Saturday' && $sa=='Activo') {
 }
 
 }
-echo $cuenta.'<br>';
+//echo $cuenta.'<br>';
+
+//Se obtienen los datos recibidos del request
+//y se almacenan el en un array para enviarlos a el insert
 
 
-         grupos::insert($datosGrupo);
-         //return redirect('asistencia/grupos')->with('Mensaje','Grupo agregado con éxito');
+$datosGrupo=[
+    'grado'=>$request->get('grado'),
+    'seccion'=>request('seccion'),
+    'nivel'=>request('nivel'),
+    'descripcion'=>request('descripcion'),
+    'fecha_inicio'=>request('fecha_inicio'),
+    'fecha_fin'=>request('fecha_fin'),
+    'lunes'=>request('lunes'),
+    'martes'=>request('martes'),
+    'miercoles'=>request('miercoles'),
+    'jueves'=>request('jueves'),
+    'viernes'=>request('viernes'),
+    'sabado'=>request('sabado'),
+    'domingo'=>request('domingo'),
+    'dias_entrenamiento'=>$cuenta,
+    'estado'=>request('estado'),
+
+];
+
+         grupos::insert($datosGrupo);     
+         return redirect('asistencia/grupos')->with('Mensaje','Grupo agregado con éxito');
 
     }
 

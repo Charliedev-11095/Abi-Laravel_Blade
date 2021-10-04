@@ -48,7 +48,7 @@
                                 <div class="card-body">
                                     <center><p><a href="{{ url('/consultamedica_alumno') }}" class="btn btn-primary btn-lg with-arrow" >CONSULTAR REGISTRO MEDICO</a></p></center>
                                     <br>
-
+                                    <center><p><a href="{{ url('/consulta_asistencia') }}" class="btn btn-primary btn-lg with-arrow" >CONSULTAR ASISTENCIAS</a></p></center>
 
                                 </div>
                             </div>

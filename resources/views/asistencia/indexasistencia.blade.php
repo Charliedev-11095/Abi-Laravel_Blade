@@ -67,24 +67,25 @@
                             <th class="card-title">ALUMNOS</th>
                             <th class="card-title">GRUPO</th>
                             <th class="card-title">ENTRENADOR</th>
-
+                            <th class="card-title">PORCENTAJE DE ASISTENCIA</th>
                         </tr>
 
                     </thead>
                     <tbody>
                         @foreach ($datos as $dato)
-                            <tr>
-                                <td>{{ $dato->idregistro }}</td>
-                                <td>{{ $dato->nombres }} {{ $dato->apellido_paterno }}
-                                    {{ $dato->apellido_materno }}</td>
-                                <td>
-                                    {{ $dato->nivel }} {{ ' '.$dato->grado }} {{ $dato->seccion }}
-                                </td>
-                                <td>
-                                    {{$dato->nombresentrenador}} {{$dato->paternoentrenador }}
-                                    {{ $dato->maternoentrenador }}
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>{{ $dato->idregistro }}</td>
+                            <td>{{ $dato->nombres }} {{ $dato->apellido_paterno }}
+                                {{ $dato->apellido_materno }}</td>
+                            <td>
+                                {{ $dato->nivel }} {{ ' '.$dato->grado }} {{ $dato->seccion }}
+                            </td>
+                            <td>
+                                {{$dato->nombresentrenador}} {{$dato->paternoentrenador }}
+                                {{ $dato->maternoentrenador }}
+                            </td>
+                            <td>  {{$dato->calificacion_asistencias.'% de asistencia '}}</td>
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>

@@ -1,4 +1,3 @@
-
 <x-app-layout>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
@@ -7,7 +6,7 @@
         <x-slot name="header">
             <div class="row">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    CONSULTA DE REGISTRO MEDICO
+                    CONSULTA DE ASISTENCIAS
                 </h2>
             </div>
             <a class="btn btn-danger" href="{{url('/panelalumno')}}" >Regresar</a>
@@ -22,7 +21,7 @@
         <div class="wrapper wrapper--w790">
             <div class="card card-5" >
                 <div class="card-heading">
-                    <H2 class="title">Historial Medico General</H2>
+                    <H2 class="title">Historial de asistencia General/H2>
                 </div>
                 <div class="card-body">
 

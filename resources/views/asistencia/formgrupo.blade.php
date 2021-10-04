@@ -96,21 +96,21 @@
 <br>
 <div class="form-group">
     <label class="control-label" for="lunes" >Lunes</label>
-    <select class="input100 {{$errors->has('lunes')?'waiting-form':old('lunes')}}" type="text" value="{{ isset($grupo->lunes)?$grupo->lunes:'' }}" name="lunes" id="lunes" >
+    <select class="input100 {{$errors->has('lunes')?'waiting-form':old('lunes')}}" type="text" value="{{ isset($grupo->lunes)?$grupo->lunes:'' }}" name="lunes" id="lunes" required>
     <option class="invalid-feedback2" value="{{ isset($grupo->lunes)?$grupo->lunes:'' }}">{{ isset($grupo->lunes)?$grupo->lunes: 'selecciona una opción' }}</option>
     <option>Activo</option>
     <option>Inactivo</option>
 </select>    
 <br>
 <label class="control-label" for="martes" > Martes</label>
-    <select class="input100 {{$errors->has('martes')?'waiting-form':old('martes')}}" type="text" value="{{ isset($grupo->martes)?$grupo->martes:'' }}" name="martes" id="martes" >
+    <select class="input100 {{$errors->has('martes')?'waiting-form':old('martes')}}" type="text" value="{{ isset($grupo->martes)?$grupo->martes:'' }}" name="martes" id="martes" required>
     <option class="invalid-feedback2" value="{{ isset($grupo->martes)?$grupo->martes:'' }}">{{ isset($grupo->martes)?$grupo->martes: 'selecciona una opción' }}</option>
     <option>Activo</option>
     <option>Inactivo</option>
 </select>    
 <br>
 <label class="control-label" for="miercoles" >Miercoles</label>
-    <select class="input100 {{$errors->has('miercoles')?'waiting-form':old('miercoles')}}" type="text" value="{{ isset($grupo->miercoles)?$grupo->miercoles:'' }}" name="miercoles" id="miercoles" >
+    <select class="input100 {{$errors->has('miercoles')?'waiting-form':old('miercoles')}}" type="text" value="{{ isset($grupo->miercoles)?$grupo->miercoles:'' }}" name="miercoles" id="miercoles" required>
     <option class="invalid-feedback2" value="{{ isset($grupo->miercoles)?$grupo->miercoles:'' }}">{{ isset($grupo->miercoles)?$grupo->miercoles: 'selecciona una opción' }}</option>
     <option>Activo</option>
     <option>Inactivo</option>
@@ -118,28 +118,28 @@
 
 <br>
 <label class="control-label" for="jueves" >Jueves</label>
-    <select class="input100 {{$errors->has('jueves')?'waiting-form':old('jueves')}}" type="text" value="{{ isset($grupo->jueves)?$grupo->jueves:'' }}" name="jueves" id="jueves" >
+    <select class="input100 {{$errors->has('jueves')?'waiting-form':old('jueves')}}" type="text" value="{{ isset($grupo->jueves)?$grupo->jueves:'' }}" name="jueves" id="jueves" required>
     <option class="invalid-feedback2" value="{{ isset($grupo->jueves)?$grupo->jueves:'' }}">{{ isset($grupo->jueves)?$grupo->jueves: 'selecciona una opción' }}</option>
     <option>Activo</option>
     <option>Inactivo</option>
 </select>    
 <br>
 <label class="control-label" for="viernes" >Viernes</label>
-    <select class="input100 {{$errors->has('viernes')?'waiting-form':old('viernes')}}" type="text" value="{{ isset($grupo->viernes)?$grupo->viernes:'' }}" name="viernes" id="viernes" >
+    <select class="input100 {{$errors->has('viernes')?'waiting-form':old('viernes')}}" type="text" value="{{ isset($grupo->viernes)?$grupo->viernes:'' }}" name="viernes" id="viernes" required>
     <option class="invalid-feedback2" value="{{ isset($grupo->viernes)?$grupo->viernes:'' }}">{{ isset($grupo->viernes)?$grupo->viernes: 'selecciona una opción' }}</option>
     <option>Activo</option>
     <option>Inactivo</option>
 </select>    
 <br>
 <label class="control-label" for="sabado" >Sabado</label>
-    <select class="input100 {{$errors->has('sabado')?'waiting-form':old('sabado')}}" type="text" value="{{ isset($grupo->sabado)?$grupo->sabado:'' }}" name="sabado" id="sabado" >
+    <select class="input100 {{$errors->has('sabado')?'waiting-form':old('sabado')}}" type="text" value="{{ isset($grupo->sabado)?$grupo->sabado:'' }}" name="sabado" id="sabado" required>
     <option class="invalid-feedback2" value="{{ isset($grupo->sabado)?$grupo->sabado:'' }}">{{ isset($grupo->sabado)?$grupo->sabado: 'selecciona una opción' }}</option>
     <option>Activo</option>
     <option>Inactivo</option>
 </select>    
 <br>
 <label class="control-label" for="domingo" >Domingo</label>
-    <select class="input100 {{$errors->has('domingo')?'waiting-form':old('domingo')}}" type="text" value="{{ isset($grupo->domingo)?$grupo->domingo:'' }}" name="domingo" id="domingo" >
+    <select class="input100 {{$errors->has('domingo')?'waiting-form':old('domingo')}}" type="text" value="{{ isset($grupo->domingo)?$grupo->domingo:'' }}" name="domingo" id="domingo" required>
     <option class="invalid-feedback2" value="{{ isset($grupo->domingo)?$grupo->domingo:'' }}">{{ isset($grupo->domingo)?$grupo->domingo: 'selecciona una opción' }}</option>
     <option>Activo</option>
     <option>Inactivo</option>
@@ -152,7 +152,7 @@
 </div>
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////// -->
 
-
+<br>
 <div class="form-group">
     <label class="control-label" for="estado">Estado</label>
     <select class="input100 {{$errors->has('estado')?'waiting-form':old('estado')}}" type="text" value="{{ isset($grupo->estado)?$grupo->estado:'' }}" name="estado" id="estado" required>

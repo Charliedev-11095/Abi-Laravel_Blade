@@ -29,6 +29,8 @@ class CreateGruposTable extends Migration
             $table->char('sabado', 8)->default('Inactiva')->nullable();
             $table->char('domingo', 8)->default('Inactiva')->nullable();
 
+            $table->integer('dias_entrenamiento')->nullable();
+
             $table->char('estado', 8);
             $table->timestamp('updated_at')->nullable();
 
