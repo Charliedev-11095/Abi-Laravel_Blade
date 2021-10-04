@@ -56,7 +56,17 @@ class PanelAlumnoController extends Controller
         ->select('historicos_medicos.*','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno')
         ->get(); 
 
-        return view('consulta_alumnos.consulta_medica')->with('tablasmedicas',$tablasmedicas);
+//Obtener los datos de el registro medico del alumno
+$formreg_med=DB::table('registros_medicos')
+        ->join('alumnos','alumnos.id', '=','registros_medicos.alumnos_id')
+        ->where('alumnos.id', '=', $valoralumno)
+        ->select('registros_medicos.*','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno')
+        ->get();
+
+
+        return view('consulta_alumnos.consulta_medica')
+        ->with('formreg_med',$formreg_med)
+        ->with('tablasmedicas',$tablasmedicas);
         
     }
 
@@ -80,13 +90,24 @@ class PanelAlumnoController extends Controller
 
        // return  $valoralumno;
 
-        $tablasmedicas =DB::table('historicos_medicos')
-        ->join('alumnos','alumnos.id', '=','historicos_medicos.alumnos_id')
-        ->where('alumnos.id', '=', $valoralumno)
-        ->select('historicos_medicos.*','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno')
+       //Obtenemos los datos del alumno, como sus asistencias y calificacion
+        $datosGrupo_alumnos =DB::table('grupo_alumnos')
+        ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+        ->where('grupo_alumnos.alumnos_id', '=', $valoralumno)
+        ->select('grupo_alumnos.*','grupos.*')
         ->get(); 
 
-        return view('consulta_alumnos.consulta_asistencia')->with('tablasmedicas',$tablasmedicas);
+//Obtenemos todas las asistencias del alumno
+        $datos =DB::table('asistencias')
+        ->join('grupo_alumnos','grupo_alumnos.id', '=','asistencias.relacion_grupo_alumnos')
+        ->where('grupo_alumnos.alumnos_id', '=', $valoralumno)
+        ->select('asistencias.*')
+        ->get();
+
+
+        return view('consulta_alumnos.consulta_asistencia')
+        ->with('datos',$datos)
+        ->with('datosGrupo_alumnos',$datosGrupo_alumnos);
         
     }
 

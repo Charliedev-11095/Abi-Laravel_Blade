@@ -35,7 +35,7 @@
             <div class="row" >
                 <form class="form-inline">
                     <div>
-                        <label for="" style="color:#f9fbfc;">Seleccione un grupo, solo para consultar los alumnos que lo integran</label>
+                        <label for="" style="color:#f9fbfc;">Seleccione un grupo, para consultar las asistencias</label>
                         <select name="buscarpor">
                             
                             @foreach ($grupos as $grupo)

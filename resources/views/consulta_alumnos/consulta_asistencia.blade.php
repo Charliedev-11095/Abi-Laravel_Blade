@@ -21,7 +21,7 @@
         <div class="wrapper wrapper--w790">
             <div class="card card-5" >
                 <div class="card-heading">
-                    <H2 class="title">Historial de asistencia General/H2>
+                    <H2 class="title">Historial de asistencia General</H2>
                 </div>
                 <div class="card-body">
 
@@ -29,29 +29,24 @@
     <thead class="thead-dark">
     
         <tr>
-            <th class="card-title">Id de registro</th>
-            <th class="card-title">Fecha de creacion</th>
-            <th class="card-title">Estatura (centimetros)</th>
-            <th class="card-title">Peso (kilogramos)</th>
-            <th class="card-title">Presion Arterial (mm HG)</th>
-            <th class="card-title">Comentarios</th>
+            <th class="card-title">Grupo</th>
+            <th class="card-title">Asistencias totales</th>
+            <th class="card-title">Asistencias marcadas</th>
+            <th class="card-title">Porcentaje asistido</th>
+       
             
         
         </tr>
     
     </thead>
         <tbody>
-            @foreach ($tablasmedicas as $tabla)
+            @foreach ($datosGrupo_alumnos as $dato)
                 
             <tr>    
-                <td>{{$tabla->id}}</td>
-                <td>{{$tabla->fecha_creacion}}</td>
-                <td>{{$tabla->estatura}}</td>
-                <td>{{$tabla->peso}}</td>
-                <td>{{$tabla->presion_arterial}}</td>
-                <td>{{$tabla->comentarios}}</td>
-                
-    
+                <td>{{$dato->nivel.' '}}{{$dato->grado}}{{$dato->seccion}}</td>
+                <td>{{$dato->dias_entrenamiento}}</td>
+                <td>{{$dato->asistencias}}</td>
+                <td>{{$dato->calificacion_asistencias}}</td>
                 
             </tr>
             @endforeach
@@ -63,7 +58,33 @@
 </div>
 </div>
 
+<br>
 
+<div class="wrapper wrapper--w790">
+    <div class="card card-5">
+        <table class="table table-light table-bordered table-hover">
+            <thead class="thead-dark">
+                <div class="card-heading">
+                    <H2 class="title">Asistencias globales</H2>
+           
+                </div>
+                <tr>
+
+                    <th class="card-title">FECHA</th>
+                    <th class="card-title">ASISTENCIA</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($datos as $dato)
+                    <tr>                   
+                        <td>{{ $dato->fecha_asistencia }}</td>
+                        <td>{{ $dato->asistencia }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
 
 
 

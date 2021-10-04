@@ -21,23 +21,23 @@
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8"> 
         <div class="table-responsive">
-<table class="table table-bordered">
+<table class="table table-bordered">    
     <thead class="thead-dark">
         <tr>
             <th>Acciones</th>
             <th>ID</th>
             <th>Alumno</th>
-            <th>estatura</th>
-            <th>peso</th>
-            <th>presion arterial</th>
-            <th>tipo de sangre</th>
-            <th>edad</th>
-            <th>padecimiento</th>
-            <th>tratamiento</th>
-            <th>alergia</th>
-            <th>conducta</th>
-            <th>impedimento físico</th>
-            <th>condición fisica</th>
+            <th>Estatura</th>
+            <th>Peso</th>
+            <th>Presion arterial</th>
+            <th>Tipo de sangre</th>
+            <th>Edad</th>
+            <th>Padecimiento</th>
+            <th>Tratamiento</th>
+            <th>Alergia</th>
+            <th>Conducta</th>
+            <th>Impedimento físico</th>
+            <th>Condición fisica</th>
         </tr>
     </thead>
     <tbody>
