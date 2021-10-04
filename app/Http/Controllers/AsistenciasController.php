@@ -117,6 +117,16 @@ $datosalumnos =DB::table('alumnos')
         ->select('grupo_alumnos.id as idregistro','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno', 'entrenadores.nombres as nombresentrenador' ,'entrenadores.apellido_paterno as paternoentrenador' ,'entrenadores.apellido_materno as maternoentrenador','grupo_alumnos.grupos_id  as grupo_asignado','grupos.grado as grados','grupos.seccion as secciones','grupos.nivel')
         ->get();
 
+        //Crear una variable para comparar los alumnos que SI asistieron y deshabilitar boton de marcar asistencia
+        $datosasistencia =DB::table('asistencias')
+        ->join('grupo_alumnos','grupo_alumnos.id', '=','asistencias.relacion_grupo_alumnos')
+        ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+        ->where('grupo_alumnos.grupos_id', '=', $nombregrupo)
+        ->where('asistencias.fecha_asistencia', '=', $now)
+        ->select('asistencias.*')
+        ->get();
+        //
+
         $datos2 =DB::table('asistencias')
         ->join('grupo_alumnos','grupo_alumnos.id', '=','asistencias.relacion_grupo_alumnos')
         ->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
@@ -128,6 +138,7 @@ $datosalumnos =DB::table('alumnos')
 
         return view('asistencia.createasistencia')->with('datos',$datos)
         ->with('datos2',$datos2)
+        ->with('datosasistencia',$datosasistencia)
         ->with('grupos',$grupos);
     }
 
@@ -160,6 +171,15 @@ $datosalumnos =DB::table('alumnos')
         ->select('grupo_alumnos.id as idregistro','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno', 'entrenadores.nombres as nombresentrenador' ,'entrenadores.apellido_paterno as paternoentrenador' ,'entrenadores.apellido_materno as maternoentrenador','grupo_alumnos.grupos_id  as grupo_asignado','grupos.grado as grados','grupos.seccion as secciones','grupos.nivel')
         ->get();
 
+        //Crear una variable para comparar los alumnos que SI asistieron y deshabilitar boton de marcar asistencia
+        $datosasistencia =DB::table('asistencias')
+        ->join('grupo_alumnos','grupo_alumnos.id', '=','asistencias.relacion_grupo_alumnos')
+        ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+        ->where('grupo_alumnos.grupos_id', '=', $nombregrupo)
+        ->where('asistencias.fecha_asistencia', '=', $now)
+        ->select('asistencias.*')
+        ->get();
+        //
 
 
         $datos2 =DB::table('asistencias')
@@ -174,6 +194,7 @@ $datosalumnos =DB::table('alumnos')
     
         return view('asistencia.createasistencia')->with('datos',$datos)
         ->with('datos2',$datos2)
+        ->with('datosasistencia',$datosasistencia)
         ->with('grupos',$grupos);
         
     }

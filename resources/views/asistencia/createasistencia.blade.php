@@ -98,9 +98,31 @@
                                         <input  type="hidden" name="relacion_grupo_alumnos" id="relacion_grupo_alumnos"
                                             value="{{ $dato->idregistro }}">
                                     </div>
-                                    <div >
-                                        <button type="submit" class="btn btn-danger ">MARCAR ASISTENCIA</button>
-                                    </div>
+
+                                 
+                                    
+                                    @foreach ($datosasistencia as $item)
+                                        @if ( $dato->idregistro == $item->relacion_grupo_alumnos)
+                                        
+                                           
+                                            <div class="alert alert-danger" role="alert">
+                                                <strong>ALERTA!</strong> Ya se ha tomado asistencia para este alumno
+                                            </div>
+                                        @else
+                                            <div >
+                                                <button type="submit" class="btn btn-danger ">MARCAR ASISTENCIA</button>
+                                            </div>
+
+                                        @endif
+ 
+                                    @endforeach
+                                    
+
+
+
+
+
+
                                 </div>
                             </form>
                             <br>
