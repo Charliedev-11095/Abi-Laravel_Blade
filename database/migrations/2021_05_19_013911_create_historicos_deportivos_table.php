@@ -63,12 +63,14 @@ class CreateHistoricosDeportivosTable extends Migration
 
             $table->char('observaciones', 100);
             $table->bigInteger('alumnos_id')->unsigned()->index()->nullable();
+            $table->bigInteger('relacion_grupo_alumnos')->unsigned()->index()->nullable();
             $table->timestamp('updated_at')->nullable();
             $table->date('fecha_creacion')->nullable();
         
 
             //Referencia a la llave foranea
             $table->foreign('alumnos_id')->references('id')->on('alumnos');
+            $table->foreign('relacion_grupo_alumnos')->references('id')->on('grupo_alumnos');
 
         });
     }

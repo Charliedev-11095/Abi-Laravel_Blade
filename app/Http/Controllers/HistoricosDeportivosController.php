@@ -63,8 +63,11 @@ class HistoricosDeportivosController extends Controller
      */
     public function create()
     {
+        $grupos = Grupos::all();
         $alumnos = alumnos::all();
-        return view('formhistorico_deportivo.createhistorico_deportivo')->with('alumnos',$alumnos);
+        return view('formhistorico_deportivo.createhistorico_deportivo')
+        ->with('grupos',$grupos)
+        ->with('alumnos',$alumnos);
     }
 
     /**
@@ -75,8 +78,29 @@ class HistoricosDeportivosController extends Controller
      */
     public function store(Request $request)
     {
-        $datosGrupo=request()->except('_token');
-        $campos=[
+
+        $nombrealumno=$request->get('alumnos_id');
+        $nombregrupo=$request->get('grupos_id');
+
+        //Recuperar id de grupo_alumnos
+        $datosgrupo_alumnos =DB::table('grupo_alumnos')
+        ->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
+        ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+        ->where('alumnos.id', '=', $nombrealumno)
+        ->where('grupos.id', '=', $nombregrupo)
+        ->select('grupo_alumnos.*')
+        ->get(array('id'));
+
+        $valorid = '';
+   
+        foreach ($datosgrupo_alumnos as $a) {
+           $valorid = $a->id;
+       }
+
+
+
+       // $datosGrupo=request()->except('_token');
+        $datosGrupo=[
             'comunicacion'=>'required|string|max:10',
             'liderazgo'=>'required|string|max:10',
             'respeto'=>'required|string|max:10',
@@ -108,22 +132,14 @@ class HistoricosDeportivosController extends Controller
             'contesta_lanzamiento'=>'required|string|max:10',
             'observaciones'=>'required|string|max:100',
             'alumnos_id'=>'required|integer',
-           
+            'relacion_grupo_alumnos'=>$valorid,
        
         ];
 
 
 
-
-         $Mensaje=["required"=>'El campo :attribute es requerido'];
-         $this->validate($request,$campos,$Mensaje);
-        
-         //$datosGrupo=request()->all();
-         
-
          historicos_deportivos::insert($datosGrupo);
-        //DB::insert('insert into users (id, name) values (?, ?)', [1, 'Dayle'])
-        // return response()->json($datosGrupo);
+     
          return redirect('dashboard')->with('Mensaje','Historico Deportivo agregado con exito');
     }
 

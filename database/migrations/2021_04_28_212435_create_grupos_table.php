@@ -30,6 +30,7 @@ class CreateGruposTable extends Migration
             $table->char('domingo', 8)->default('Inactiva')->nullable();
 
             $table->integer('dias_entrenamiento')->nullable();
+            $table->integer('evaluaciones_maximo')->nullable();
 
             $table->char('estado', 8);
             $table->timestamp('updated_at')->nullable();

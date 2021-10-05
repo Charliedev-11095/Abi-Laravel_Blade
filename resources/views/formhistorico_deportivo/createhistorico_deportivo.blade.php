@@ -34,6 +34,23 @@
                                 value="{{ date('Y-m-d') }}">
                         </div>
 
+                        <br>
+             
+                        <div class="form-group" >
+                            <label for="">Seleccione grupo al que pertenezca el alumno</label>
+                        <select name="grupos_id" id="grupos_id" class="input101">
+                            @foreach ($grupos as $grupo)
+                                <option value="{{ $grupo->id }}">
+                                    {{ $grupo->nivel }} {{ $grupo->grado }} {{ $grupo->seccion }} 
+                                </option>
+                            @endforeach
+                        </select>
+                        </div>
+
+
+
+
+
                         @include('formhistorico_deportivo.formhistorico_deportivo',['Modo'=>'crear'])
                     </form> 
 
