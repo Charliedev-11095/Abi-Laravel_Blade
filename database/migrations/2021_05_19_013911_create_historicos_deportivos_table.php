@@ -66,7 +66,15 @@ class CreateHistoricosDeportivosTable extends Migration
             $table->bigInteger('relacion_grupo_alumnos')->unsigned()->index()->nullable();
             $table->timestamp('updated_at')->nullable();
             $table->date('fecha_creacion')->nullable();
-        
+
+            //Columnas para alimentar las estadisticas
+            $table->int('seccionliderazgo')->nullable();
+            $table->int('seccionmanejobalon')->nullable();
+            $table->int('seccionpases')->nullable();
+            $table->int('seccionpies')->nullable();
+            $table->int('seccionlanzamiento')->nullable();
+            $table->int('secciondefensa')->nullable();
+            $table->int('total_historico')->nullable();
 
             //Referencia a la llave foranea
             $table->foreign('alumnos_id')->references('id')->on('alumnos');

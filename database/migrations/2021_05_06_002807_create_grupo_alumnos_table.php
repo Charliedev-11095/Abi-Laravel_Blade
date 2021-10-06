@@ -24,6 +24,15 @@ class CreateGrupoAlumnosTable extends Migration
             $table->bigInteger('entrenadores_id')->unsigned()->index()->nullable();
             $table->Integer('asistencias')->unsigned()->nullable();
             $table->float('calificacion_asistencias')->nullable();
+            $table->float('calificacion_entrenamiento')->nullable();    
+            $table->float('total_liderazgo')->nullable();
+            $table->float('total_manejobalon')->nullable();
+            $table->float('total_pases')->nullable();
+            $table->float('total_pies')->nullable();
+            $table->float('total_lanzamiento')->nullable();
+            $table->float('total_defensa')->nullable();
+ 
+
             $table->timestamp('updated_at')->nullable();
             $table->char('estado', 8);
 

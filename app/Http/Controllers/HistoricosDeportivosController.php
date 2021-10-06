@@ -118,42 +118,7 @@ $defensa = array("posicion_cuerpo", "presion_balon","bloqueo_oponente", "contest
            $valorid = $a->id;
        }
 
-       //Se insertan los datos recuperados(incluyendo el id de grupo_alumnos para la columna: relacion_grupo_alumnos)
-       $datosGrupo=[
-        'comunicacion'=>request('comunicacion'),
-        'liderazgo'=>request('liderazgo'),
-        'respeto'=>request('respeto'),
-        'responsabilidad'=>request('responsabilidad'),
-        'participacion'=>request('participacion'),
-        'actitud'=>request('actitud'),
-        'constancia'=>request('constancia'),
-        'compromiso'=>request('compromiso'),
-        'trabajo_en_equipo'=>request('trabajo_en_equipo'),
-
-        'mirada_al_frente'=>request('mirada_al_frente'),
-        'coordinacion_manos_balon'=>request('coordinacion_manos_balon'),
-        'decision_bajo_presion'=>request('decision_bajo_presion'),
-        'acertividad_en_balon'=>request('acertividad_en_balon'),
-        'coordinacion_manos_pase'=>request('coordinacion_manos_pase'),
-        'rapidez_en_pase'=>request('rapidez_en_pase'),
-        'pase_al_poste'=>request('pase_al_poste'),
-        'acertividad_en_pase'=>request('acertividad_en_pase'),
-        'balance_pies'=>request('balance_pies'),
-        'pivote'=>request('pivote'),
-        
-        'balance_objetivo'=>request('balance_objetivo'),
-        'agarre_balon'=>request('agarre_balon'),
-        'alineacion_al_aro'=>request('alineacion_al_aro'),
-        'entradas_manos'=>request('entradas_manos'),
-        'posicion_cuerpo'=>request('posicion_cuerpo'),
-        'presion_balon'=>request('presion_balon'),
-        'bloqueo_oponente'=>request('bloqueo_oponente'),
-        'contesta_lanzamiento'=>request('contesta_lanzamiento'),
-        'observaciones'=>request('observaciones'),
-        'alumnos_id'=>request('alumnos_id'),
-        'relacion_grupo_alumnos'=>$valorid,
-   
-    ];
+      
 
     $seccionliderazgo=0;
     for ($i=0; $i < count($liderazgo_valores_actitudes) ; $i++) { 
@@ -266,15 +231,53 @@ $defensa = array("posicion_cuerpo", "presion_balon","bloqueo_oponente", "contest
 
           $total= $seccionliderazgo+$seccionmanejobalon+$seccionpases+$seccionpies+$seccionlanzamiento+$secciondefensa;
 
-          echo "el elemento ".$seccionliderazgo."<br>" ;
-          echo "el elemento ".$seccionmanejobalon."<br>" ;
-          echo "el elemento ".$seccionpases."<br>" ;
-          echo "el elemento ".$seccionpies."<br>" ;
-          echo "el elemento ".$seccionlanzamiento."<br>" ;
-          echo "el elemento ".$secciondefensa."<br>" ;
-          echo "Total ".$total."<br>" ;
 
-return $datosGrupo['comunicacion'];
+//return $datosGrupo['comunicacion'];
+
+ //Se insertan los datos recuperados(incluyendo el id de grupo_alumnos para la columna: relacion_grupo_alumnos)
+ $datosGrupo=[
+    'comunicacion'=>request('comunicacion'),
+    'liderazgo'=>request('liderazgo'),
+    'respeto'=>request('respeto'),
+    'responsabilidad'=>request('responsabilidad'),
+    'participacion'=>request('participacion'),
+    'actitud'=>request('actitud'),
+    'constancia'=>request('constancia'),
+    'compromiso'=>request('compromiso'),
+    'trabajo_en_equipo'=>request('trabajo_en_equipo'),
+
+    'mirada_al_frente'=>request('mirada_al_frente'),
+    'coordinacion_manos_balon'=>request('coordinacion_manos_balon'),
+    'decision_bajo_presion'=>request('decision_bajo_presion'),
+    'acertividad_en_balon'=>request('acertividad_en_balon'),
+    'coordinacion_manos_pase'=>request('coordinacion_manos_pase'),
+    'rapidez_en_pase'=>request('rapidez_en_pase'),
+    'pase_al_poste'=>request('pase_al_poste'),
+    'acertividad_en_pase'=>request('acertividad_en_pase'),
+    'balance_pies'=>request('balance_pies'),
+    'pivote'=>request('pivote'),
+    
+    'balance_objetivo'=>request('balance_objetivo'),
+    'agarre_balon'=>request('agarre_balon'),
+    'alineacion_al_aro'=>request('alineacion_al_aro'),
+    'entradas_manos'=>request('entradas_manos'),
+    'posicion_cuerpo'=>request('posicion_cuerpo'),
+    'presion_balon'=>request('presion_balon'),
+    'bloqueo_oponente'=>request('bloqueo_oponente'),
+    'contesta_lanzamiento'=>request('contesta_lanzamiento'),
+    'observaciones'=>request('observaciones'),
+    'alumnos_id'=>request('alumnos_id'),
+    'relacion_grupo_alumnos'=>$valorid,
+
+    'seccionliderazgo'=>$seccionliderazgo,
+    'seccionmanejobalon'=>$seccionmanejobalon,
+    'seccionpases'=>$seccionpases,
+    'seccionpies'=>$seccionpies,
+    'seccionlanzamiento'=>$seccionlanzamiento,
+    'secciondefensa'=>$secciondefensa,
+    'total_historico'=>$total,
+
+];
 
        historicos_deportivos::insert($datosGrupo);
 
