@@ -79,6 +79,27 @@ class HistoricosDeportivosController extends Controller
     public function store(Request $request)
     {
 
+
+//Establecemos la seccion de liderazgo   
+$liderazgo_valores_actitudes = array("comunicacion", "liderazgo", "respeto", "responsabilidad", "participacion", "actitud", "constancia","compromiso", "trabajo_en_equipo");
+
+//Establecemos la seccion manejo de balon    
+$manejo_de_balon = array("mirada_al_frente", "coordinacion_manos_balon", "decision_bajo_presion", "acertividad_en_balon");
+
+
+//Establecemos la seccion pases    
+$pases = array("coordinacion_manos_pase", "rapidez_en_pase", "pase_al_poste", "acertividad_en_pase");
+
+//Establecemos la seccion trabajo de pies   
+$trabajo_de_pies = array("balance_pies", "pivote");
+
+
+//Establecemos la seccion lanzamiento   
+$lanzamiento = array("balance_objetivo", "agarre_balon","alineacion_al_aro", "entradas_manos");
+
+//Establecemos la seccion defensa  
+$defensa = array("posicion_cuerpo", "presion_balon","bloqueo_oponente", "contesta_lanzamiento");
+
         $nombrealumno=$request->get('alumnos_id');
         $nombregrupo=$request->get('grupos_id');
 
@@ -133,6 +154,127 @@ class HistoricosDeportivosController extends Controller
         'relacion_grupo_alumnos'=>$valorid,
    
     ];
+
+    $seccionliderazgo=0;
+    for ($i=0; $i < count($liderazgo_valores_actitudes) ; $i++) { 
+       
+           
+            if ($request[$liderazgo_valores_actitudes[$i]]== 'Excelente') {
+                $seccionliderazgo=$seccionliderazgo+4;
+            }
+            if ($request[$liderazgo_valores_actitudes[$i]]== 'Bueno') {
+                $seccionliderazgo=$seccionliderazgo+3;
+            }
+            if ($request[$liderazgo_valores_actitudes[$i]]== 'Regular') {
+                $seccionliderazgo=$seccionliderazgo+2;
+            }
+            if ($request[$liderazgo_valores_actitudes[$i]]== 'Bajo') {
+                $seccionliderazgo=$seccionliderazgo+1;
+            }
+     }
+     
+     $seccionmanejobalon=0;
+     for ($i=0; $i < count($manejo_de_balon) ; $i++) { 
+        
+            
+             if ($request[$manejo_de_balon[$i]]== 'Excelente') {
+                 $seccionmanejobalon=$seccionmanejobalon+4;
+             }
+             if ($request[$manejo_de_balon[$i]]== 'Bueno') {
+                 $seccionmanejobalon=$seccionmanejobalon+3;
+             }
+             if ($request[$manejo_de_balon[$i]]== 'Regular') {
+                 $seccionmanejobalon=$seccionmanejobalon+2;
+             }
+             if ($request[$manejo_de_balon[$i]]== 'Bajo') {
+                 $seccionmanejobalon=$seccionmanejobalon+1;
+             }
+      }
+
+      $seccionpases=0;
+      for ($i=0; $i < count($pases) ; $i++) { 
+         
+             
+              if ($request[$pases[$i]]== 'Excelente') {
+                  $seccionpases=$seccionpases+4;
+              }
+              if ($request[$pases[$i]]== 'Bueno') {
+                  $seccionpases=$seccionpases+3;
+              }
+              if ($request[$pases[$i]]== 'Regular') {
+                  $seccionpases=$seccionpases+2;
+              }
+              if ($request[$pases[$i]]== 'Bajo') {
+                  $seccionpases=$seccionpases+1;
+              }
+       }
+
+       $seccionpies=0;
+       for ($i=0; $i < count($trabajo_de_pies) ; $i++) { 
+          
+              
+               if ($request[$trabajo_de_pies[$i]]== 'Excelente') {
+                   $seccionpies=$seccionpies+4;
+               }
+               if ($request[$trabajo_de_pies[$i]]== 'Bueno') {
+                   $seccionpies=$seccionpies+3;
+               }
+               if ($request[$trabajo_de_pies[$i]]== 'Regular') {
+                   $seccionpies=$seccionpies+2;
+               }
+               if ($request[$trabajo_de_pies[$i]]== 'Bajo') {
+                   $seccionpies=$seccionpies+1;
+               }
+        }
+
+        $seccionlanzamiento=0;
+        for ($i=0; $i < count($lanzamiento) ; $i++) { 
+           
+               
+                if ($request[$lanzamiento[$i]]== 'Excelente') {
+                    $seccionlanzamiento=$seccionlanzamiento+4;
+                }
+                if ($request[$lanzamiento[$i]]== 'Bueno') {
+                    $seccionlanzamiento=$seccionlanzamiento+3;
+                }
+                if ($request[$lanzamiento[$i]]== 'Regular') {
+                    $seccionlanzamiento=$seccionlanzamiento+2;
+                }
+                if ($request[$lanzamiento[$i]]== 'Bajo') {
+                    $seccionlanzamiento=$seccionlanzamiento+1;
+                }
+         }
+
+
+         $secciondefensa=0;
+         for ($i=0; $i < count($defensa) ; $i++) { 
+            
+                
+                 if ($request[$defensa[$i]]== 'Excelente') {
+                     $secciondefensa=$secciondefensa+4;
+                 }
+                 if ($request[$defensa[$i]]== 'Bueno') {
+                     $secciondefensa=$secciondefensa+3;
+                 }
+                 if ($request[$defensa[$i]]== 'Regular') {
+                     $secciondefensa=$secciondefensa+2;
+                 }
+                 if ($request[$defensa[$i]]== 'Bajo') {
+                     $secciondefensa=$secciondefensa+1;
+                 }
+          }
+
+          $total= $seccionliderazgo+$seccionmanejobalon+$seccionpases+$seccionpies+$seccionlanzamiento+$secciondefensa;
+
+          echo "el elemento ".$seccionliderazgo."<br>" ;
+          echo "el elemento ".$seccionmanejobalon."<br>" ;
+          echo "el elemento ".$seccionpases."<br>" ;
+          echo "el elemento ".$seccionpies."<br>" ;
+          echo "el elemento ".$seccionlanzamiento."<br>" ;
+          echo "el elemento ".$secciondefensa."<br>" ;
+          echo "Total ".$total."<br>" ;
+
+return $datosGrupo['comunicacion'];
 
        historicos_deportivos::insert($datosGrupo);
 
