@@ -89,8 +89,8 @@
                                  <div class="col-3 ">
                                      <div class="input-group-desc ">
                                          {{-- <input id="tipo_sanguineo" class=" input101 " type="text " name="tipo_sanguineo" value="{{isset($regmed->tipo_sanguineo)?$regmed->tipo_sanguineo:''}}" required autofocus autocomplete="tipo_sanguineo"> --}}
-                                         <select class="form-select input100 {{$errors->has('tipo_sanguineo')?'waiting-form':old('tipo_sanguineo')}}" type="text " value="{{isset($regmed->tipo_sanguineo)?$regmed->tipo_sanguineo:''}}" required autofocus autocomplete="tipo_sanguineo" name="tipo_sanguineo" id="tipo_sanguineo">
-                                            <option class=" input100 invalid-feedback2">{{isset($regmed->tipo_sanguineo)?$regmed->tipo_sanguineo:'selecciona una opcion'}}</option>
+                                         <select class="form-select input100 {{$errors->has('tipo_sanguineo')?'waiting-form':old('tipo_sanguineo')}}" type="text " value="{{isset($regmed->tipo_sanguineo)?$regmed->tipo_sanguineo:''}}" required autofocus autocomplete="tipo_sanguineo" name="tipo_sanguineo" id="tipo_sanguineo" required>
+                                            <option class=" input100 invalid-feedback2" value="{{isset($regmed->tipo_sanguineo)?$regmed->tipo_sanguineo:''}}">{{isset($regmed->tipo_sanguineo)?$regmed->tipo_sanguineo:'selecciona una opcion'}}</option>
                                             <option >A+</option>
                                             <option >O+</option>
                                             <option >B+</option>
