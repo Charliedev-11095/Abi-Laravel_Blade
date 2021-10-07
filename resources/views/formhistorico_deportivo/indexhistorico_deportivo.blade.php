@@ -30,6 +30,95 @@
 
 
 <div class="wrapper wrapper--w790">
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div style="background-color:#555055bf;border: 1px solid rgb(0, 0, 0);width:100%;text-align:center;padding:20px;">
+        <div class="row">
+            <label for=""> <h4 style="color:#f9fbfc;">Consultar lista de Grupo</h4></label>
+        </div>
+    <div class="row" >
+        <form class="form-inline">
+            <div>
+                <label for="" style="color:#f9fbfc;">Seleccione un grupo, para consultar las asistencias</label>
+                <select name="buscarporgrupo">
+                    
+                    @foreach ($grupos as $grupo)
+
+                        <option value="{{ $grupo->id }}">
+
+                            {{ $grupo->nivel }} {{ ' '.$grupo->grado }} {{ $grupo->seccion }}
+                        </option>
+                    @endforeach
+                </select>
+                <button type="submit" class="btn btn-danger ">BUSCAR</button>
+            </div>
+        </form>
+    </div>
+
+    </div>
+<br>
+
+
+
+
+
+<div class="card card-5">
+    <table class="table table-light table-bordered table-hover">
+
+        <thead class="thead-dark" style="background-color:#000000;color:white;border:1px solid #BDB76B;">
+            <div class="card-heading">
+                <H2 class="title">LISTA DE GRUPO</H2>
+            </div>
+            <tr>
+
+                <th class="card-title">ID</th>
+                <th class="card-title">ALUMNOS</th>
+                <th class="card-title">GRUPO</th>
+                <th class="card-title">ENTRENADOR</th>
+                <th class="card-title">EVALUACIÓN</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach ($datos as $dato)
+            <tr>
+                <td>{{ $dato->idregistro }}</td>
+                <td>{{ $dato->nombres }} {{ $dato->apellido_paterno }}
+                    {{ $dato->apellido_materno }}</td>
+                <td>
+                    {{ $dato->nivel }} {{ ' '.$dato->grado }} {{ $dato->seccion }}
+                </td>
+                <td>
+                    {{$dato->nombresentrenador}} {{$dato->paternoentrenador }}
+                    {{ $dato->maternoentrenador }}
+                </td>
+                <td>  {{$dato->calificacion_entrenamiento.'% de aprovechamiento '}}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+<br>
+
     <div style="background-color:#555055bf;border: 1px solid rgb(0, 0, 0);width:100%;text-align:center;padding:20px;">
 
 <form class="form-inline">

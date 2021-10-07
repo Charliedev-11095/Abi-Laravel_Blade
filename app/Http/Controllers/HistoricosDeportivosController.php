@@ -30,10 +30,12 @@ class HistoricosDeportivosController extends Controller
      */
     public function index(Request $request)
     {
+        $nombregrupo=$request->get('buscarporgrupo');
         $nombrealumno=$request->get('buscarpor');
         $nombrefecha=$request->get('buscarporfecha');
 
         $historicos_deportivos = historicos_deportivos::all();
+        $grupos = Grupos::all();
         $alumnos = alumnos::all();
         $datos2 = historicos_deportivos::all();
         $datos2 =DB::table('historicos_deportivos')
@@ -50,9 +52,76 @@ class HistoricosDeportivosController extends Controller
         ->get();
 
 
+//Se obtiene los ids de los integrantes del grupo, para posteriormente sumar sus evaluaciones y mostrarlos
+//$calificacion_entrenamiento
+
+     //Obtener el valor maximo de los entrenamientos, en la tabla de grupo
+     $datosgrupos =DB::table('grupos')
+     ->where('grupos.id', '=', $nombregrupo)
+     ->select('grupos.evaluaciones_maximo')
+     ->get(array('evaluaciones_maximo'));
+
+     $valormaximo = 0;
+           foreach ($datosgrupos as $valor) {
+           $valormaximo = $valor->evaluaciones_maximo;
+           }
+
+
+
+//Obtener las id de los alumnos en el grupo
+$datosalumnos =DB::table('grupo_alumnos')
+        ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+        ->where('grupo_alumnos.grupos_id', '=', $nombregrupo)
+        ->select('grupo_alumnos.id as idalumnos')
+        ->get(array('idalumnos'));
+
+        $valorb = '';
+        
+
+        foreach ($datosalumnos as $a) {
+           $valorb = $a->idalumnos;
+           $totalvalorporcentajes=0;
+
+           $contador_evaluaciones = DB::table('historicos_deportivos')
+           ->join('grupo_alumnos','grupo_alumnos.id', '=','historicos_deportivos.relacion_grupo_alumnos')
+           ->where('historicos_deportivos.relacion_grupo_alumnos', '=', $valorb)
+           ->get(array('total_historico'));
+
+           foreach($contador_evaluaciones as $contador) {
+            $totalvalorporcentajes=$totalvalorporcentajes+$contador->total_historico;
+
+            }
+
+           $resultado=(100/($valormaximo*100))*$totalvalorporcentajes;
+
+           //$resultado=(100/$valormaximo)*$contador_evaluaciones;
+           $datosGrupoAlumno=[
+            
+              'calificacion_entrenamiento'=>round($resultado),
+          ];
+           grupo_alumnos::where('id','=',$valorb)->update($datosGrupoAlumno);
+
+       }
+
+      
+
+
+
+
+        //Se buscan los integrantesa del grupo para la vista
+       
+        $datos =DB::table('alumnos')
+        ->join('grupo_alumnos','grupo_alumnos.alumnos_id', '=','alumnos.id')
+        ->join('entrenadores','entrenadores.id', '=','grupo_alumnos.entrenadores_id')
+        ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+        ->where('grupo_alumnos.grupos_id', '=', $nombregrupo)
+        ->select('grupos.*','grupo_alumnos.id as idregistro','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno', 'entrenadores.nombres as nombresentrenador' ,'entrenadores.apellido_paterno as paternoentrenador' ,'entrenadores.apellido_materno as maternoentrenador','grupo_alumnos.calificacion_entrenamiento')
+        ->get();
 
         return view('formhistorico_deportivo.indexhistorico_deportivo')->with('alumnos',$alumnos)
         ->with('historicos_deportivos2',$historicos_deportivos2)
+        ->with('grupos',$grupos)
+        ->with('datos',$datos)
         ->with('datos2',$datos2);
     }
 
@@ -229,13 +298,30 @@ $defensa = array("posicion_cuerpo", "presion_balon","bloqueo_oponente", "contest
                  }
           }
 
-          $total= $seccionliderazgo+$seccionmanejobalon+$seccionpases+$seccionpies+$seccionlanzamiento+$secciondefensa;
+
+        
+
+          //Cada seccion equivale a un porcentaje (16.6666666667 %), sumando cada seccion, se debe obtener el 100% 
+          //que es el total de el historico deportivo
+
+          $porcentajeliderazgo=(16.6666666667/36)*$seccionliderazgo;
+          $porcentajemanejobalon=(16.6666666667/16)*$seccionmanejobalon;
+          $porcentajepases=(16.6666666667/16)*$seccionpases;
+          $porcentajepies=(16.6666666667/8)*$seccionpies;
+          $porcentajelanzamiento=(16.6666666667/16)*$seccionlanzamiento;
+          $porcentajedefensa=(16.6666666667/16)*$secciondefensa;
+         
+
+          $total= $porcentajeliderazgo+$porcentajemanejobalon+$porcentajepases+$porcentajepies+$porcentajelanzamiento+$porcentajedefensa;
+          $redondeartotal= round($total);
 
 
 //return $datosGrupo['comunicacion'];
 
  //Se insertan los datos recuperados(incluyendo el id de grupo_alumnos para la columna: relacion_grupo_alumnos)
  $datosGrupo=[
+    'fecha_creacion'=>request('fecha_creacion'),
+
     'comunicacion'=>request('comunicacion'),
     'liderazgo'=>request('liderazgo'),
     'respeto'=>request('respeto'),
@@ -275,7 +361,7 @@ $defensa = array("posicion_cuerpo", "presion_balon","bloqueo_oponente", "contest
     'seccionpies'=>$seccionpies,
     'seccionlanzamiento'=>$seccionlanzamiento,
     'secciondefensa'=>$secciondefensa,
-    'total_historico'=>$total,
+    'total_historico'=>$redondeartotal,
 
 ];
 
