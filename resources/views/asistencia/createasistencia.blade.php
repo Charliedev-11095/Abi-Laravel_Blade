@@ -102,18 +102,21 @@
                                  
                                     
                                     @foreach ($datosasistencia as $item)
-                                        @if ( $dato->idregistro == $item->relacion_grupo_alumnos)
+                                        @if ( $dato->idregistro == $item->relacion_grupo_alumnos && $item->asistencia=='Marcada')
                                         
                                            
                                             <div class="alert alert-danger" role="alert">
                                                 <strong>ALERTA!</strong> Ya se ha tomado asistencia para este alumno
                                             </div>
-                                        @else
+                                        @endif
+                                        @if ($dato->idregistro == $item->relacion_grupo_alumnos && $item->asistencia=='Ninguna')
                                             <div >
                                                 <button type="submit" class="btn btn-danger ">MARCAR ASISTENCIA</button>
                                             </div>
-
                                         @endif
+                                         
+
+                                      
  
                                     @endforeach
                                     

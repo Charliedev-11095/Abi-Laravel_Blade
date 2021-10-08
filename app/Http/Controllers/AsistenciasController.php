@@ -117,6 +117,56 @@ $datosalumnos =DB::table('alumnos')
         ->select('grupo_alumnos.id as idregistro','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno', 'entrenadores.nombres as nombresentrenador' ,'entrenadores.apellido_paterno as paternoentrenador' ,'entrenadores.apellido_materno as maternoentrenador','grupo_alumnos.grupos_id  as grupo_asignado','grupos.grado as grados','grupos.seccion as secciones','grupos.nivel')
         ->get();
 
+//////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+        $insertaralumnos =DB::table('grupo_alumnos')
+        ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+        ->where('grupo_alumnos.grupos_id', '=', $nombregrupo) 
+        ->select('grupo_alumnos.alumnos_id')
+        ->get(array('alumnos_id'));
+
+
+         $valoral = '';
+         
+       
+        foreach ($insertaralumnos as $al) {
+            $valoral = $al->alumnos_id;
+
+
+
+            $existenciasfalsas = DB::table('asistencias')
+            ->where('asistencias.relacion_grupo_alumnos', '=', $valoral)
+            ->where('asistencias.fecha_asistencia', '=', $now)
+            ->where('asistencias.asistencia', '=', 'Ninguna')
+            ->count();
+
+            $existencias = DB::table('asistencias')
+            ->where('asistencias.relacion_grupo_alumnos', '=', $valoral)
+            ->where('asistencias.fecha_asistencia', '=', $now)
+            ->where('asistencias.asistencia', '=', 'Marcada')
+            ->count();
+
+
+            if ( $existencias==0 && $existenciasfalsas==0) {
+                $datosUsuario=[
+                    'fecha_asistencia'=>$now,
+                    'asistencia'=>'Ninguna',
+                    'relacion_grupo_alumnos'=>$valoral,
+                ];
+                asistencias::insert($datosUsuario);
+            }
+           
+        }
+
+
+////////////////////////////////////////////////////////////////////////
+
         //Crear una variable para comparar los alumnos que SI asistieron y deshabilitar boton de marcar asistencia
         $datosasistencia =DB::table('asistencias')
         ->join('grupo_alumnos','grupo_alumnos.id', '=','asistencias.relacion_grupo_alumnos')
@@ -133,6 +183,7 @@ $datosalumnos =DB::table('alumnos')
         ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
         ->where('grupo_alumnos.grupos_id', '=', $nombregrupo)
         ->where('asistencias.fecha_asistencia', '=', $now)
+        ->where('asistencias.asistencia', '=', 'Marcada')
         ->select('alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno','asistencias.fecha_asistencia','asistencias.asistencia','grupos.grado as grados','grupos.seccion as secciones','grupos.nivel')
         ->get();
 
@@ -150,18 +201,43 @@ $datosalumnos =DB::table('alumnos')
      */
     public function store(Request $request)
     {
-      
-         //$datosGrupo=request()->all();
-         $datosGrupo=request()->except('_token','buscarpor');
 
-         asistencias::insert($datosGrupo);
 
-         $now = date('Y-m-d');
+        $now = date('Y-m-d');
         $nombregrupo=$request->post('buscarpor');
         $alumnos = alumnos::all();
         $entrenadores = entrenadores::all();
         $grupos = grupos::all();
         $grupoalumnos = grupo_alumnos::all();
+      
+//////////////////////////////////////////////////////////////////////7 
+
+$insertaralumnos =DB::table('asistencias')
+->where('asistencias.relacion_grupo_alumnos', '=', $request->relacion_grupo_alumnos) 
+->where('asistencias.fecha_asistencia', '=', $now) 
+->select('asistencias.id')
+->get(array('id'));
+
+ $valoral = '';
+ 
+ foreach ($insertaralumnos as $al) {
+    $valoral = $al->id;
+}
+
+
+//////////////
+        $datosUsuario=[
+            'asistencia'=>'Marcada',
+        ];
+        asistencias::where('id','=',$valoral)->update($datosUsuario);
+
+
+//////////////////////////////////////////////////////////////////////////////77
+
+
+
+
+        
         $datos =DB::table('alumnos')
         ->join('grupo_alumnos','grupo_alumnos.alumnos_id', '=','alumnos.id')
         ->join('entrenadores','entrenadores.id', '=','grupo_alumnos.entrenadores_id')
@@ -188,6 +264,7 @@ $datosalumnos =DB::table('alumnos')
         ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
         ->where('grupo_alumnos.grupos_id', '=', $nombregrupo)
         ->where('asistencias.fecha_asistencia', '=', $now)
+        ->where('asistencias.asistencia', '=', 'Marcada')
         ->select('alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno','asistencias.fecha_asistencia','asistencias.asistencia','grupos.grado as grados','grupos.seccion as secciones','grupos.nivel')
         ->get();
 
