@@ -16,7 +16,7 @@ Route::get('/dashboard',[App\Http\Controllers\DashboardController::class, 'index
 Route::get('/panelalumno',[App\Http\Controllers\PanelAlumnoController::class, 'index'])->name('panelalumno.index');
 Route::get('/consultamedica_alumno',[App\Http\Controllers\PanelAlumnoController::class, 'consultamedica_alumno'])->name('panelalumno.consultamedica');
 Route::get('/consulta_asistencia',[App\Http\Controllers\PanelAlumnoController::class, 'consulta_asistencia'])->name('panelalumno.consulta_asistencia');
-
+Route::get('/consulta_deportiva',[App\Http\Controllers\PanelAlumnoController::class, 'consulta_deportiva'])->name('panelalumno.consulta_deportiva');
 
 //Validacion panel de Visitante
 Route::get('/panelvisitante',[App\Http\Controllers\PanelVisitanteController::class, 'index'])->name('panelvisitante.index');

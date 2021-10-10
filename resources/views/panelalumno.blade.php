@@ -46,9 +46,13 @@
                                 <H2 class="title">PANEL ALUMNO</H2>
                                 </div>
                                 <div class="card-body">
-                                    <center><p><a href="{{ url('/consultamedica_alumno') }}" class="btn btn-primary btn-lg with-arrow" >CONSULTAR REGISTRO MEDICO</a></p></center>
-                                    <br>
                                     <center><p><a href="{{ url('/consulta_asistencia') }}" class="btn btn-primary btn-lg with-arrow" >CONSULTAR ASISTENCIAS</a></p></center>
+                                    <br>
+                                    <center><p><a href="{{ url('/consulta_deportiva') }}" class="btn btn-primary btn-lg with-arrow" >CONSULTAR HISTORIAL DEPORTIVO</a></p></center>
+                                    <br>
+                                    <center><p><a href="{{ url('/consultamedica_alumno') }}" class="btn btn-primary btn-lg with-arrow" >CONSULTAR REGISTRO MEDICO</a></p></center>
+                                    
+                                   
 
                                 </div>
                             </div>
