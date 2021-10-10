@@ -4,7 +4,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             CONSULTA DE HISTORIAL DEPORTIVO
         </h2>
-        <a class="btn btn-danger" href="{{url('/formhistorico_deportivo')}}" >Regresar</a>
+        <a class="btn btn-danger" href="{{url('/panelalumno')}}" >Regresar</a>
 
     </x-slot>
     <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
@@ -17,37 +17,6 @@
     {{Session::get('Mensaje')}}
 </div>
 @endif
-
-
-<div class="wrapper wrapper--w790">
-    <div style="background-color:#555055bf;border: 1px solid rgb(0, 0, 0);width:100%;text-align:center;padding:20px;">
-
-        <form class="form-inline">
-            <div>
-                
-                <h4 style="color:#f9fbfc;">Consultar Historial Deportivo General</h4>
-                <label for="" style="color:#f9fbfc;">Seleccionar alumno</label>
-                <select name="buscarpor" id="grupos_id" class="input101">
-                    @foreach ($alumnos as $alumno)
-                        <option value="{{ $alumno->id }}">
-                            {{ $alumno->nombres }} {{ $alumno->apellido_paterno}} {{ $alumno->apellido_materno}}
-                        </option>
-                    @endforeach
-                </select>
-                <br>
-
-                <button type="submit" class="btn btn-danger ">CONSULTAR</button>
-                
-                <label for=""> </label>
-                <br>
-            </div>
-        </form>
-
-    </div> 
-</div>
-<br>
-
-
 
 
 <div class="wrapper wrapper--w790">
