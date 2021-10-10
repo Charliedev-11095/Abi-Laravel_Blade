@@ -59,11 +59,87 @@
                  <h2 class="title"> ALUMNO:{{' '.$nom->nombres}} {{$nom->apellido_paterno}} {{$nom->apellido_materno}}</h2>
                  @endforeach
         </div>
+        <div class="card-body">
+
+{{-- ///////////////////////////////////////////// --}}
+@foreach ($alumnoestadisticas as $estadistica)
+<div class="table-responsive">
+    <table class="table table-light table-hover table-bordered"  >
+    <thead class="thead-dark">
+    <p><h4>EVALUACIONES GENERALES DE AREAS</h4></p>
+    <tr>
+    <th class="card-title">AREAS</th>
+    <th class="card-title">EVALUACION</th>
+    </tr>
+    </thead>
+    <tbody>
+
+       
+        <tr>
+            <td style="background:#353940;color:#FFF;">Liderazgo, valores y actitudes</td>
+            <td><p>{{$estadistica->total_liderazgo.'% de aprovechamiento general'}}</p></td>
+        </tr>
+        <tr>
+            <td style="background:#353940;color:#FFF;">Manejo de balon</td>
+            <td><p>{{$estadistica->total_manejobalon.'% de aprovechamiento general'}}</p> </td>
+        </tr>
+        <tr>
+            <td style="background:#353940;color:#FFF;">Pases</td>
+            <td><p>{{$estadistica->total_pases.'% de aprovechamiento general'}}</p> </td>
+        </tr>
+        <tr>
+            <td style="background:#353940;color:#FFF;">Trabajo de pies</td>
+            <td><p>{{$estadistica->total_pies.'% de aprovechamiento general'}}</p> </td>
+        </tr>
+        
+        <tr>
+            <td style="background:#353940;color:#FFF;">Lanzamiento</td>
+            <td><p>{{$estadistica->total_lanzamiento.'% de aprovechamiento general'}}</p> </td>
+        </tr>
+        <tr>
+            <td style="background:#353940;color:#FFF;">Defensa</td>
+            <td> <p> {{$estadistica->total_defensa.'% de aprovechamiento general'}}</p></td>
+        </tr>
+       
+
+    </tbody>
+    </table>
+    </div>
+
+
+
+
+<br>
+    <div class="table-responsive">
+        <table class="table table-light table-hover table-bordered"  >
+        <thead class="thead-dark">
+        <p><h4>EVALUACION GENERAL</h4></p>
+   
+        </thead>
+        <tbody>
+    
+          
+           
+            <tr>
+                <td style="background:#353940;color:#FFF;">Total</td>
+                <td> <p> {{$estadistica->calificacion_entrenamiento.'% de aprovechamiento general'}}</p></td>
+            </tr>
+   
+    
+        </tbody>
+        </table>
+        </div>
+
+        @endforeach
+{{-- /////////////////////////////////////////// --}}
+
+
+        </div>
 
     </div>
 </div>
 
-
+<br>
 @foreach ($historicos_deportivos2 as $historicos_deportivo)
 <div class="wrapper wrapper--w790">
 <div class="card card-5" >
@@ -280,10 +356,7 @@
 <table class="table table-light table-hover table-bordered"  >
 <thead class="thead-dark">
 <p><h4>OBSERVACIONES</h4></p>
-<tr>
-    <th class="card-title">AREAS</th>
-    <th class="card-title">EVALUACION</th>
-</tr>
+
 </thead>
 <tbody>
     <tr>

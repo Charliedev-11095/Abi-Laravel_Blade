@@ -93,8 +93,6 @@ $datosalumnos =DB::table('grupo_alumnos')
             }
 
            $resultado=(100/($valormaximo*100))*$totalvalorporcentajes;
-
-           //$resultado=(100/$valormaximo)*$contador_evaluaciones;
            $datosGrupoAlumno=[
             
               'calificacion_entrenamiento'=>round($resultado),
