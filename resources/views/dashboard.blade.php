@@ -65,14 +65,16 @@
                                 <H2 class="title">CONTROL DE ALUMNO</H2>
                                 </div>
                                 <div class="card-body">
+                                    <center><p><a href="{{ url('/formtutores/create') }}" class="btn btn-primary btn-lg with-arrow" >CREAR GRUPO</a></p></center>
+                                    <br>
                                     <center><p><a href="{{ url('/formtutores/create') }}" class="btn btn-primary btn-lg with-arrow" >REGISTRAR ALUMNO</a></p></center>
                                     <br>
-                                    <center><p><a href="{{ url('/asistencia/grupo_alumnos/create') }}" class="btn btn-primary btn-lg with-arrow" >ASIGNAR ALUMNO A GRUPO</a></p></center>
-<br>
+
+
 <center><p><a href="{{ url('/formasistencia/create') }}" class="btn btn-primary btn-lg with-arrow" >TOMAR ASISTENCIA</a></p></center>
 <br>
 
-<center><p><a href="{{ url('/formhistorico_deportivo/create') }}" class="btn btn-primary btn-lg with-arrow" >EVALUAR ACTIVIDADES</a></p></center>
+<center><p><a href="{{ url('/formhistorico_deportivo/create') }}" class="btn btn-primary btn-lg with-arrow" >Generar evaluación deportiva</a></p></center>
 <br>
 <center><p><a href="{{ url('/formhistorico_medico/create') }}" class="btn btn-primary btn-lg with-arrow" >CREAR REGISTRO DE SALUD</a></p></center>
 

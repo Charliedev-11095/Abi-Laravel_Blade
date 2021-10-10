@@ -313,6 +313,15 @@ $defensa = array("posicion_cuerpo", "presion_balon","bloqueo_oponente", "contest
           $total= $porcentajeliderazgo+$porcentajemanejobalon+$porcentajepases+$porcentajepies+$porcentajelanzamiento+$porcentajedefensa;
           $redondeartotal= round($total);
 
+//Se calcula el porcentaje de aprovechamiento individual de cada seccion 
+
+$evaluacion_liderazgo=(100/36)*$seccionliderazgo;
+$evaluacion_manejobalon=(100/16)*$seccionmanejobalon;
+$evaluacion_pases=(100/16)*$seccionpases;
+$evaluacion_pies=(100/8)*$seccionpies;
+$evaluacion_lanzamiento=(100/16)*$seccionlanzamiento;
+$evaluacion_defensa=(100/16)*$secciondefensa;
+
 
 //return $datosGrupo['comunicacion'];
 
@@ -360,6 +369,14 @@ $defensa = array("posicion_cuerpo", "presion_balon","bloqueo_oponente", "contest
     'seccionlanzamiento'=>$seccionlanzamiento,
     'secciondefensa'=>$secciondefensa,
     'total_historico'=>$redondeartotal,
+
+
+    'evaluacion_liderazgo'=>$evaluacion_liderazgo,
+    'evaluacion_manejobalon'=>$evaluacion_manejobalon,
+    'evaluacion_pases'=>$evaluacion_pases,
+    'evaluacion_pies'=>$evaluacion_pies,
+    'evaluacion_lanzamiento'=>$evaluacion_lanzamiento,
+    'evaluacion_defensa'=>$evaluacion_defensa,
 
 ];
 
@@ -441,60 +458,224 @@ $valorb = '';
     public function update(Request $request, $id)
     {
         
-        $campos=[
-            'comunicacion'=>'required|string|max:10',
-            'liderazgo'=>'required|string|max:10',
-            'respeto'=>'required|string|max:10',
-            'responsabilidad'=>'required|string|max:10',
-            'participacion'=>'required|string|max:10',
-            'actitud'=>'required|string|max:10',
-            'constancia'=>'required|string|max:10',
-            'compromiso'=>'required|string|max:10',
-            'trabajo_en_equipo'=>'required|string|max:10',
 
-            'mirada_al_frente'=>'required|string|max:10',
-            'coordinacion_manos_balon'=>'required|string|max:10',
-            'decision_bajo_presion'=>'required|string|max:10',
-            'acertividad_en_balon'=>'required|string|max:10',
-            'coordinacion_manos_pase'=>'required|string|max:10',
-            'rapidez_en_pase'=>'required|string|max:10',
-            'pase_al_poste'=>'required|string|max:10',
-            'acertividad_en_pase'=>'required|string|max:10',
-            'balance_pies'=>'required|string|max:10',
-            'pivote'=>'required|string|max:10',
-            
-            'balance_objetivo'=>'required|string|max:10',
-            'agarre_balon'=>'required|string|max:10',
-            'alineacion_al_aro'=>'required|string|max:10',
-            'entradas_manos'=>'required|string|max:10',
-            'posicion_cuerpo'=>'required|string|max:10',
-            'presion_balon'=>'required|string|max:10',
-            'bloqueo_oponente'=>'required|string|max:10',
-            'contesta_lanzamiento'=>'required|string|max:10',
-            'observaciones'=>'required|string|max:100',
-            'alumnos_id'=>'required|integer',
-           
-       
-        ];
+//Establecemos la seccion de liderazgo   
+$liderazgo_valores_actitudes = array("comunicacion", "liderazgo", "respeto", "responsabilidad", "participacion", "actitud", "constancia","compromiso", "trabajo_en_equipo");
+
+//Establecemos la seccion manejo de balon    
+$manejo_de_balon = array("mirada_al_frente", "coordinacion_manos_balon", "decision_bajo_presion", "acertividad_en_balon");
+
+
+//Establecemos la seccion pases    
+$pases = array("coordinacion_manos_pase", "rapidez_en_pase", "pase_al_poste", "acertividad_en_pase");
+
+//Establecemos la seccion trabajo de pies   
+$trabajo_de_pies = array("balance_pies", "pivote");
+
+
+//Establecemos la seccion lanzamiento   
+$lanzamiento = array("balance_objetivo", "agarre_balon","alineacion_al_aro", "entradas_manos");
+
+//Establecemos la seccion defensa  
+$defensa = array("posicion_cuerpo", "presion_balon","bloqueo_oponente", "contesta_lanzamiento");
+
+
+
+        //Se reevaluan los datos si se cambiaron y se reacomodan los valores de los porcentajes
+        //para no presentar fallas
         
-        $Mensaje=["required"=>'El campo :attribute es requerido'];
-        $this->validate($request,$campos,$Mensaje);
+      
+    $seccionliderazgo=0;
+    for ($i=0; $i < count($liderazgo_valores_actitudes) ; $i++) { 
+       
+           
+            if ($request[$liderazgo_valores_actitudes[$i]]== 'Excelente') {
+                $seccionliderazgo=$seccionliderazgo+4;
+            }
+            if ($request[$liderazgo_valores_actitudes[$i]]== 'Bueno') {
+                $seccionliderazgo=$seccionliderazgo+3;
+            }
+            if ($request[$liderazgo_valores_actitudes[$i]]== 'Regular') {
+                $seccionliderazgo=$seccionliderazgo+2;
+            }
+            if ($request[$liderazgo_valores_actitudes[$i]]== 'Bajo') {
+                $seccionliderazgo=$seccionliderazgo+1;
+            }
+     }
+     
+     $seccionmanejobalon=0;
+     for ($i=0; $i < count($manejo_de_balon) ; $i++) { 
+        
+            
+             if ($request[$manejo_de_balon[$i]]== 'Excelente') {
+                 $seccionmanejobalon=$seccionmanejobalon+4;
+             }
+             if ($request[$manejo_de_balon[$i]]== 'Bueno') {
+                 $seccionmanejobalon=$seccionmanejobalon+3;
+             }
+             if ($request[$manejo_de_balon[$i]]== 'Regular') {
+                 $seccionmanejobalon=$seccionmanejobalon+2;
+             }
+             if ($request[$manejo_de_balon[$i]]== 'Bajo') {
+                 $seccionmanejobalon=$seccionmanejobalon+1;
+             }
+      }
+
+      $seccionpases=0;
+      for ($i=0; $i < count($pases) ; $i++) { 
+         
+             
+              if ($request[$pases[$i]]== 'Excelente') {
+                  $seccionpases=$seccionpases+4;
+              }
+              if ($request[$pases[$i]]== 'Bueno') {
+                  $seccionpases=$seccionpases+3;
+              }
+              if ($request[$pases[$i]]== 'Regular') {
+                  $seccionpases=$seccionpases+2;
+              }
+              if ($request[$pases[$i]]== 'Bajo') {
+                  $seccionpases=$seccionpases+1;
+              }
+       }
+
+       $seccionpies=0;
+       for ($i=0; $i < count($trabajo_de_pies) ; $i++) { 
+          
+              
+               if ($request[$trabajo_de_pies[$i]]== 'Excelente') {
+                   $seccionpies=$seccionpies+4;
+               }
+               if ($request[$trabajo_de_pies[$i]]== 'Bueno') {
+                   $seccionpies=$seccionpies+3;
+               }
+               if ($request[$trabajo_de_pies[$i]]== 'Regular') {
+                   $seccionpies=$seccionpies+2;
+               }
+               if ($request[$trabajo_de_pies[$i]]== 'Bajo') {
+                   $seccionpies=$seccionpies+1;
+               }
+        }
+
+        $seccionlanzamiento=0;
+        for ($i=0; $i < count($lanzamiento) ; $i++) { 
+           
+               
+                if ($request[$lanzamiento[$i]]== 'Excelente') {
+                    $seccionlanzamiento=$seccionlanzamiento+4;
+                }
+                if ($request[$lanzamiento[$i]]== 'Bueno') {
+                    $seccionlanzamiento=$seccionlanzamiento+3;
+                }
+                if ($request[$lanzamiento[$i]]== 'Regular') {
+                    $seccionlanzamiento=$seccionlanzamiento+2;
+                }
+                if ($request[$lanzamiento[$i]]== 'Bajo') {
+                    $seccionlanzamiento=$seccionlanzamiento+1;
+                }
+         }
 
 
+         $secciondefensa=0;
+         for ($i=0; $i < count($defensa) ; $i++) { 
+            
+                
+                 if ($request[$defensa[$i]]== 'Excelente') {
+                     $secciondefensa=$secciondefensa+4;
+                 }
+                 if ($request[$defensa[$i]]== 'Bueno') {
+                     $secciondefensa=$secciondefensa+3;
+                 }
+                 if ($request[$defensa[$i]]== 'Regular') {
+                     $secciondefensa=$secciondefensa+2;
+                 }
+                 if ($request[$defensa[$i]]== 'Bajo') {
+                     $secciondefensa=$secciondefensa+1;
+                 }
+          }
 
 
-        $datosGrupo=request()->except(['_token','_method']);
+        
+
+          //Cada seccion equivale a un porcentaje (16.6666666667 %), sumando cada seccion, se debe obtener el 100% 
+          //que es el total de el historico deportivo
+
+          $porcentajeliderazgo=(16.6666666667/36)*$seccionliderazgo;
+          $porcentajemanejobalon=(16.6666666667/16)*$seccionmanejobalon;
+          $porcentajepases=(16.6666666667/16)*$seccionpases;
+          $porcentajepies=(16.6666666667/8)*$seccionpies;
+          $porcentajelanzamiento=(16.6666666667/16)*$seccionlanzamiento;
+          $porcentajedefensa=(16.6666666667/16)*$secciondefensa;
+         
+
+          $total= $porcentajeliderazgo+$porcentajemanejobalon+$porcentajepases+$porcentajepies+$porcentajelanzamiento+$porcentajedefensa;
+          $redondeartotal= round($total);
+
+//Se calcula el porcentaje de aprovechamiento individual de cada seccion 
+
+$evaluacion_liderazgo=(100/36)*$seccionliderazgo;
+$evaluacion_manejobalon=(100/16)*$seccionmanejobalon;
+$evaluacion_pases=(100/16)*$seccionpases;
+$evaluacion_pies=(100/8)*$seccionpies;
+$evaluacion_lanzamiento=(100/16)*$seccionlanzamiento;
+$evaluacion_defensa=(100/16)*$secciondefensa;
+
+//Se recuperan los datos a actualizar del request y de otros procesos
+        $datosGrupo=[
+            
+        
+            'comunicacion'=>request('comunicacion'),
+            'liderazgo'=>request('liderazgo'),
+            'respeto'=>request('respeto'),
+            'responsabilidad'=>request('responsabilidad'),
+            'participacion'=>request('participacion'),
+            'actitud'=>request('actitud'),
+            'constancia'=>request('constancia'),
+            'compromiso'=>request('compromiso'),
+            'trabajo_en_equipo'=>request('trabajo_en_equipo'),
+        
+            'mirada_al_frente'=>request('mirada_al_frente'),
+            'coordinacion_manos_balon'=>request('coordinacion_manos_balon'),
+            'decision_bajo_presion'=>request('decision_bajo_presion'),
+            'acertividad_en_balon'=>request('acertividad_en_balon'),
+            'coordinacion_manos_pase'=>request('coordinacion_manos_pase'),
+            'rapidez_en_pase'=>request('rapidez_en_pase'),
+            'pase_al_poste'=>request('pase_al_poste'),
+            'acertividad_en_pase'=>request('acertividad_en_pase'),
+            'balance_pies'=>request('balance_pies'),
+            'pivote'=>request('pivote'),
+            
+            'balance_objetivo'=>request('balance_objetivo'),
+            'agarre_balon'=>request('agarre_balon'),
+            'alineacion_al_aro'=>request('alineacion_al_aro'),
+            'entradas_manos'=>request('entradas_manos'),
+            'posicion_cuerpo'=>request('posicion_cuerpo'),
+            'presion_balon'=>request('presion_balon'),
+            'bloqueo_oponente'=>request('bloqueo_oponente'),
+            'contesta_lanzamiento'=>request('contesta_lanzamiento'),
+            'observaciones'=>request('observaciones'),
+            'alumnos_id'=>request('alumnos_id'),
+        
+        
+            'seccionliderazgo'=>$seccionliderazgo,
+            'seccionmanejobalon'=>$seccionmanejobalon,
+            'seccionpases'=>$seccionpases,
+            'seccionpies'=>$seccionpies,
+            'seccionlanzamiento'=>$seccionlanzamiento,
+            'secciondefensa'=>$secciondefensa,
+            'total_historico'=>$redondeartotal,
+        
+        
+            'evaluacion_liderazgo'=>$evaluacion_liderazgo,
+            'evaluacion_manejobalon'=>$evaluacion_manejobalon,
+            'evaluacion_pases'=>$evaluacion_pases,
+            'evaluacion_pies'=>$evaluacion_pies,
+            'evaluacion_lanzamiento'=>$evaluacion_lanzamiento,
+            'evaluacion_defensa'=>$evaluacion_defensa,
+        
+        ];
+      
         historicos_deportivos::where('id', '=', $id)->update($datosGrupo);
-
-
-        //SE UTILIZARAN LAS SIGUIENTES DOS LINEAS DE CODIGO TEMPORALMENTE
-        //COMENTADA $grupo=grupos::findOrFail($id);
-
-        //Return, puede llamar a la vista por el "name" que posee
-        //en caso de que no funcione..... hay que mandar llamar
-        //la ruta directa de la vista edit.grupo.blade.php
-        //         (nombrecarpeta.nombrevista)
-        // COMENTADA return view('asistencia.editgrupo',compact('grupo'));
 
         return redirect('formhistorico_deportivo')->with('Mensaje','Histórico Deportivo modificado con éxito');
     

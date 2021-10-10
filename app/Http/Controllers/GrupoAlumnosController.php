@@ -92,7 +92,7 @@ class GrupoAlumnosController extends Controller
          $datosGrupo_alumno=request()->except('_token');
 
         grupo_alumnos::insert($datosGrupo_alumno);
-        return redirect('asistencia/grupo_alumnos')->with('Mensaje','Alumno asignado con éxito');
+        return redirect('dashboard')->with('Mensaje','Alumno asignado con éxito');
     }
 
     /**

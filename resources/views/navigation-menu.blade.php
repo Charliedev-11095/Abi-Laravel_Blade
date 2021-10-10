@@ -31,17 +31,20 @@
                     </x-jet-nav-link>
                     @endif
 
-                    @if (Auth::user()->role == 'Administrador')
-                    <x-jet-nav-link href="{{ route('administrador_control') }}" :active="request()->routeIs('register')">
-                        {{ __('OPCIONES DE ADMINISTRADOR') }}
-                    </x-jet-nav-link>
-                    @endif
 
                     @if (Auth::user()->role == 'Administrador'|| Auth::user()->role == 'Entrenador')
                     <x-jet-nav-link href="{{ route('calendario') }}" :active="request()->routeIs('calendario')">
                         {{ __('CALENDARIO') }}
                     </x-jet-nav-link>
                     @endif
+
+                    @if (Auth::user()->role == 'Administrador')
+                    <x-jet-nav-link href="{{ route('administrador_control') }}" :active="request()->routeIs('register')">
+                        {{ __('OPCIONES DE ADMINISTRADOR') }}
+                    </x-jet-nav-link>
+                    @endif
+
+
 
                 </div>
             </div>
@@ -226,17 +229,18 @@
             </x-jet-responsive-nav-link>
             @endif
 
+            @if (Auth::user()->role == 'Administrador' || Auth::user()->role == 'Entrenador')
+            <x-jet-responsive-nav-link href="{{ route('calendario') }}" :active="request()->routeIs('calendario')">
+                {{ __('CALENDARIO') }}
+            </x-jet-responsive-nav-link>
+            @endif
+
             @if (Auth::user()->role == 'Administrador')
             <x-jet-responsive-nav-link href="{{ route('administrador_control') }}" :active="request()->routeIs('register')">
                 {{ __('OPCIONES DE ADMINISTRADOR') }}
             </x-jet-responsive-nav-link>
             @endif
 
-            @if (Auth::user()->role == 'Administrador')
-            <x-jet-responsive-nav-link href="{{ route('calendario') }}" :active="request()->routeIs('calendario')">
-                {{ __('CALENDARIO') }}
-            </x-jet-responsive-nav-link>
-            @endif
             
         </div>
 

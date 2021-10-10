@@ -4,7 +4,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             PROGRESO DEPORTIVO
         </h2>
-        <a class="btn btn-success" href="{{url('/formhistorico_deportivo')}}" >Ir a consulta única</a>
+        <a class="btn btn-danger" href="{{url('/formhistorico_deportivo')}}" >Regresar</a>
 
     </x-slot>
     <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
@@ -66,7 +66,7 @@
 <div class="table-responsive">
     <table class="table table-light table-hover table-bordered"  >
     <thead class="thead-dark">
-    <p><h4>EVALUACIONES GENERALES DE AREAS</h4></p>
+    <p><h4>EVALUACIONES GENERALES</h4></p>
     <tr>
     <th class="card-title">AREAS</th>
     <th class="card-title">EVALUACION</th>
@@ -116,10 +116,7 @@
         <p><h4>EVALUACION GENERAL</h4></p>
    
         </thead>
-        <tbody>
-    
-          
-           
+        <tbody>       
             <tr>
                 <td style="background:#353940;color:#FFF;">Total</td>
                 <td> <p> {{$estadistica->calificacion_entrenamiento.'% de aprovechamiento general'}}</p></td>
@@ -144,7 +141,9 @@
 <div class="wrapper wrapper--w790">
 <div class="card card-5" >
     <div class="card-heading">
-        <h2 class="title">FECHA: {{' '.$historicos_deportivo->fecha_creacion}}
+        <h2 class="title">EVALUACION GENERADA
+        </h2>
+        <h2 class="title">DEL: {{' '.$historicos_deportivo->fecha_creacion}}
              </h2>
             
     </div>
@@ -351,6 +350,76 @@
 </tbody>
 </table>
 </div>
+<br>
+
+
+
+
+<div class="table-responsive">
+    <table class="table table-light table-hover table-bordered"  >
+    <thead class="thead-dark">
+    <p><h4>EVALUACIONES</h4></p>
+    <tr>
+    <th class="card-title">AREAS</th>
+    <th class="card-title">EVALUACION</th>
+    </tr>
+    </thead>
+    <tbody>
+
+       
+        <tr>
+            <td style="background:#353940;color:#FFF;">Liderazgo, valores y actitudes</td>
+            <td><p>{{$historicos_deportivo->evaluacion_liderazgo.'% de aprovechamiento'}}</p></td>
+        </tr>
+        <tr>
+            <td style="background:#353940;color:#FFF;">Manejo de balon</td>
+            <td><p>{{$historicos_deportivo->evaluacion_manejobalon.'% de aprovechamiento'}}</p> </td>
+        </tr>
+        <tr>
+            <td style="background:#353940;color:#FFF;">Pases</td>
+            <td><p>{{$historicos_deportivo->evaluacion_pases.'% de aprovechamiento'}}</p> </td>
+        </tr>
+        <tr>
+            <td style="background:#353940;color:#FFF;">Trabajo de pies</td>
+            <td><p>{{$historicos_deportivo->evaluacion_pies.'% de aprovechamiento'}}</p> </td>
+        </tr>
+        
+        <tr>
+            <td style="background:#353940;color:#FFF;">Lanzamiento</td>
+            <td><p>{{$historicos_deportivo->evaluacion_lanzamiento.'% de aprovechamiento'}}</p> </td>
+        </tr>
+        <tr>
+            <td style="background:#353940;color:#FFF;">Defensa</td>
+            <td> <p> {{$historicos_deportivo->evaluacion_defensa.'% de aprovechamiento'}}</p></td>
+        </tr>
+       
+
+    </tbody>
+    </table>
+    </div>
+
+
+
+    <br>
+    <div class="table-responsive">
+        <table class="table table-light table-hover table-bordered"  >
+        <thead class="thead-dark">
+        <p><h4>EVALUACION TOTAL</h4></p>
+   
+        </thead>
+        <tbody>       
+            <tr>
+                <td style="background:#353940;color:#FFF;">Total</td>
+                <td> <p> {{$historicos_deportivo->total_historico.'% de aprovechamiento'}}</p></td>
+            </tr>
+   
+    
+        </tbody>
+        </table>
+        </div>
+
+
+
 <br>
 <div class="table-responsive">
 <table class="table table-light table-hover table-bordered"  >

@@ -76,6 +76,14 @@ class CreateHistoricosDeportivosTable extends Migration
             $table->Integer('secciondefensa')->nullable();
             $table->Integer('total_historico')->nullable();
 
+            //Columnas para alimentar las evaluaciones individuales de estadisticas
+            $table->float('evaluacion_liderazgo')->nullable();
+            $table->float('evaluacion_manejobalon')->nullable();
+            $table->float('evaluacion_pases')->nullable();
+            $table->float('evaluacion_pies')->nullable();
+            $table->float('evaluacion_lanzamiento')->nullable();
+            $table->float('evaluacion_defensa')->nullable();
+
             //Referencia a la llave foranea
             $table->foreign('alumnos_id')->references('id')->on('alumnos');
             $table->foreign('relacion_grupo_alumnos')->references('id')->on('grupo_alumnos');

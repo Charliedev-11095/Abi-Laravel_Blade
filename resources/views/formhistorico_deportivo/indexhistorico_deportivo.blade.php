@@ -6,7 +6,7 @@
         </h2>
         <div class="row">
             <div>
-           <a href="{{url('/tabladeportiva')}}" class="btn btn-success">Consultar historial general</a>
+           <a href="{{url('/tabladeportiva')}}" class="btn btn-success">Historial General de alumno</a>
                      
              </div>
         </div>
