@@ -26,12 +26,8 @@ class EntrenadoresController extends Controller
      */
     public function index()
     {
-        $id = Auth::id();
-        // $datos['formentrenador']=entrenadores::paginate(5);
-        $datos['formentrenador']=DB::table('entrenadores')
-        ->where('entrenadores.alta_usuario', '=', $id)
-        ->select('entrenadores.*')
-        ->get();
+      
+         $datos['formentrenador']=entrenadores::paginate(30);
         return view('formentrenador.indexformentrenador',$datos);
     }
 

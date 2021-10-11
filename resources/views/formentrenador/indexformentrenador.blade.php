@@ -76,6 +76,9 @@
     </tbody>
 </table>
             </div>
+            <div class="pagination">
+                {{ $formentrenador->links() }}
+            </div>
         </div>
     </div>
 </x-app-layout>
