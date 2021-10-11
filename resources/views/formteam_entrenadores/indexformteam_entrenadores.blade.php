@@ -89,6 +89,9 @@
             </tbody>
         </table>     
     </div>
+    <div class="pagination">
+        {{ $datos->links() }}
+    </div>
 </div>
 
 <br>
@@ -119,6 +122,9 @@
                     @endforeach                               
                 </tbody>       
             </table>        
+        </div>
+        <div class="pagination">
+            {{ $entrenadores->links() }}
         </div>
         </div>
     </div>
@@ -156,6 +162,9 @@
                     @endforeach            
                 </tbody>            
             </table> 
+            </div>
+            <div class="pagination">
+                {{ $teams->links() }}
             </div>
         </div>
     </div>

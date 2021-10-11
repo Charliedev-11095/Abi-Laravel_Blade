@@ -70,7 +70,7 @@
                                     <option >Inactivo</option>
                             </select>
                         </div>
-                        <input type="hidden"  name="alta_usuario"  class="input101" value="{{Auth::user()->id}}">
+                        
                         <br>
 
                         <div>

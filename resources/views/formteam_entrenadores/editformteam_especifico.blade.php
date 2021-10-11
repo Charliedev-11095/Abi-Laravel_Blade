@@ -58,7 +58,7 @@
         </div>
         <div class="card-body">
             
-<form class="form-inline">
+<form >
 @foreach ($datosteams as $datosteam)
 
 
@@ -74,7 +74,7 @@
 <div class="form-group">
     <label class="control-label" for="estado">Estatus</label>
     <select class="input100" type="text" name="status" id="status">
-    <option class="invalid-feedback2">{{$datosgrupo->status}}</option>
+    <option class="invalid-feedback2">{{$datosteam->status}}</option>
     <option>Activo</option>
     <option>Inactivo</option>
 </select>    

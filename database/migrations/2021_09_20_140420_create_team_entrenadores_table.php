@@ -18,7 +18,7 @@ class CreateTeamEntrenadoresTable extends Migration
             $table->bigInteger('teams_id')->unsigned()->index()->nullable();
             $table->bigInteger('entrenadores_id')->unsigned()->index()->nullable();
             $table->char('status', 8);
-            $table->bigInteger('alta_usuario')->unsigned()->nullable();
+            
             $table->timestamps();
 
 

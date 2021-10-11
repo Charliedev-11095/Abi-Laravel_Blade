@@ -20,14 +20,14 @@ class TeamEntrenadoresController extends Controller
 
     public function index()
     {
-        $entrenadores = entrenadores::all();
-        $teams = Teams::all();
+        $entrenadores = entrenadores::paginate(30);
+        $teams = Teams::paginate(30);
        
         $datos =DB::table('team_entrenadores')
         ->join('teams','teams.id', '=','team_entrenadores.teams_id')
         ->join('entrenadores','entrenadores.id', '=','team_entrenadores.entrenadores_id')
         ->select('team_entrenadores.id as idregistro','teams.nombre','entrenadores.nombres as nombresentrenador' ,'entrenadores.apellido_paterno as paternoentrenador' ,'entrenadores.apellido_materno as maternoentrenador','team_entrenadores.status')
-        ->get();
+        ->paginate(30);;
 
         return view('formteam_entrenadores.indexformteam_entrenadores')
         ->with('entrenadores',$entrenadores)
@@ -45,7 +45,15 @@ class TeamEntrenadoresController extends Controller
     {
  
         $entrenadores = entrenadores::all();
-        $teams = Teams::all();
+
+   
+        $teams =DB::table('teams')
+        ->where('teams.status', '=', 'Activo')
+        ->select('teams.*')
+        ->get();
+
+
+
         return view('formteam_entrenadores.createteam_entrenadores')
         ->with('entrenadores',$entrenadores)
         ->with('teams',$teams);
