@@ -30,16 +30,16 @@
             <th>Nombres</th>
             <th>Apellido Paterno</th>
             <th>Apellido Materno</th>
-            <th>calle</th>
-            <th>número interior</th>
-            <th>número exterior</th>
-            <th>colonia</th>
-            <th>ciudad</th>
-            <th>estado</th>
-            <th>código postal</th>
-            <th>curp</th>
-            <th>fecha de nacimiento</th>
-            <th>teléfono</th>
+            <th>Calle</th>
+            <th>Número interior</th>
+            <th>Número exterior</th>
+            <th>Colonia</th>
+            <th>Ciudad</th>
+            <th>Estado</th>
+            <th>Código postal</th>
+            <th>Curp</th>
+            <th>Fecha de nacimiento</th>
+            <th>Teléfono</th>
         </tr>
     </thead>
     <tbody>

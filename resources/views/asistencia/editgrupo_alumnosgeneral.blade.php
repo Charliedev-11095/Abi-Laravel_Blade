@@ -136,7 +136,7 @@
 <br>
 <div class="wrapper wrapper--w790">
 <div class="card card-5">
-
+    <div class="table-responsive">   
     <table class="table table-light table-bordered table-hover"  >
         <thead class="thead-dark">
             <div class="card-heading">
@@ -173,7 +173,8 @@
                 </tr>
                 @endforeach
             </tbody>
-        </table>     
+        </table>   
+        </div>  
     </div>
 </div>
 </div>

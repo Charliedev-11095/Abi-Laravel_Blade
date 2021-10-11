@@ -55,7 +55,7 @@
                     @endforeach
                 </div>
                 <div class="card-body">
-                
+                    <div class="table-responsive">  
 <table class="table table-light table-bordered table-hover"  >
 <thead class="thead-dark">
 
@@ -90,15 +90,10 @@
     </tbody>
 
 </table>
+</div>
                 </div>
             </div>
         </div>
-
-
-
-
-
-
 
     </div>
 </x-app-layout>

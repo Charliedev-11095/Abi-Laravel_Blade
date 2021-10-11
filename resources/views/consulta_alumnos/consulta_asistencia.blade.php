@@ -13,18 +13,13 @@
             
         </x-slot>
 
-
-
-
-
-
         <div class="wrapper wrapper--w790">
             <div class="card card-5" >
                 <div class="card-heading">
                     <H2 class="title">Historial de asistencia General</H2>
                 </div>
                 <div class="card-body">
-
+                    <div class="table-responsive"> 
 <table class="table table-light table-bordered table-hover"  >
     <thead class="thead-dark">
     
@@ -54,6 +49,7 @@
         </tbody>
     
     </table>
+    </div> 
 </div>
 </div>
 </div>
@@ -62,6 +58,7 @@
 
 <div class="wrapper wrapper--w790">
     <div class="card card-5">
+        <div class="table-responsive"> 
         <table class="table table-light table-bordered table-hover">
             <thead class="thead-dark">
                 <div class="card-heading">
@@ -83,12 +80,9 @@
                 @endforeach
             </tbody>
         </table>
+        </div>
     </div>
 </div>
-
-
-
-
 
     </div>
 </x-app-layout>

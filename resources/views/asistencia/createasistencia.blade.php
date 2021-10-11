@@ -31,6 +31,7 @@
         {{-- ////////////////////////////////////////////////////////////////////////////////// --}}
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
+                <div class="table-responsive">     
                 <table class="table table-light table-bordered table-hover">
                     <thead class="thead-dark">
                         <div class="card-heading">
@@ -55,6 +56,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
         <br>
@@ -65,9 +67,8 @@
                     <H2 class="title">PASE DE ASISTENCIA</H2>
                 </div>
                 <div class="card-body">
-                    <table class="table table-light table-bordered">
-                        <br>
-
+                    
+         
                         @foreach ($datos as $dato)
                             <form action="{{ url('/formasistencia') }}" class="form-horizontal" method="POST"
                                 enctype="multipart/form-data">

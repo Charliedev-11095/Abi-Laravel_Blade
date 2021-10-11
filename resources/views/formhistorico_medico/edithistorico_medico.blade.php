@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label class="control-label" for="fecha_creacion">Fecha de creacion: {{ $dato->fecha_creacion }}</label>
                         </div>
-
+                        <div class="table-responsive">   
                         <table class="table table-light table-hover table-bordered"  >
                             <thead class="thead-dark">
                                 <h4>MEDICIONES</h4>
@@ -58,6 +58,7 @@
                                     </tr>
                                 </tbody>            
                             </table>
+                        </div>
                     @endforeach
                     </div>
 

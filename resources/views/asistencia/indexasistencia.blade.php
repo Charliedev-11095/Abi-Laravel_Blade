@@ -54,6 +54,7 @@
             </div>
             <br>
             <div class="card card-5">
+                <div class="table-responsive"> 
                 <table class="table table-light table-bordered table-hover">
 
                     <thead class="thead-dark" style="background-color:#000000;color:white;border:1px solid #BDB76B;">
@@ -89,6 +90,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
 

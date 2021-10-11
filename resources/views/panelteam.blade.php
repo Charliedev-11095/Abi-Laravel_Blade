@@ -93,20 +93,12 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                            </div>
-
-
-
-
-
-
+                                </div>
 
 
                                 </div>
                             </div>
                             <br>
-
-                            
                             <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
                                     
                             </div>
@@ -121,7 +113,4 @@
                     </body>
                 </html>
                 
-                
-            
-
 </x-app-layout>

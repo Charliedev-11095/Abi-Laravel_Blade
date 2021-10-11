@@ -352,9 +352,6 @@
 </div>
 <br>
 
-
-
-
 <div class="table-responsive">
     <table class="table table-light table-hover table-bordered"  >
     <thead class="thead-dark">
@@ -397,9 +394,6 @@
     </tbody>
     </table>
     </div>
-
-
-
     <br>
     <div class="table-responsive">
         <table class="table table-light table-hover table-bordered"  >
@@ -417,8 +411,6 @@
         </tbody>
         </table>
         </div>
-
-
 
 <br>
 <div class="table-responsive">
@@ -447,10 +439,5 @@
 
 {{-- /////////////////////////////////////////////
  --}}
-
-
-
-
-
     </div>
 </x-app-layout>

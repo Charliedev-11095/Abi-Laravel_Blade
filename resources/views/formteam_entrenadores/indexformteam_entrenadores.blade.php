@@ -91,15 +91,9 @@
     </div>
 </div>
 
-
 <br>
 <br>
    
-
- 
-
-
-
 <div class="wrapper wrapper--w790">
     <div class="card card-5">
         <div class="table-responsive">   
@@ -129,13 +123,8 @@
         </div>
     </div>
     
-    
     <br>
     <br>
-
-    
-
-
 
     <div class="wrapper wrapper--w790">
         <div class="card card-5">
@@ -170,12 +159,8 @@
             </div>
         </div>
     </div>
-    
-    
     <br>
     <br>
-
-
 </div>
 </x-app-layout>
   
