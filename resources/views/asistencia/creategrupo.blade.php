@@ -22,16 +22,17 @@
 <div class="wrapper wrapper--w790">
     <div class="card card-5">
         <div class="card-heading">
-            <a href="{{url('/asistencia/grupo_alumnos')}}"><img src="{{asset('images/icons/back-icon.png')}}"></a>
+            <a href="{{url('/asistencia/grupos')}}"><img src="{{asset('images/icons/back-icon.png')}}"></a>
             <H2 class="title">CREAR GRUPO</H2>
         </div>
 
 <form action="{{url('/asistencia/grupos')}}" class="form-horizontal" method="POST" enctype="multipart/form-data">
     {{csrf_field()}}
+   
 
 {{-- Se incluye el create.blade.php con 'include' --}}
 @include('asistencia.formgrupo',['Modo'=>'crear'])
-
+<input type="hidden"  name="alta_usuario"  class="input101" value="{{Auth::user()->id}}">
 
 </form> 
     </div>

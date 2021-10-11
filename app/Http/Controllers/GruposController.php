@@ -10,6 +10,11 @@ use DateTimeZone;
 use DatePeriod;
 use DateInterval;
 
+use DB;
+
+use Illuminate\Support\Facades\Auth;
+
+
 class GruposController extends Controller
 {
 
@@ -26,8 +31,15 @@ class GruposController extends Controller
      */
     public function index()
     {
+
+        $id = Auth::id();
+        $datos['grupos']=DB::table('grupos')
+        ->where('grupos.alta_usuario', '=', $id)
+        ->select('grupos.*')
+        ->get();
+
         // $datos['grupos']=grupos::paginate(Numero_elementos_para_mostrar);
-        $datos['grupos']=grupos::paginate();
+        //$datos['grupos']=grupos::paginate();
         return view('asistencia.listadogrupos',$datos);
     }
 
@@ -132,6 +144,7 @@ $datosGrupo=[
     'domingo'=>request('domingo'),
     'dias_entrenamiento'=>$cuenta,
     'estado'=>request('estado'),
+    'alta_usuario'=>request('alta_usuario'),
 
 ];
 

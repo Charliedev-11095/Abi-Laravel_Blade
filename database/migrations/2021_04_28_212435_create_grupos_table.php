@@ -34,6 +34,7 @@ class CreateGruposTable extends Migration
 
             $table->char('estado', 8);
             $table->timestamp('updated_at')->nullable();
+            $table->bigInteger('alta_usuario')->unsigned()->nullable();
 
         });
     }
