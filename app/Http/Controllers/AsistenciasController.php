@@ -10,6 +10,7 @@ use App\Models\alumnos;
 use App\Models\entrenadores;
 use App\Models\Grupos;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class AsistenciasController extends Controller
 {
@@ -27,13 +28,31 @@ class AsistenciasController extends Controller
     public function index(Request $request)
     {
 
-        $grupos =DB::table('grupos')
-        ->where('grupos.estado', '=', 'Activo')
-        ->select('grupos.*')
-        ->get();
+ 
+
+
+        $id = Auth::id();
+
+        if (Auth::user()->role == 'Administrador') {
+          
+            $grupos =DB::table('grupos')
+            ->where('grupos.estado', '=', 'Activo')
+            ->select('grupos.*')
+            ->get();
+
+        }
+        if (Auth::user()->role == 'Entrenador') {
+
+            $grupos =DB::table('grupos')
+            ->where('grupos.estado', '=', 'Activo')
+            ->where('grupos.alta_usuario', '=', $id)
+            ->select('grupos.*')
+            ->get();
+
+        }
 
         //Se obtiene el id del grupo
-        $listalumno=$request->get('buscarpor');
+      
         $nombregrupo=$request->get('buscarpor');
         //$grupos = grupos::all();
         $datos =DB::table('alumnos')
@@ -88,9 +107,7 @@ $datosalumnos =DB::table('alumnos')
        }
 
        return view('asistencia.indexasistencia')->with('datos',$datos)
-       ->with('grupos',$grupos)
-       ->with('listalumno',$listalumno);
-
+       ->with('grupos',$grupos);
 
     }
 
@@ -101,11 +118,28 @@ $datosalumnos =DB::table('alumnos')
      */
     public function create(Request $request)
     {
+
+        $id = Auth::id();
+
+     
+
+        if (Auth::user()->role == 'Administrador') {
+            $grupos = grupos::all();
+        }
+        if (Auth::user()->role == 'Entrenador') {
+            $grupos=DB::table('grupos')
+            ->where('grupos.alta_usuario', '=', $id)
+            ->select('grupos.*')
+            ->get();
+        }
+
+
+
         $now = date('Y-m-d');
         $nombregrupo=$request->get('buscarpor');
         $alumnos = alumnos::all();
         $entrenadores = entrenadores::all();
-        $grupos = grupos::all();
+        
         $grupoalumnos = grupo_alumnos::all();
 
         $datos =DB::table('alumnos')
@@ -282,14 +316,32 @@ $insertaralumnos =DB::table('asistencias')
     public function dia(Request $request)
     {
         
-
+        $id = Auth::id();
         $nombregrupo=$request->post('buscarpor');
         $now=$request->post('buscarporfecha');
         $nombrealumno=$request->post('buscarporalumno');
    
+        if (Auth::user()->role == 'Administrador') {
+            $alumnos = alumnos::all();
+        }
+        if (Auth::user()->role == 'Entrenador') {
+            $alumnos=DB::table('alumnos')
+            ->where('alumnos.alta_usuario', '=', $id)
+            ->select('alumnos.*')
+            ->get();
+        }
 
-        $alumnos = alumnos::all();
-        $grupos = grupos::all();
+        if (Auth::user()->role == 'Administrador') {
+            $grupos = grupos::all();
+        }
+        if (Auth::user()->role == 'Entrenador') {
+            $grupos=DB::table('grupos')
+            ->where('grupos.alta_usuario', '=', $id)
+            ->select('grupos.*')
+            ->get();
+        }
+
+
 
         $datos2 =DB::table('asistencias')
         ->join('grupo_alumnos','grupo_alumnos.id', '=','asistencias.relacion_grupo_alumnos')
