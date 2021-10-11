@@ -75,6 +75,9 @@
                     </tbody>
                 </table>
                 </div>
+                <div class="pagination">
+                    {{ $teams->links() }}
+                </div>
             </div>
         </div>
     </div>

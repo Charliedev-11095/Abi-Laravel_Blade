@@ -31,7 +31,7 @@
 
 {{-- Se incluye el create.blade.php con 'include' --}}
 @include('formteam.formteam',['Modo'=>'crear'])
-<input type="hidden"  name="alta_usuario"   value="{{Auth::user()->id}}">
+
 
 </form> 
     </div>

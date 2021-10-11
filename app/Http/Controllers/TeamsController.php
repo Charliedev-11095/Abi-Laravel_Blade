@@ -25,13 +25,10 @@ class TeamsController extends Controller
      */
     public function index()
     {
-
-
         $id = Auth::id();
         $datos['teams']=DB::table('teams')
-        ->where('teams.alta_usuario', '=', $id)
         ->select('teams.*')
-        ->get();
+        ->paginate(30);
 
       
         return view('formteam.indexformteam',$datos);
@@ -61,16 +58,7 @@ class TeamsController extends Controller
         return redirect('teams')->with('Mensaje','Equipo agregado con éxito');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Teams  $teams
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Teams $teams)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -98,14 +86,5 @@ class TeamsController extends Controller
         return redirect('teams')->with('Mensaje','Equipo de trabajo modificado con éxito');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Teams  $teams
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Teams $teams)
-    {
-        //
-    }
+
 }
