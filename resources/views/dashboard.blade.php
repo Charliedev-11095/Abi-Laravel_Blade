@@ -65,7 +65,7 @@
                                 <H2 class="title">CONTROL DE ALUMNO</H2>
                                 </div>
                                 <div class="card-body">
-                                    <center><p><a href="{{ url('/formtutores/create') }}" class="btn btn-primary btn-lg with-arrow" >CREAR GRUPO</a></p></center>
+                                    <center><p><a href="{{ url('/asistencia/grupos/create') }}" class="btn btn-primary btn-lg with-arrow" >CREAR GRUPO</a></p></center>
                                     <br>
                                     <center><p><a href="{{ url('/formtutores/create') }}" class="btn btn-primary btn-lg with-arrow" >REGISTRAR ALUMNO</a></p></center>
                                     <br>
