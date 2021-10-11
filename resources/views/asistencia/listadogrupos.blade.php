@@ -58,6 +58,9 @@
                     </tbody>
                 </table>
                 </div>
+                <div class="pagination">
+                    {{ $grupos->links() }}
+                </div>
             </div>
         </div>
     </div>

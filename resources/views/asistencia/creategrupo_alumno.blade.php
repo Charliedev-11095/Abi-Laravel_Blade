@@ -31,6 +31,8 @@
                     <form method="POST" action="{{ route('grupo_alumnos.store') }}">
                         {{ csrf_field() }}
 
+                        <input type="hidden"  name="alta_usuario"  class="input101" value="{{Auth::user()->id}}">
+
 
                         <div class="form-group">
                             <label for="Grupo">Nivel</label>
@@ -66,7 +68,7 @@
                             <label for="">Entrenadores</label>
                             <select name="entrenadores_id" id="entrenadores_id" class=" input101 ">
                                 @foreach ($entrenadores as $entrenador)
-                                    <option value="{{ $entrenador->id }}">
+                                    <option value="{{ $entrenador->identrenador }}">
                                         {{ $entrenador->nombres }} {{ $entrenador->apellido_paterno }}
                                         {{ $entrenador->apellido_materno }}
 

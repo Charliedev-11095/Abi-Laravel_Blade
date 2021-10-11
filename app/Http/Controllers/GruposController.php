@@ -33,10 +33,17 @@ class GruposController extends Controller
     {
 
         $id = Auth::id();
-        $datos['grupos']=DB::table('grupos')
-        ->where('grupos.alta_usuario', '=', $id)
-        ->select('grupos.*')
-        ->get();
+
+        if (Auth::user()->role == 'Administrador') {
+            $datos['grupos']=grupos::paginate(30);
+        }
+        if (Auth::user()->role == 'Entrenador') {
+            $datos['grupos']=DB::table('grupos')
+            ->where('grupos.alta_usuario', '=', $id)
+            ->select('grupos.*')
+            ->paginate(30);
+        }
+
 
         // $datos['grupos']=grupos::paginate(Numero_elementos_para_mostrar);
         //$datos['grupos']=grupos::paginate();

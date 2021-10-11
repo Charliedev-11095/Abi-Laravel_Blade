@@ -9,6 +9,8 @@ use App\Models\Grupos;
 use DB;
 
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -26,23 +28,52 @@ class GrupoAlumnosController extends Controller
      */
     public function index()
     {
-        $alumnos = alumnos::all();
-        $entrenadores = entrenadores::all();
-        $grupos = grupos::all();
-        $grupoalumnos = grupo_alumnos::all();
-        
-        $datos =DB::table('grupo_alumnos')
-        ->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
-        ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
-        ->join('entrenadores','entrenadores.id', '=','grupo_alumnos.entrenadores_id')
-        ->select('grupo_alumnos.id as idregistro','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno','grupos.nivel','grupos.grado','grupos.seccion','entrenadores.nombres as nombresentrenador' ,'entrenadores.apellido_paterno as paternoentrenador' ,'entrenadores.apellido_materno as maternoentrenador','grupo_alumnos.estado')
-        ->get();
+
+        $id = Auth::id();
+
+        if (Auth::user()->role == 'Administrador') {
+            $alumnos = alumnos::paginate(30);
+        }
+        if (Auth::user()->role == 'Entrenador') {
+            $alumnos=DB::table('alumnos')
+            ->where('alumnos.alta_usuario', '=', $id)
+            ->select('alumnos.*')
+            ->paginate(30);
+        }
+
+
+        if (Auth::user()->role == 'Administrador') {
+            $grupos = grupos::paginate(30);
+        }
+        if (Auth::user()->role == 'Entrenador') {
+            $grupos=DB::table('grupos')
+            ->where('grupos.alta_usuario', '=', $id)
+            ->select('grupos.*')
+            ->paginate(30);
+        }
+
+
+        if (Auth::user()->role == 'Administrador') {
+            $datos =DB::table('grupo_alumnos')
+            ->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
+            ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+            ->join('entrenadores','entrenadores.id', '=','grupo_alumnos.entrenadores_id')
+            ->select('grupo_alumnos.id as idregistro','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno','grupos.nivel','grupos.grado','grupos.seccion','entrenadores.nombres as nombresentrenador' ,'entrenadores.apellido_paterno as paternoentrenador' ,'entrenadores.apellido_materno as maternoentrenador','grupo_alumnos.estado')
+            ->paginate(30);
+        }
+        if (Auth::user()->role == 'Entrenador') {
+            $datos =DB::table('grupo_alumnos')
+            ->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
+            ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+            ->join('entrenadores','entrenadores.id', '=','grupo_alumnos.entrenadores_id')
+            ->where('alumnos.alta_usuario', '=', $id)
+            ->select('grupo_alumnos.id as idregistro','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno','grupos.nivel','grupos.grado','grupos.seccion','entrenadores.nombres as nombresentrenador' ,'entrenadores.apellido_paterno as paternoentrenador' ,'entrenadores.apellido_materno as maternoentrenador','grupo_alumnos.estado')
+            ->paginate(30);
+        }
 
 
 
         return view('asistencia.indexgrupo_alumno')->with('alumnos',$alumnos)
-        ->with('entrenadores',$entrenadores)
-        ->with('grupoalumnos',$grupoalumnos)
         ->with('datos',$datos)
         ->with('grupos',$grupos);
      
@@ -56,9 +87,48 @@ class GrupoAlumnosController extends Controller
      */
     public function create()
     { 
-        $alumnos = alumnos::all();
-        $entrenadores = entrenadores::all();
-        $grupos = grupos::all();
+     
+        $id = Auth::id();
+
+        if (Auth::user()->role == 'Administrador') {
+            $alumnos = alumnos::all();
+        }
+        if (Auth::user()->role == 'Entrenador') {
+            $alumnos=DB::table('alumnos')
+            ->where('alumnos.alta_usuario', '=', $id)
+            ->select('alumnos.*')
+            ->get();
+        }
+
+
+        if (Auth::user()->role == 'Administrador') {
+            $entrenadores=DB::table('entrenadores')
+            ->where('entrenadores.alta_usuario', '=', $id)
+            ->select('entrenadores.id as identrenador','entrenadores.nombres','entrenadores.apellido_paterno','entrenadores.apellido_materno')
+            ->get();
+        }
+
+        if (Auth::user()->role == 'Entrenador') {
+            $entrenadores=DB::table('entrenadores_pivotes')
+            ->join('entrenadores','entrenadores.id', '=','entrenadores_pivotes.entrenadores_id')
+            ->where('entrenadores_pivotes.users_id', '=', $id)
+            ->select('entrenadores.id as identrenador','entrenadores.nombres','entrenadores.apellido_paterno','entrenadores.apellido_materno')
+            ->get();
+        }
+
+     
+
+        if (Auth::user()->role == 'Administrador') {
+            $grupos = grupos::all();
+        }
+        if (Auth::user()->role == 'Entrenador') {
+            $grupos=DB::table('grupos')
+            ->where('grupos.alta_usuario', '=', $id)
+            ->select('grupos.*')
+            ->get();
+        }
+
+
         return view('asistencia.creategrupo_alumno',)->with('alumnos',$alumnos)
         ->with('entrenadores',$entrenadores)
         ->with('grupos',$grupos);
@@ -108,7 +178,7 @@ class GrupoAlumnosController extends Controller
 
     public function general(Request $request)
     {
-
+        $id = Auth::id();
         $nombregrupo=$request->get('buscarpor');
 
 
@@ -129,7 +199,18 @@ class GrupoAlumnosController extends Controller
         ->select('grupos.*')
         ->get();
 
-        $grupos = grupos::all();
+        if (Auth::user()->role == 'Administrador') {
+            $grupos = grupos::all();
+        }
+        if (Auth::user()->role == 'Entrenador') {
+            $grupos=DB::table('grupos')
+            ->where('grupos.alta_usuario', '=', $id)
+            ->select('grupos.*')
+            ->get();
+        }
+        
+
+
         return view('asistencia.editgrupo_alumnosgeneral')->with('datos',$datos)
         ->with('datosgrupos',$datosgrupos)
         ->with('grupos',$grupos);
@@ -144,8 +225,19 @@ class GrupoAlumnosController extends Controller
     public function edit($id)
     {
 
-        $grupos = grupos::all();
+     
         $grupoalumnos=grupo_alumnos::findOrFail($id);
+
+        if (Auth::user()->role == 'Administrador') {
+            $grupos = grupos::all();
+        }
+        if (Auth::user()->role == 'Entrenador') {
+            $grupos=DB::table('grupos')
+            ->where('grupos.alta_usuario', '=', $id)
+            ->select('grupos.*')
+            ->get();
+        }
+
 
         $datos =DB::table('grupo_alumnos')
         ->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
@@ -182,23 +274,6 @@ class GrupoAlumnosController extends Controller
         return redirect('asistencia/grupo_alumnos')->with('Mensaje','Registro modificado con exito');
     
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\grupo_alumnos  $grupo_alumnos
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        grupo_alumnos::destroy($id);
-        return redirect('asistencia/grupo_alumnos')->with('Mensaje','Registro eliminado');
-    }
-
-
-
-
-
 
 
 }

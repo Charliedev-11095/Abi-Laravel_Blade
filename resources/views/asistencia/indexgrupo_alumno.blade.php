@@ -59,7 +59,7 @@
         <thead class="thead-dark">
             <div class="card-heading">
                 <a class="btn btn-info" href="{{route('GruposAsignadosPDF')}}" target="blank">DESCARGAR TABLA PDF</a>
-                <H2 class="title">ASIGNACIONES GLOBALES, DE ALUMNOS A GRUPOS</H2>
+                <H2 class="title">ASIGNACIONES DE ALUMNOS A GRUPOS</H2>
             </div>
             <tr>
                 <th class="card-title">ACCIONES</th>
@@ -89,6 +89,9 @@
                 @endforeach
             </tbody>
         </table>     
+    </div>
+    <div class="pagination">
+        {{ $datos->links() }}
     </div>
 </div>
 
@@ -123,7 +126,10 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>       
+        </div> 
+        <div class="pagination">
+            {{ $alumnos->links() }}
+        </div>      
         </div>
     </div>
     
@@ -131,41 +137,6 @@
     <br>
     <br>
 
-
-
-
-<div class="wrapper wrapper--w790">
-    <div class="card card-5">
-        <div class="table-responsive">   
-        <table class="table table-light table-bordered table-hover"  >
-            <thead class="thead-dark">
-                <div class="card-heading">
-                    <H2 class="title">ENTRENADORES REGISTRADOS</H2>
-                </div>
-                <tr>
-                    <th  class="card-title">ID de Entrenador</th>
-                    <th class="card-title">Entrenador</th>
-                </tr>
-            
-            </thead>
-                <tbody>     
-                    @foreach ($entrenadores as $entrenador)                            
-                    <tr>    
-                        <td> {{$entrenador->id}}  </td>                     
-                        <td>
-                            {{$entrenador->nombres}} {{$entrenador->apellido_paterno}} {{$entrenador->apellido_materno}}
-                        </td>                                              
-                    </tr> 
-                    @endforeach                               
-                </tbody>       
-            </table>        
-        </div>
-        </div>
-    </div>
-    
-    
-    <br>
-    <br>
 
     
     <div class="wrapper wrapper--w790">
@@ -200,6 +171,9 @@
                     @endforeach            
                 </tbody>            
             </table> 
+            </div>
+            <div class="pagination">
+                {{ $grupos->links() }}
             </div>
         </div>
     </div>

@@ -35,7 +35,7 @@ class CreateGrupoAlumnosTable extends Migration
 
             $table->timestamp('updated_at')->nullable();
             $table->char('estado', 8);
-
+            $table->bigInteger('alta_usuario')->unsigned()->nullable();
 
 //Forma de referenciar las llaves foraneas
             $table->foreign('grupos_id')->references('id')->on('grupos');

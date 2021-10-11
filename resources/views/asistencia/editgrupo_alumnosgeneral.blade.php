@@ -27,8 +27,8 @@
                             
                             <h4 style="color:#f9fbfc;">Modificar grupo y asignaciones especificas</h4>
                             <label for="" style="color:#f9fbfc;">Selecciona el grupo, para consultar las asignaciones y poder modificar </label>
-                            <select name="buscarpor" id="buscarpor" class="input101">
-                                <option value=""></option>
+                            <select name="buscarpor" id="buscarpor" class="input101" required>
+                                <option value="">Seleccione una opción</option>
                                 @foreach ($grupos as $grupo)
                                 <option value="{{ $grupo->id }}">{{ $grupo->nivel }}{{ ' '.$grupo->grado }}{{ $grupo->seccion }} {{ '----  Estado: '.$grupo->estado }}</option>
                             @endforeach
