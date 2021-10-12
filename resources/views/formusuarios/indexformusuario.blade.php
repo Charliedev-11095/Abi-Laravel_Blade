@@ -34,9 +34,14 @@
                         @foreach ($usuarios as $usuario)
             
                             <tr>    <td>
-                                <a class="btn btn-warning" href="{{url('/formusuario/'.$usuario->id.'/edit')}}">
-                                    Editar
-                                </a>
+                               @if ($usuario->role !=='Administrador')
+                               <a class="btn btn-warning" href="{{url('/formusuario/'.$usuario->id.'/edit')}}">
+                                Editar
+                            </a>
+                               @endif
+
+                         
+
                             </td>
                                 <td>{{$usuario->id}}</td>
                                 <td>{{$usuario->name}}</td>
@@ -46,6 +51,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                </div>
+                <div class="pagination">
+                    {{ $usuarios->links() }}
                 </div>
             </div>
         </div>

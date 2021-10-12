@@ -76,6 +76,7 @@
             <tbody>
                 @foreach($datos as $dato)
                 <tr> <td>
+         
                     <a class="btn btn-warning" href="{{ url('/asistencia/grupo_alumnos/' . $dato->idregistro . '/edit') }}">
                         Editar
                     </a>

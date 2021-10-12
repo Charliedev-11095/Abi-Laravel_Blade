@@ -28,10 +28,14 @@ class usuariosController extends Controller
      */
     public function index()
     {
-        $datos['usuarios']=User::paginate();
+      
 
+        $usuarios=DB::table('users')
+        
+        ->select('users.*')
+        ->paginate(30);
 
-        return view('formusuarios.indexformusuario',$datos);
+        return view('formusuarios.indexformusuario')->with('usuarios',$usuarios);;
     }
 
     /**
