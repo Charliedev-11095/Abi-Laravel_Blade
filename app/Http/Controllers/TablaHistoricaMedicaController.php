@@ -17,6 +17,8 @@ use App\Models\Grupos;
 use App\Models\registros_medicos;
 
 use DB;
+use Illuminate\Support\Facades\Auth;
+
 
 class TablaHistoricaMedicaController extends Controller
 {
@@ -33,7 +35,21 @@ class TablaHistoricaMedicaController extends Controller
         $nombrealumno=$request->get('buscarpor');
        
 
-        $alumnos=alumnos::all();
+      
+
+        $id = Auth::id();
+
+        if (Auth::user()->role == 'Administrador') {
+            $alumnos = alumnos::all();
+        }
+        if (Auth::user()->role == 'Entrenador') {
+            $alumnos=DB::table('alumnos')
+            ->where('alumnos.alta_usuario', '=', $id)
+            ->select('alumnos.*')
+            ->get();
+        }
+
+
 
         $tablasmedicas =DB::table('historicos_medicos')
         ->join('alumnos','alumnos.id', '=','historicos_medicos.alumnos_id')

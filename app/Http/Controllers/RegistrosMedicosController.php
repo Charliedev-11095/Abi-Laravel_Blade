@@ -69,6 +69,7 @@ class RegistrosMedicosController extends Controller
             'presion_arterial'=>request('presion_arterial'),
             'alumnos_id'=>request('alumnos_id'),
             'fecha_creacion'=>$hoy,
+            'alta_usuario'=>request('alta_usuario'),
         );
             historicos_medicos::insert($historico_medico);
 

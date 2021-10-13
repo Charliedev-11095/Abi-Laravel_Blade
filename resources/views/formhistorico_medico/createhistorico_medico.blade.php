@@ -53,6 +53,9 @@
                     <form action="{{ url('/formhistorico_medico') }}" class="form-horizontal" method="POST"
                         enctype="multipart/form-data">
                         {{ csrf_field() }}
+                        
+                        <input type="hidden"  name="alta_usuario"  class="input101" value="{{Auth::user()->id}}">
+
                         <div class="form-group">
                             <label class="control-label" for="fecha_creacion">Fecha de creación</label>
                             <input readonly class="input101 {{$errors->has('fecha_creacion')?'is-invalid':old('fecha_creacion')}}" type="date" name="fecha_creacion" id="fecha_creacion" value="{{ date('Y-m-d') }}">

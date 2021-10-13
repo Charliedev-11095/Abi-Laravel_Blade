@@ -15,7 +15,7 @@
 
             <div class="row">
                 <div>
-                <a href="{{url('/tablamedica')}}" class="btn btn-success">Consultar historial general</a>
+                <a href="{{url('/tablamedica')}}" class="btn btn-success">Historial General de alumno</a>
                          
                  </div>
             </div>
@@ -115,6 +115,7 @@
                     </tbody>            
                 </table>
             </div>
+
             <div class="table-responsive">
                 <table class="table table-light table-hover table-bordered"  >
                     <thead class="thead-dark">
@@ -174,6 +175,9 @@
     </tbody>
 
 </table>
+        </div>
+        <div class="pagination">
+            {{ $historicos_medicos->links() }}
         </div>
 
 

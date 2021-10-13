@@ -23,6 +23,7 @@ class CreateHistoricosMedicosTable extends Migration
             $table->bigInteger('alumnos_id')->unsigned()->index()->nullable();
             $table->timestamp('updated_at')->nullable();
             $table->date('fecha_creacion')->nullable();
+            $table->bigInteger('alta_usuario')->unsigned()->nullable();
 
 //Referencia a la llave foranea
             $table->foreign('alumnos_id')->references('id')->on('alumnos');

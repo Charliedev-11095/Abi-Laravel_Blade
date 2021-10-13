@@ -8,7 +8,7 @@
                 GESTION DE HISTORIAL MEDICO
             </h2>
  
-            <a class="btn btn-success" href="{{url('/formhistorico_medico')}}" >Ir a consulta única</a>
+            <a class="btn btn-danger" href="{{url('/formhistorico_medico')}}" >Regresar</a>
        
         </x-slot>
 

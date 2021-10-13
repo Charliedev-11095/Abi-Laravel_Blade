@@ -16,6 +16,8 @@ use App\Models\entrenadores;
 use App\Models\Grupos;
 use App\Models\registros_medicos;
 
+use Illuminate\Support\Facades\Auth;
+
 use DB;
 
 
@@ -36,15 +38,30 @@ class HistoricosMedicosController extends Controller
      */
     public function index(Request $request)
     {
+        $id = Auth::id();
         $nombrealumno=$request->get('buscarpor');
         $nombrefecha=$request->get('buscarporfecha');
 
-        $alumnos=alumnos::all();
+     
+        if (Auth::user()->role == 'Administrador') {
+            $alumnos = alumnos::all();
+            $historicos_medicos =DB::table('historicos_medicos')
+            ->join('alumnos','alumnos.id', '=','historicos_medicos.alumnos_id')
+            ->select('historicos_medicos.*','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno')
+            ->paginate(30);
+        }
+        if (Auth::user()->role == 'Entrenador') {
+            $alumnos=DB::table('alumnos')
+            ->where('alumnos.alta_usuario', '=', $id)
+            ->select('alumnos.*')
+            ->get();
 
-        $historicos_medicos =DB::table('historicos_medicos')
-        ->join('alumnos','alumnos.id', '=','historicos_medicos.alumnos_id')
-        ->select('historicos_medicos.*','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno')
-        ->get();
+            $historicos_medicos =DB::table('historicos_medicos')
+            ->join('alumnos','alumnos.id', '=','historicos_medicos.alumnos_id')
+            ->where('historicos_medicos.alta_usuario', '=', $id)
+            ->select('historicos_medicos.*','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno')
+            ->paginate(30);
+        }
 
 
         $historicos_medicos2 =DB::table('historicos_medicos')
@@ -63,7 +80,7 @@ class HistoricosMedicosController extends Controller
 
     public function create(Request $request)
     {
-
+        $id = Auth::id();
 
         $nombrealumno=$request->get('buscarpor');
 
@@ -74,7 +91,22 @@ class HistoricosMedicosController extends Controller
         ->select('registros_medicos.*','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno')
         ->get();
 
-        $alumnos=alumnos::all();
+
+       
+        if (Auth::user()->role == 'Administrador') {
+            $alumnos=alumnos::all();
+        }
+
+        if (Auth::user()->role == 'Entrenador') {
+            $alumnos=DB::table('alumnos')
+            ->where('alumnos.alta_usuario', '=', $id)
+            ->select('alumnos.*')
+            ->get();
+        }
+
+
+
+
         return view('formhistorico_medico.createhistorico_medico')->with('alumnos',$alumnos)
         ->with('historicos_medicos',$historicos_medicos);
     }
