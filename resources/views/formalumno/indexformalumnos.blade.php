@@ -77,6 +77,9 @@
 </table>
 
         </div>
+        <div class="pagination">
+            {{ $formalumno->links() }}
+        </div>
     </div>
 </div>
 </x-app-layout>

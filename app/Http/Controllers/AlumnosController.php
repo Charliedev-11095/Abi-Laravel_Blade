@@ -38,7 +38,7 @@ class AlumnosController extends Controller
         $datos['formalumno']=DB::table('alumnos')
         ->where('alumnos.alta_usuario', '=', $id)
         ->select('alumnos.*')
-        ->get();
+        ->paginate(30);
 
 
        // $datos['formalumno']=alumnos::paginate();
