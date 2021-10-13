@@ -28,7 +28,7 @@ class TutoresController extends Controller
         $datos['formtutor']=DB::table('tutores')
         ->where('tutores.alta_usuario', '=', $id)
         ->select('tutores.*')
-        ->get();
+        ->paginate(30);
         return view('formtutor.indexformtutor',$datos);
     }
     

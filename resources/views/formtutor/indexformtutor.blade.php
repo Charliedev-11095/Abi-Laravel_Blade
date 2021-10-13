@@ -74,6 +74,9 @@
 
 </table>
 </div>
+<div class="pagination">
+    {{ $formtutor->links() }}
+</div>
     </div>
         </div> 
     </x-app-layout>
