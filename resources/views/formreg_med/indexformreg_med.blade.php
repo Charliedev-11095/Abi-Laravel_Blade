@@ -73,6 +73,9 @@
     </tbody>
 </table>
         </div>
+        <div class="pagination">
+            {{ $formreg_med->links() }}
+        </div>
     </div>
 </div>
 </x-app-layout>

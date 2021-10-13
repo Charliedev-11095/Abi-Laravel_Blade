@@ -32,7 +32,7 @@ class RegistrosMedicosController extends Controller
         ->join('alumnos','alumnos.id', '=','registros_medicos.alumnos_id')
         ->where('alumnos.alta_usuario', '=', $id)
         ->select('registros_medicos.*','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno')
-        ->get();
+        ->paginate(30);
         return view('formreg_med.indexformreg_med')->with('formreg_med',$formreg_med);
     }
 
