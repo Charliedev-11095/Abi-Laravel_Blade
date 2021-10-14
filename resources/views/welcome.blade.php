@@ -60,9 +60,17 @@
     <div id="fh5co-services" class="fh5co-bg-section">
         <div class="container">
                 <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                    <h2>CONÓCENOS</h2>
-                    <p>CEFODE AGUILAS MORELIA, es un proyecto deportivo dirigido a todos los niños y niñas, adolescentes y jóvenes que gusten de la práctica del basquetbol, con un enfoque tanto formativo como competitivo en la ciudad de Morelia, Michoacán.</p>
+                    <h2>VISIÓN:</h2>
+                    <p>Crear una Academia de Basquetbol que favorezca al desarrollo Integral de los basquetbolistas en el estado de Michoacán durante su etapa formativa, donde los niños y jóvenes se sientan en un ambiente positivo y de respeto para él y todos sus compañeros, además de contar con los implementos idóneos para la práctica y el acompañamiento de un entrenador altamente capacitado, quien lo guiará y motivará para que alcance sus objetivos y logre sus metas de vida. Formando así una nueva generación de basquetbolistas y ciudadanos ejemplares.</p>
             </div>
+<br>
+            <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                <h2>OBJETIVOS GENERALES</h2>
+                <p>Desarrollar a nivel estatal un concepto basado en toma correcta de decisiones y lectura del juego bien establecido y una identidad propia sobre la enseñanza y aprendizaje del básquetbol en categorías formativas, que garantice un crecimiento integral físico y psicosocial del deportista durante las diferentes etapas de formación que tiene este proyecto.</p>
+                <p>Cada club que pertenece a abi deberá convertir la enseñanza del basquetbol en una herramienta que genere un habitad donde impere un ambiente positivo y divertido para la enseñanza de habilidades técnicas y tácticas en baloncesto, así como valores humanos mediante lecciones deportivas y de vida que le aseguren al niño y/o deportista una vida plena y saludable.</p>
+                <p>Crear un vínculo estrecho y una correlación entre niño y/o deportista, entrenador y los padres de familia, mediante un canal de comunicación constante, basado en el respeto mutuo, que favorezca en todo momento al crecimiento integral de los miembros de nuestra academia.</p>
+
+        </div>
 
     <div id="fh5co-project">
         <div class="container">
@@ -98,7 +106,7 @@
             <div class="col-forth">
                 <div class="project animate-box" style="background-image:url({{ asset('images/img4.jpg') }});">
                     <a href="#" class="desc" style="text-decoration:none">
-                        <h3>toma de deciciones</h3>
+                        <h3>Toma de deciciones</h3>
                     </a>
                 </div>
             </div>
