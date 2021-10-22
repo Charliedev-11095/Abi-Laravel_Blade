@@ -84,6 +84,9 @@ class CreateHistoricosDeportivosTable extends Migration
             $table->float('evaluacion_lanzamiento')->nullable();
             $table->float('evaluacion_defensa')->nullable();
 
+            //campo alta de usuario
+            $table->bigInteger('alta_usuario')->unsigned()->nullable();
+
             //Referencia a la llave foranea
             $table->foreign('alumnos_id')->references('id')->on('alumnos');
             $table->foreign('relacion_grupo_alumnos')->references('id')->on('grupo_alumnos');

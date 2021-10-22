@@ -68,7 +68,7 @@
                             <label for="">Entrenadores</label>
                             <select name="entrenadores_id" id="entrenadores_id" class=" input101 ">
                                 @foreach ($entrenadores as $entrenador)
-                                    <option value="{{ $entrenador->identrenador }}">
+                                    <option value="{{ $entrenador->id }}">
                                         {{ $entrenador->nombres }} {{ $entrenador->apellido_paterno }}
                                         {{ $entrenador->apellido_materno }}
 

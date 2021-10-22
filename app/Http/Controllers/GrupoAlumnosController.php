@@ -109,7 +109,7 @@ class GrupoAlumnosController extends Controller
             $entrenadores=DB::table('entrenadores_pivotes')
             ->join('entrenadores','entrenadores.id', '=','entrenadores_pivotes.entrenadores_id')
             ->where('entrenadores_pivotes.users_id', '=', $id)
-            ->select('entrenadores.id as identrenador','entrenadores.nombres','entrenadores.apellido_paterno','entrenadores.apellido_materno')
+            ->select('entrenadores.id','entrenadores.nombres','entrenadores.apellido_paterno','entrenadores.apellido_materno')
             ->get();
         }
 

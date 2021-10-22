@@ -378,6 +378,8 @@ $evaluacion_defensa=(100/16)*$secciondefensa;
     'evaluacion_lanzamiento'=>$evaluacion_lanzamiento,
     'evaluacion_defensa'=>$evaluacion_defensa,
 
+    'alta_usuario'=>$request('alta_usuario'),
+
 ];
 
        historicos_deportivos::insert($datosGrupo);

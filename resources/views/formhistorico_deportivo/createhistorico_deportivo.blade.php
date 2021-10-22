@@ -28,6 +28,9 @@
                     <form action="{{url('/formhistorico_deportivo')}}" class="form-horizontal" method="POST" enctype="multipart/form-data">
                         {{csrf_field()}}
                         {{-- Se incluye el create.blade.php con 'include' --}}
+                        <input type="hidden"  name="alta_usuario"  class="input101" value="{{Auth::user()->id}}">
+
+
                         <div>
                             <label class="control-label" for="grado">Fecha de creación: {{ date('Y-m-d') }} </label>
                             <input id="fecha_creacion" class=" input101 " type="date" name="fecha_creacion"
