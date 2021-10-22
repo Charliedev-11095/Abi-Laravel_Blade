@@ -115,14 +115,10 @@ class HistoricosMedicosController extends Controller
     public function store(Request $request)
     {
         
-
         // recuperar dato de input input_id_alumno
         $nombrealumno=$request->get('alumnos_id');
         $datosHistorico_alumno=request()->except(['_token','_method','alumnos_id','comentarios','fecha_creacion']);
         registros_medicos::where('alumnos_id', '=', $nombrealumno)->update($datosHistorico_alumno);
-
-
-
 
         $campos=[
             'estatura'=>'required|numeric',
@@ -139,7 +135,7 @@ class HistoricosMedicosController extends Controller
         $datosHistorico_alumno=request()->except('_token');
 
         historicos_medicos::insert($datosHistorico_alumno);
-        return redirect('dashboard')->with('Mensaje','Registro Historico Medico agregado con exito');
+        return redirect('dashboard')->with('Mensaje','Registro médico agregado con éxito');
 
     }
 
