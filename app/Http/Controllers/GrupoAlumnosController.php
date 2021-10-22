@@ -102,10 +102,7 @@ class GrupoAlumnosController extends Controller
 
 
         if (Auth::user()->role == 'Administrador') {
-            $entrenadores=DB::table('entrenadores')
-            ->where('entrenadores.alta_usuario', '=', $id)
-            ->select('entrenadores.id as identrenador','entrenadores.nombres','entrenadores.apellido_paterno','entrenadores.apellido_materno')
-            ->get();
+            $entrenadores = entrenadores::all();
         }
 
         if (Auth::user()->role == 'Entrenador') {
@@ -128,15 +125,10 @@ class GrupoAlumnosController extends Controller
             ->get();
         }
 
-
         return view('asistencia.creategrupo_alumno',)->with('alumnos',$alumnos)
         ->with('entrenadores',$entrenadores)
         ->with('grupos',$grupos);
      
-
-
-
-
     }
 
     /**
