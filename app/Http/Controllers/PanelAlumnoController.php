@@ -93,8 +93,67 @@ $formreg_med=DB::table('registros_medicos')
             $valoralumno = $a->alumnos_id;
         }
 
-       // return  $valoralumno;
+//////////////////////////////////////////////////////////////////////////////////
 
+        //Obtener el id de grupo
+        $id_grupos =DB::table('grupo_alumnos')
+        ->where('grupo_alumnos.alumnos_id', '=', $valoralumno)
+        ->select('grupo_alumnos.grupos_id')
+        ->get(array('grupos_id'));
+
+        $nombregrupo = 0;
+              foreach ($id_grupos as $id_grupo) {
+              $nombregrupo = $id_grupo->grupos_id;
+              }
+
+ //Obtener el valor maximo de las asistencias, en la tabla de grupo
+
+ $datosgrupos =DB::table('grupos')
+ ->where('grupos.id', '=', $nombregrupo)
+ ->select('grupos.dias_entrenamiento')
+ ->get(array('dias_entrenamiento'));
+
+ $valormaximo = 0;
+       foreach ($datosgrupos as $valor) {
+       $valormaximo = $valor->dias_entrenamiento;
+       }
+
+
+//Obtener las id de los alumnos en el grupo
+$datosalumnos =DB::table('alumnos')
+        ->join('grupo_alumnos','grupo_alumnos.alumnos_id', '=','alumnos.id')
+        ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+        ->where('grupo_alumnos.grupos_id', '=', $nombregrupo)
+        ->select('grupo_alumnos.id as idalumnos')
+        ->get(array('idalumnos'));
+
+        $valorb = '';
+
+        foreach ($datosalumnos as $a) {
+           $valorb = $a->idalumnos;
+
+           $contador_asistencias = DB::table('asistencias')
+           ->join('grupo_alumnos','grupo_alumnos.id', '=','asistencias.relacion_grupo_alumnos')
+           ->where('asistencias.relacion_grupo_alumnos', '=', $valorb)
+           ->where('asistencias.asistencia', '=', 'Marcada')
+           ->count();
+
+           if ($valormaximo==0) {
+            $resultado=0;
+           } else {
+            $resultado=(100/$valormaximo)*$contador_asistencias;
+           }
+           
+           $datosGrupoAlumno=[
+              'asistencias'=>$contador_asistencias,
+              'calificacion_asistencias'=>$resultado,
+          ];
+           grupo_alumnos::where('id','=',$valorb)->update($datosGrupoAlumno);
+
+       }
+
+
+//////////////////////////////////////////////////////////////////////////////////
        //Obtenemos los datos del alumno, como sus asistencias y calificacion
         $datosGrupo_alumnos =DB::table('grupo_alumnos')
         ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')

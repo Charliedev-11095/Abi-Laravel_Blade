@@ -41,7 +41,7 @@
                 <td>{{$dato->nivel.' '}}{{$dato->grado}}{{$dato->seccion}}</td>
                 <td>{{$dato->dias_entrenamiento}}</td>
                 <td>{{$dato->asistencias}}</td>
-                <td>{{$dato->calificacion_asistencias}}</td>
+                <td>{{$dato->calificacion_asistencias.'% porcentaje asistido'}}</td>
                 
             </tr>
             @endforeach

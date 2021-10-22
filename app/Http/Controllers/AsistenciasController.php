@@ -28,9 +28,6 @@ class AsistenciasController extends Controller
     public function index(Request $request)
     {
 
- 
-
-
         $id = Auth::id();
 
         if (Auth::user()->role == 'Administrador') {
@@ -96,8 +93,13 @@ $datosalumnos =DB::table('alumnos')
            ->where('asistencias.relacion_grupo_alumnos', '=', $valorb)
            ->where('asistencias.asistencia', '=', 'Marcada')
            ->count();
-
-           $resultado=(100/$valormaximo)*$contador_asistencias;
+           if ($valormaximo==0) {
+            $resultado=0;
+           } else {
+            $resultado=(100/$valormaximo)*$contador_asistencias;
+           }
+           
+ 
            $datosGrupoAlumno=[
               'asistencias'=>$contador_asistencias,
               'calificacion_asistencias'=>$resultado,
@@ -152,12 +154,6 @@ $datosalumnos =DB::table('alumnos')
         ->get();
 
 //////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
 
         $insertaralumnos =DB::table('grupo_alumnos')
         ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
@@ -268,10 +264,6 @@ $insertaralumnos =DB::table('asistencias')
 
 //////////////////////////////////////////////////////////////////////////////77
 
-
-
-
-        
         $datos =DB::table('alumnos')
         ->join('grupo_alumnos','grupo_alumnos.alumnos_id', '=','alumnos.id')
         ->join('entrenadores','entrenadores.id', '=','grupo_alumnos.entrenadores_id')
@@ -309,8 +301,6 @@ $insertaralumnos =DB::table('asistencias')
         ->with('grupos',$grupos);
         
     }
-
-
 
 
     public function dia(Request $request)
@@ -372,8 +362,6 @@ $insertaralumnos =DB::table('asistencias')
         ->with('grupos',$grupos);
 
     }
-
-
 
  
 }
