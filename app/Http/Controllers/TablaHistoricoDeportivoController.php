@@ -120,12 +120,24 @@ $datosalumnos =DB::table('grupo_alumnos')
                 $total_defensa=$total_defensa+$contador->secciondefensa;
             }
 
-            $resultado=(100/($valormaximo*36))*$total_liderazgo;
-            $resultadobalon=(100/($valormaximo*16))*$total_manejobalon;
-            $resultadopases=(100/($valormaximo*16))*$total_pases;
-            $resultadopies=(100/($valormaximo*8))*$total_pies;
-            $resultadolanzamiento=(100/($valormaximo*16))*$total_lanzamiento;
-            $resultadodefensa=(100/($valormaximo*16))*$total_defensa;
+
+            if ($valormaximo==0) {
+                $resultado=0;
+                $resultadobalon=0;
+                $resultadopases=0;
+                $resultadopies=0;
+                $resultadolanzamiento=0;
+                $resultadodefensa=0;
+            } else {
+                $resultado=(100/($valormaximo*36))*$total_liderazgo;
+                $resultadobalon=(100/($valormaximo*16))*$total_manejobalon;
+                $resultadopases=(100/($valormaximo*16))*$total_pases;
+                $resultadopies=(100/($valormaximo*8))*$total_pies;
+                $resultadolanzamiento=(100/($valormaximo*16))*$total_lanzamiento;
+                $resultadodefensa=(100/($valormaximo*16))*$total_defensa;
+            }
+            
+            
 
             $datosGrupoAlumno=[
                'total_liderazgo'=>round($resultado),
