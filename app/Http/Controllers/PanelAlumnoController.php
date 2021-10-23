@@ -312,6 +312,73 @@ $datosalumnos =DB::table('grupo_alumnos')
            ];
             grupo_alumnos::where('id','=',$valorb)->update($datosGrupoAlumno);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Obtener los ids de los alumnos en el grupo
+$recorrido_alumnos =DB::table('grupo_alumnos')
+        ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+        ->where('grupo_alumnos.grupos_id', '=', $nombregrupo)
+        ->select('grupo_alumnos.id as idalumnos')
+        ->get(array('idalumnos'));
+
+        $identificador_grupo_alumnos = '';
+        
+
+        foreach ($recorrido_alumnos as $item_alumno) {
+           $identificador_grupo_alumnos = $item_alumno->idalumnos;
+           $totalvalorporcentajes=0;
+
+           $contador_evaluaciones = DB::table('historicos_deportivos')
+           ->join('grupo_alumnos','grupo_alumnos.id', '=','historicos_deportivos.relacion_grupo_alumnos')
+           ->where('historicos_deportivos.relacion_grupo_alumnos', '=', $identificador_grupo_alumnos)
+           ->get(array('total_historico'));
+
+           foreach($contador_evaluaciones as $contador) {
+            $totalvalorporcentajes=$totalvalorporcentajes+$contador->total_historico;
+
+            }
+
+          
+           if ($valormaximo==0) {
+            $resultado=0;
+           } else {
+            $resultado=(100/($valormaximo*100))*$totalvalorporcentajes;
+           }
+           
+           $datosGrupoAlumno=[
+            
+              'calificacion_entrenamiento'=>round($resultado),
+          ];
+           grupo_alumnos::where('id','=',$identificador_grupo_alumnos)->update($datosGrupoAlumno);
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
      
 //Se envia a la vista los datos para su visualizacion
 

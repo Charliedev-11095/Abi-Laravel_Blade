@@ -11,6 +11,7 @@ use App\Models\alumnos;
 use App\Models\entrenadores;
 use App\Models\Grupos;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class TablaHistoricoDeportivoController extends Controller
 {
@@ -28,11 +29,21 @@ class TablaHistoricoDeportivoController extends Controller
      */
     public function index(Request $request)
     {
+        
+        $id = Auth::id();
         $nombrealumno=$request->get('buscarpor');
     
 
         $historicos_deportivos = historicos_deportivos::all();
-        $alumnos = alumnos::all();
+        if (Auth::user()->role == 'Administrador') {
+            $alumnos = alumnos::all();
+        }
+        if (Auth::user()->role == 'Entrenador') {
+            $alumnos=DB::table('alumnos')
+            ->where('alumnos.alta_usuario', '=', $id)
+            ->select('alumnos.*')
+            ->get();
+        }
         
         $historicos_deportivos2 =DB::table('historicos_deportivos')
         ->join('alumnos','alumnos.id', '=','historicos_deportivos.alumnos_id')
@@ -61,7 +72,7 @@ $nombregrupo = 0;
       }
 
 
-//Se recolecta el id de la asgnacion unica de grupo_alumno
+//Se recolecta el id de la asignacion unica de grupo_alumno
 
 $idgrupo_alumnos =DB::table('grupo_alumnos')
 ->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
@@ -139,6 +150,74 @@ $datosalumnos =DB::table('grupo_alumnos')
             
             
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Obtener los ids de los alumnos en el grupo
+$datosalumnos =DB::table('grupo_alumnos')
+        ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+        ->where('grupo_alumnos.grupos_id', '=', $nombregrupo)
+        ->select('grupo_alumnos.id as idalumnos')
+        ->get(array('idalumnos'));
+
+        $valorb = '';
+        
+
+        foreach ($datosalumnos as $a) {
+           $valorb = $a->idalumnos;
+           $totalvalorporcentajes=0;
+
+           $contador_evaluaciones = DB::table('historicos_deportivos')
+           ->join('grupo_alumnos','grupo_alumnos.id', '=','historicos_deportivos.relacion_grupo_alumnos')
+           ->where('historicos_deportivos.relacion_grupo_alumnos', '=', $valorb)
+           ->get(array('total_historico'));
+
+           foreach($contador_evaluaciones as $contador) {
+            $totalvalorporcentajes=$totalvalorporcentajes+$contador->total_historico;
+
+            }
+
+          
+           if ($valormaximo==0) {
+            $resultado=0;
+           } else {
+            $resultado=(100/($valormaximo*100))*$totalvalorporcentajes;
+           }
+           
+           $datosGrupoAlumno=[
+            
+              'calificacion_entrenamiento'=>round($resultado),
+          ];
+           grupo_alumnos::where('id','=',$valorb)->update($datosGrupoAlumno);
+
+        }
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             $datosGrupoAlumno=[
                'total_liderazgo'=>round($resultado),
                'total_manejobalon'=>round($resultadobalon),
@@ -146,6 +225,7 @@ $datosalumnos =DB::table('grupo_alumnos')
                'total_pies'=>round($resultadopies),
                'total_lanzamiento'=>round($resultadolanzamiento),
                'total_defensa'=>round($resultadodefensa),
+              
            ];
             grupo_alumnos::where('id','=',$valorb)->update($datosGrupoAlumno);
         }
@@ -159,8 +239,6 @@ $alumnoestadisticas =DB::table('grupo_alumnos')
 
 
 ////////////////////////////////////////////////////
-
-
         return view('tabladeportiva.indextabladeportiva')->with('alumnos',$alumnos)
         ->with('alumnoestadisticas',$alumnoestadisticas)
         ->with('nombrecompleto',$nombrecompleto)

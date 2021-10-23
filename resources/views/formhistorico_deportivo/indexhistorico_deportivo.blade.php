@@ -32,17 +32,6 @@
 <div class="wrapper wrapper--w790">
 
 
-
-
-
-
-
-
-
-
-
-
-
     <div style="background-color:#555055bf;border: 1px solid rgb(0, 0, 0);width:100%;text-align:center;padding:20px;">
         <div class="row">
             <label for=""> <h4 style="color:#f9fbfc;">Consultar lista de Grupo</h4></label>

@@ -12,7 +12,7 @@ use App\Models\asistencias;
 use App\Models\grupo_alumnos;
 use App\Models\entrenadores;
 use App\Models\Grupos;
-
+use Illuminate\Support\Facades\Auth;
 
 use DB;
 
@@ -30,20 +30,38 @@ class HistoricosDeportivosController extends Controller
      */
     public function index(Request $request)
     {
+        $id = Auth::id();
         $nombregrupo=$request->get('buscarporgrupo');
         $nombrealumno=$request->get('buscarpor');
         $nombrefecha=$request->get('buscarporfecha');
 
         $historicos_deportivos = historicos_deportivos::all();
-        $grupos = Grupos::all();
-        $alumnos = alumnos::all();
-        $datos2 = historicos_deportivos::all();
-        $datos2 =DB::table('historicos_deportivos')
-        ->join('alumnos','alumnos.id', '=','historicos_deportivos.alumnos_id')
-        ->select('historicos_deportivos.id','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno','alumnos.id as identificadoralumno','historicos_deportivos.observaciones','historicos_deportivos.fecha_creacion','historicos_deportivos.updated_at')
-        ->get();
+        
+        if (Auth::user()->role == 'Administrador') {
+            $grupos = Grupos::all();
+            $alumnos = alumnos::all();
+            $datos2 = historicos_deportivos::all();
+        }
+        if (Auth::user()->role == 'Entrenador') {
+            $grupos=DB::table('grupos')
+            ->where('grupos.alta_usuario', '=', $id)
+            ->select('grupos.*')
+            ->get();
 
+            $alumnos=DB::table('alumnos')
+            ->where('alumnos.alta_usuario', '=', $id)
+            ->select('alumnos.*')
+            ->get();
 
+            $datos2 =DB::table('historicos_deportivos')
+            ->join('alumnos','alumnos.id', '=','historicos_deportivos.alumnos_id')
+            ->where('historicos_deportivos.alta_usuario', '=', $id)
+            ->select('historicos_deportivos.id','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno','alumnos.id as identificadoralumno','historicos_deportivos.observaciones','historicos_deportivos.fecha_creacion','historicos_deportivos.updated_at')
+            ->get();
+
+        }
+
+        
         $historicos_deportivos2 =DB::table('historicos_deportivos')
         ->join('alumnos','alumnos.id', '=','historicos_deportivos.alumnos_id')
         ->where('alumnos.id', '=', $nombrealumno)
@@ -68,7 +86,7 @@ class HistoricosDeportivosController extends Controller
 
 
 
-//Obtener las id de los alumnos en el grupo
+//Obtener los ids de los alumnos en el grupo
 $datosalumnos =DB::table('grupo_alumnos')
         ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
         ->where('grupo_alumnos.grupos_id', '=', $nombregrupo)
@@ -105,7 +123,7 @@ $datosalumnos =DB::table('grupo_alumnos')
           ];
            grupo_alumnos::where('id','=',$valorb)->update($datosGrupoAlumno);
 
-       }
+        }
 
       
 
@@ -134,11 +152,36 @@ $datosalumnos =DB::table('grupo_alumnos')
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $grupos = Grupos::all();
-        $alumnos = alumnos::all();
+        $id = Auth::id();
+        $nombregrupo=$request->get('buscarporgrupo');
+     
+        if (Auth::user()->role == 'Administrador') {
+            $grupos = Grupos::all();
+        }
+        if (Auth::user()->role == 'Entrenador') {
+            $grupos=DB::table('grupos')
+            ->where('grupos.alta_usuario', '=', $id)
+            ->select('grupos.*')
+            ->get();
+        }
+
+
+
+        $asignaciongrupo =DB::table('grupos')
+        ->where('grupos.id', '=', $nombregrupo)
+        ->select('grupos.*')
+        ->get();
+
+        $alumnos =DB::table('grupo_alumnos')
+        ->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
+        ->where('grupo_alumnos.grupos_id', '=', $nombregrupo)
+        ->select('alumnos.*')
+        ->get();
+
         return view('formhistorico_deportivo.createhistorico_deportivo')
+        ->with('asignaciongrupo',$asignaciongrupo)
         ->with('grupos',$grupos)
         ->with('alumnos',$alumnos);
     }
@@ -384,7 +427,7 @@ $evaluacion_defensa=(100/16)*$secciondefensa;
     'evaluacion_lanzamiento'=>$evaluacion_lanzamiento,
     'evaluacion_defensa'=>$evaluacion_defensa,
 
-    'alta_usuario'=>$request('alta_usuario'),
+    'alta_usuario'=>request('alta_usuario'),
 
 ];
 

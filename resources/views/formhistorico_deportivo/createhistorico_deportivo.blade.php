@@ -18,7 +18,37 @@
             </div>
         @endif  
 
+
         <div class="wrapper wrapper--w790">
+
+            <div style="background-color:#555055bf;border: 1px solid rgb(0, 0, 0);width:100%;text-align:center;padding:20px;">
+                <div class="row">
+                    <label for=""> <h4 style="color:#f9fbfc;"></h4></label>
+                </div>
+            <div class="row" >
+                <form class="form-inline">
+                    <div>
+                        <label for="" style="color:#f9fbfc;">Seleccione el grupo, donde se encuentra el alumno a elegir</label>
+                        <select name="buscarporgrupo">
+                            
+                            @foreach ($grupos as $grupo)
+        
+                                <option value="{{ $grupo->id }}">
+        
+                                    {{ $grupo->nivel }} {{ ' '.$grupo->grado }} {{ $grupo->seccion }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <button type="submit" class="btn btn-danger ">BUSCAR</button>
+                    </div>
+                </form>
+            </div>
+        
+            </div>
+            <br>
+
+
+
             <div class="card card-5">
                 <div class="card-heading">
                     <H2 class="title">EVALUACION DEPORTIVA DE ALUMNO</H2>
@@ -40,18 +70,14 @@
                         <br>
              
                         <div class="form-group" >
-                            <label for="">Seleccione grupo al que pertenezca el alumno</label>
-                        <select name="grupos_id" id="grupos_id" class="input101">
-                            @foreach ($grupos as $grupo)
-                                <option value="{{ $grupo->id }}">
-                                    {{ $grupo->nivel }} {{ $grupo->grado }} {{ $grupo->seccion }} 
-                                </option>
+                            @foreach ($asignaciongrupo as $asignacion)
+                            <label for="" ><h4>GRUPO:{{ $asignacion->nivel }} {{ $asignacion->grado }} {{ $asignacion->seccion }}</h4></label>
+                            <input name="grupos_id" id="grupos_id" type="hidden" value="{{ $asignacion->id }}">
                             @endforeach
-                        </select>
+                       
                         </div>
-
-
-
+                        
+                        <br>
 
 
                         @include('formhistorico_deportivo.formhistorico_deportivo',['Modo'=>'crear'])

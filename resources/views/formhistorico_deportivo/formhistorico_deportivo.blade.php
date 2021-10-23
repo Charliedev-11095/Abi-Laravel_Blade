@@ -8,8 +8,8 @@
 </h4></p>
 
 <div class="form-group" style="{{$Modo=='crear' ? '':'visibility:hidden'}}">
-    <label class="control-label" for="alumnos_id" value="{{$Modo=='crear' ? 'Seleccionar alumno a evaluar':'Verificar alumno'}}">{{$Modo=='crear' ? 'Seleccionar alumno':'Verificar alumno'}}</label>
-    <select  type="text" name='{{$Modo=='crear' ? 'alumnos_id':''}}' id="alumnos_id" class="input100 {{$errors->has('alumnos_id')?'waiting-form':old('alumnos_id')}}">
+    <label class="control-label" for="alumnos_id" value="{{$Modo=='crear' ? 'Seleccionar alumno a evaluar':'Verificar alumno'}}">{{$Modo=='crear' ? 'Seleccionar alumno de la lista desplegable':'Verificar alumno'}}</label>
+    <select  type="text" name='{{$Modo=='crear' ? 'alumnos_id':''}}' id="alumnos_id" class="input100 {{$errors->has('alumnos_id')?'waiting-form':old('alumnos_id')}}" required>
     
         @foreach ($alumnos as $alumno)
         <option value="{{ $alumno->id }}">

@@ -21,7 +21,10 @@
                     <form action="{{url('/formhistorico_deportivo/'.$historicos_deportivo->id)}}" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
                         {{method_field('PATCH')}}
-
+                        <div class="form-group">
+                            <label class="control-label" for="comunicacion">Fecha de creacion: {{ isset($historicos_deportivo->fecha_creacion)?$historicos_deportivo->fecha_creacion:'' }}</label>
+                        </div>
+                        
 
                         <div class="form-group">
                             @foreach ($datos as $dato)
@@ -30,12 +33,9 @@
                                 {{ $dato->apellido_materno }}</label> 
                             <input type="hidden" value="{{ $dato->identificadoralumno }}" name="alumnos_id"></h2>
                         @endforeach
-
                         </div>
-
                         @include('formhistorico_deportivo.formhistorico_deportivo',['Modo'=>'editar'])
-                      
-
+                    
                     </form>
                 </div>
 
