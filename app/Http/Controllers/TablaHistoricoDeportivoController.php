@@ -150,20 +150,6 @@ $datosalumnos =DB::table('grupo_alumnos')
             
             
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //Obtener los ids de los alumnos en el grupo
 $datosalumnos =DB::table('grupo_alumnos')
         ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
@@ -203,20 +189,7 @@ $datosalumnos =DB::table('grupo_alumnos')
 
         }
 
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
             $datosGrupoAlumno=[
                'total_liderazgo'=>round($resultado),

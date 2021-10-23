@@ -283,7 +283,7 @@ $datosGrupo=[
        // $datosGrupo=request()->except(['_token','_method']);
          grupos::where('id', '=', $id)->update($datosGrupo);
 
-        return redirect('asistencia/grupos')->with('Mensaje','Grupo modificado con exito');
+        return redirect('asistencia/grupos')->with('Mensaje','Grupo modificado con éxito');
     }
 
     /**

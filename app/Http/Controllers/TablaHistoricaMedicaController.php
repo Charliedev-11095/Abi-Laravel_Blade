@@ -102,7 +102,7 @@ class TablaHistoricaMedicaController extends Controller
 
        $datosformreg_med=request()->except('_token');
        registros_medicos::insert($datosformreg_med);
-        return redirect('dashboard')->with('Mensaje','registro medico agregado con exito');
+        return redirect('dashboard')->with('Mensaje','Registro agregado con éxito');
 
     }
 
@@ -145,7 +145,7 @@ class TablaHistoricaMedicaController extends Controller
         //$regmed=registros_medicos::findOrFail($id);
         //return view('formreg_med.editformreg_med',compact('regmed'));
         
-        return redirect('formreg_med')->with('Mensaje','registro medico modificado con exito');
+        return redirect('formreg_med')->with('Mensaje','Registro modificado con éxito');
     }
 
     /**

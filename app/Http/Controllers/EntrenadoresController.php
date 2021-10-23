@@ -92,7 +92,7 @@ class EntrenadoresController extends Controller
  
     EntrenadoresPivote::insert($datosUsuarioPivote); 
 //////////////////////////////////////////////////////////////////////////
-        return redirect('team_entrenadores/create')->with('Mensaje','entrenador agregado con exito');
+        return redirect('team_entrenadores/create')->with('Mensaje','Entrenador agregado con éxito');
     }
 
     /**
@@ -190,7 +190,7 @@ $nombrecorreo=$request->get('email');
 /////////////////////////////////////////////////////////////////////////////
         //$entrenador=entrenadores::findOrFail($id);
         //return view('formentrenador.editformentrenador',compact('entrenador'));
-        return redirect('formentrenadores')->with('Mensaje','entrenador modificado con exito');
+        return redirect('formentrenadores')->with('Mensaje','Entrenador modificado con éxito');
     }
 
     /**

@@ -263,7 +263,7 @@ class GrupoAlumnosController extends Controller
         grupo_alumnos::where('id', '=', $id)->update($datosGrupo);
 
 
-        return redirect('asistencia/grupo_alumnos')->with('Mensaje','Registro modificado con exito');
+        return redirect('asistencia/grupo_alumnos')->with('Mensaje','Registro modificado con éxito');
     
     }
 

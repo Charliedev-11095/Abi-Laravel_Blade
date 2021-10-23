@@ -140,7 +140,7 @@ class TeamEntrenadoresController extends Controller
     {
         $datosTeamEntrenador=request()->except(['_token','_method']);
         Team_entrenadores::where('id', '=', $id)->update($datosTeamEntrenador);
-        return redirect('team_entrenadores')->with('Mensaje','Registro modificado con exito');
+        return redirect('team_entrenadores')->with('Mensaje','Registro modificado con éxito');
     }
 
 

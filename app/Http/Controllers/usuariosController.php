@@ -68,7 +68,7 @@ class usuariosController extends Controller
 
          User::insert($datosUsuario);
 
-         return redirect('formentrenadores/create')->with('Mensaje','Usuario agregado con exito');
+         return redirect('formentrenadores/create')->with('Mensaje','Usuario agregado con éxito');
 
     }
 
@@ -161,7 +161,7 @@ class usuariosController extends Controller
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        return redirect('formusuario')->with('Mensaje','Usuario modificado con exito');
+        return redirect('formusuario')->with('Mensaje','Usuario modificado con éxito');
     }
 
     /**

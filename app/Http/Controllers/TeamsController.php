@@ -55,7 +55,7 @@ class TeamsController extends Controller
     
         $datosformalumnos=request()->except('_token');
         Teams::insert($datosformalumnos);
-        return redirect('teams')->with('Mensaje','Equipo agregado con éxito');
+        return redirect('teams')->with('Mensaje','Equipo de Trabajo agregado con éxito');
     }
 
 
@@ -83,7 +83,7 @@ class TeamsController extends Controller
     {
         $datosformteams=request()->except(['_token','_method']);
         Teams::where('id','=',$id)->update($datosformteams);
-        return redirect('teams')->with('Mensaje','Equipo de trabajo modificado con éxito');
+        return redirect('teams')->with('Mensaje','Equipo de Trabajo modificado con éxito');
     }
 
 

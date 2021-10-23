@@ -101,7 +101,7 @@ class TutoresController extends Controller
 
         //$tutor=tutores::findOrFail($id);
         //return view('formtutor.editformtutor',compact('tutor'));
-        return redirect('formtutores')->with('Mensaje','tutor modificado con exito');
+        return redirect('formtutores')->with('Mensaje','Tutor modificado con éxito');
     }
 
     /**

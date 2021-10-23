@@ -192,7 +192,7 @@ class HistoricosMedicosController extends Controller
         $datosHistorico_alumno=request()->except(['_token','_method']);
         historicos_medicos::where('id', '=', $id)->update($datosHistorico_alumno);
 
-        return redirect('formhistorico_medico')->with('Mensaje','Registro Historico Medico modificado con exito');
+        return redirect('formhistorico_medico')->with('Mensaje','Registro Histórico médico modificado con éxito');
     
     }
 
