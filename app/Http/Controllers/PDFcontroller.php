@@ -88,6 +88,7 @@ class PDFcontroller extends Controller
       return $pdf->setPAper('a4','landscape')->stream('Reporte-Registro_listaGrupoAlumnos.pdf');
    }
    public function GruposAsignadosPDF(){
+      $id = Auth::id(); 
       $datos =DB::table('grupo_alumnos')
       ->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
       ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')

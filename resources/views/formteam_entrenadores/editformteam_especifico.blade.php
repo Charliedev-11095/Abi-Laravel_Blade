@@ -103,7 +103,7 @@
         <thead class="thead-dark">
             <div class="card-heading">
                
-                <H2 class="title">MODIFICAR ASIGNACIONES DE ALUMNO</H2>
+                <H2 class="title">MODIFICAR ASIGNACIONES DE ENTRENADOR</H2>
             </div>
             <tr>
                 <th class="card-title">ACCIONES</th>

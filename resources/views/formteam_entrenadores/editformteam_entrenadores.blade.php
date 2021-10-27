@@ -11,7 +11,7 @@
 
         <div class="row">
             <div class="">
-                <a href="{{url('/asistencia/grupo_alumnos')}}" class="btn btn-danger">Regresar</a>
+                <a href="{{url('/team_entrenadores')}}" class="btn btn-danger">Regresar</a>
             </div>
         </div>
        
