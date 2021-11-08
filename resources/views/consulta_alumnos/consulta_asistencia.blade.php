@@ -25,6 +25,7 @@
     
         <tr>
             <th class="card-title">Grupo</th>
+            <th class="card-title">Status</th>
             <th class="card-title">Asistencias totales</th>
             <th class="card-title">Asistencias marcadas</th>
             <th class="card-title">Porcentaje asistido</th>
@@ -39,6 +40,7 @@
                 
             <tr>    
                 <td>{{$dato->nivel.' '}}{{$dato->grado}}{{$dato->seccion}}</td>
+                <td>{{$dato->estado}}</td>
                 <td>{{$dato->dias_entrenamiento}}</td>
                 <td>{{$dato->asistencias}}</td>
                 <td>{{$dato->calificacion_asistencias.'% porcentaje asistido'}}</td>

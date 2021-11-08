@@ -164,7 +164,9 @@ $datosalumnos =DB::table('alumnos')
 //Obtenemos todas las asistencias del alumno
         $datos =DB::table('asistencias')
         ->join('grupo_alumnos','grupo_alumnos.id', '=','asistencias.relacion_grupo_alumnos')
+        ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
         ->where('grupo_alumnos.alumnos_id', '=', $valoralumno)
+        ->where('grupos.estado', '=', 'Activo')
         ->select('asistencias.*')
         ->get();
 
