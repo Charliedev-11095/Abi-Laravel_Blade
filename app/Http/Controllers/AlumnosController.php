@@ -25,23 +25,22 @@ class AlumnosController extends Controller
     }
 
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
 
 
         $id = Auth::id();
-        $datos['formalumno']=DB::table('alumnos')
-        ->where('alumnos.alta_usuario', '=', $id)
-        ->select('alumnos.*')
-        ->paginate(30);
 
+        if (Auth::user()->role == 'Administrador') {
+            $datos['formalumno']=alumnos::paginate(30);
+        }
+        if (Auth::user()->role == 'Entrenador') {
+            $datos['formalumno']=DB::table('alumnos')
+            ->where('alumnos.alta_usuario', '=', $id)
+            ->select('alumnos.*')
+            ->paginate(30);
+        }
 
-       // $datos['formalumno']=alumnos::paginate();
 
         return view('formalumno.indexformalumnos',$datos);
     }

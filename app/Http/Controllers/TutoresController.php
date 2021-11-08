@@ -24,32 +24,28 @@ class TutoresController extends Controller
     public function index()
     {
         $id = Auth::id();
-        // $datos['formtutor']=tutores::paginate(5);
-        $datos['formtutor']=DB::table('tutores')
-        ->where('tutores.alta_usuario', '=', $id)
-        ->select('tutores.*')
-        ->paginate(30);
+
+        if (Auth::user()->role == 'Administrador') {
+            $datos['formtutor']=tutores::paginate(30);
+        }
+        if (Auth::user()->role == 'Entrenador') {
+            $datos['formtutor']=DB::table('tutores')
+            ->where('tutores.alta_usuario', '=', $id)
+            ->select('tutores.*')
+            ->paginate(30);
+        }
+
         return view('formtutor.indexformtutor',$datos);
     }
     
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
 
         return view('formtutor.createformtutor');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         //$datosformtutores=request()->all();   
@@ -64,12 +60,6 @@ class TutoresController extends Controller
         // ->with('Mensaje','tutor agregado con exito');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\tutores  $tutores
-     * @return \Illuminate\Http\Response
-     */
     public function show(tutores $tutores)
     {
         //

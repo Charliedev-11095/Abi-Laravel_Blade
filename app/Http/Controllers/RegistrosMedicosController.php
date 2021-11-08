@@ -27,20 +27,28 @@ class RegistrosMedicosController extends Controller
     public function index()
     {
         $id = Auth::id();
-        // $datos['formreg_med']=registros_medicos::paginate(5);
-        $formreg_med=DB::table('registros_medicos')
-        ->join('alumnos','alumnos.id', '=','registros_medicos.alumnos_id')
-        ->where('alumnos.alta_usuario', '=', $id)
-        ->select('registros_medicos.*','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno')
-        ->paginate(30);
+        
+
+        if (Auth::user()->role == 'Administrador') {
+            $formreg_med=DB::table('registros_medicos')
+            ->join('alumnos','alumnos.id', '=','registros_medicos.alumnos_id')
+            ->select('registros_medicos.*','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno')
+            ->paginate(30);
+        }
+        if (Auth::user()->role == 'Entrenador') {
+            $formreg_med=DB::table('registros_medicos')
+            ->join('alumnos','alumnos.id', '=','registros_medicos.alumnos_id')
+            ->where('alumnos.alta_usuario', '=', $id)
+            ->select('registros_medicos.*','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno')
+            ->paginate(30);
+        }
+
+
+
         return view('formreg_med.indexformreg_med')->with('formreg_med',$formreg_med);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $id = Auth::id();
