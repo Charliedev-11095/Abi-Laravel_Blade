@@ -27,7 +27,7 @@
 
                         <a href="{{ url('/asistencia/grupos') }}"><input
                                 class="btn btn--radius-2 login100-form-btn validate-form btn-danger" type="submit"
-                                value="GESTIÓN DE GRUPOS"></a>
+                                value="GRUPOS"></a>
                     </div>
                     <br>
 
@@ -36,7 +36,7 @@
 
                         <a href="{{ url('/asistencia/grupo_alumnos') }}"><input
                                 class="btn btn--radius-2 login100-form-btn validate-form btn-secondary" type="submit"
-                                value="ASIGNACIÓN DE GRUPOS"></a>
+                                value="ASIGNACIÓN DE ALUMNOS"></a>
                     </div>
                     <br>
 
@@ -45,7 +45,7 @@
 
                         <a href="{{ url('/formasistencia') }}"><input
                                 class="btn btn--radius-2 login100-form-btn validate-form btn-info" type="submit"
-                                value="GESTIÓN DE ASISTENCIAS"></a>
+                                value="ASISTENCIAS"></a>
                     </div>
                     <br>
 
