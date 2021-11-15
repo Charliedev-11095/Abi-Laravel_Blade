@@ -27,10 +27,11 @@
                 
                 <h4 style="color:#f9fbfc;">Consultar Historial Deportivo General</h4>
                 <label for="" style="color:#f9fbfc;">Seleccionar alumno</label>
-                <select name="buscarpor" id="grupos_id" class="input101">
+                <select name="buscarpor" id="buscarpor" class="input101">
                     @foreach ($alumnos as $alumno)
-                        <option value="{{ $alumno->id }}">
+                        <option value="{{ $alumno->idgrupo_al }}">
                             {{ $alumno->nombres }} {{ $alumno->apellido_paterno}} {{ $alumno->apellido_materno}}
+                            {{ ' -------- '.$alumno->grado }} {{ $alumno->seccion}} {{ $alumno->nivel}}
                         </option>
                     @endforeach
                 </select>

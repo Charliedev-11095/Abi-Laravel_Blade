@@ -34,35 +34,46 @@ class TablaHistoricoDeportivoController extends Controller
         $nombrealumno=$request->get('buscarpor');
     
 
-        $historicos_deportivos = historicos_deportivos::all();
+        //$historicos_deportivos = historicos_deportivos::all();
         if (Auth::user()->role == 'Administrador') {
-            $alumnos = alumnos::all();
-        }
-        if (Auth::user()->role == 'Entrenador') {
-            $alumnos=DB::table('alumnos')
-            ->where('alumnos.alta_usuario', '=', $id)
-            ->select('alumnos.*')
+            $alumnos =DB::table('grupo_alumnos')
+            ->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
+            ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+            ->where('grupo_alumnos.estado','=', 'Activo')
+            ->where('grupos.estado', '=', 'Activo')
+            ->select('grupo_alumnos.id as idgrupo_al','alumnos.*','grupos.*')
             ->get();
         }
+        if (Auth::user()->role == 'Entrenador') {
+            $alumnos =DB::table('grupo_alumnos')
+            ->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
+            ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+            ->where('alumnos.alta_usuario', '=', $id)
+            ->where('grupo_alumnos.estado','=', 'Activo')
+            ->where('grupos.estado', '=', 'Activo')
+            ->select('grupo_alumnos.id as idgrupo_al','alumnos.*','grupos.*')
+            ->get();
+        } 
         
         $historicos_deportivos2 =DB::table('historicos_deportivos')
         ->join('alumnos','alumnos.id', '=','historicos_deportivos.alumnos_id')
-        ->where('alumnos.id', '=', $nombrealumno)
+        ->where('historicos_deportivos.relacion_grupo_alumnos', '=', $nombrealumno)
         ->select('historicos_deportivos.*','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno')
         ->get();
 
-        $nombrecompleto =DB::table('alumnos')
-        ->where('alumnos.id', '=', $nombrealumno)
+        //Se obtiene el nombre del alumno, por la el id del grupo_alumno($nombrealumno)
+        $nombrecompleto =DB::table('grupo_alumnos')
+        ->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
+        ->where('grupo_alumnos.id', '=', $nombrealumno)
         ->select('alumnos.*')
         ->get();
 
 ////////////////////////////////////////////////////
 //Se obtiene el id del alumno, para posteriormente sumar las evaluaciones de sus secciones y mostrarlos
 
-//Se obtiene el id del grupo, atraves del id del alumno
+//Se obtiene el id del grupo, atraves del id del grupo_alumno
 $datosgrupo_alumnos =DB::table('grupo_alumnos')
-->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
-->where('alumnos.id', '=', $nombrealumno)
+->where('grupo_alumnos.grupos_id', '=', $nombrealumno)
 ->select('grupo_alumnos.*')
 ->get(array('grupos_id'));
 
@@ -70,21 +81,6 @@ $nombregrupo = 0;
       foreach ($datosgrupo_alumnos as $datogrupo_alumno) {
       $nombregrupo = $datogrupo_alumno->grupos_id;
       }
-
-
-//Se recolecta el id de la asignacion unica de grupo_alumno
-
-$idgrupo_alumnos =DB::table('grupo_alumnos')
-->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
-->where('alumnos.id', '=', $nombrealumno)
-->select('grupo_alumnos.*')
-->get(array('id'));
-
-$nombregrupo_alumnos = 0;
-      foreach ($idgrupo_alumnos as $datogrupo_alumno) {
-      $nombregrupo_alumnos = $datogrupo_alumno->id;
-      }
-
 
  //Obtener el valor maximo de los entrenamientos, en la tabla de grupo
  $datosgrupos =DB::table('grupos')
@@ -105,6 +101,7 @@ $datosalumnos =DB::table('grupo_alumnos')
         ->select('grupo_alumnos.id as idalumnos')
         ->get(array('idalumnos'));
 
+        //$valorb representa el id del grupo_alumnos
         $valorb = '';
         
         foreach ($datosalumnos as $a) {
@@ -206,7 +203,10 @@ $datosalumnos =DB::table('grupo_alumnos')
 //Se envia a la vista los datos para su visualizacion
 
 $alumnoestadisticas =DB::table('grupo_alumnos')
-->where('grupo_alumnos.id', '=', $nombregrupo_alumnos)
+->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+->where('grupo_alumnos.id', '=', $nombrealumno)
+->where('grupos.estado', '=', 'Activo')
+->where('grupo_alumnos.estado', '=', 'Activo')
 ->select('grupo_alumnos.*')
 ->get();
 

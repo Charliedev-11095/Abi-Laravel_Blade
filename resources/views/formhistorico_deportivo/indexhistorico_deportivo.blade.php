@@ -44,7 +44,7 @@
                     
                     @foreach ($grupos as $grupo)
 
-                        <option value="{{ $grupo->id }}">
+                        <option value="{{ $grupo->idgrup }}">
 
                             {{ $grupo->nivel }} {{ ' '.$grupo->grado }} {{ $grupo->seccion }}
                         </option>
@@ -53,8 +53,10 @@
                 <button type="submit" class="btn btn-danger ">BUSCAR</button>
             </div>
         </form>
+       
     </div>
-
+    <br>
+    <label  class="form-inline" for="" style="color:#d1e70d;">Actualice la página, si no concuerdan los datos</label>
     </div>
 <br>
 
@@ -400,11 +402,11 @@
 <thead class="thead-dark">
     <div class="card-heading">
     <a class="btn btn-info" href="{{route('historial_DeportivoPDF')}}" target="blank">Descargar tabla en PDF</a>
-        <H2 class="title">Regístros Históricos Deportivos existentes</H2>
+        <H2 class="title">Regístros Históricos Deportivos</H2>
     </div>
     <tr>
         <th class="card-title">ACCIONES</th>
-        <th class="card-title">ID DE REGISTRO</th>
+      
         <th class="card-title">ALUMNO</th>
         <th class="card-title">OBSERVACIONES</th>
         <th class="card-title">FECHA DE CREACIÓN</th>
@@ -419,7 +421,7 @@
                     Editar
                 </a>
             </td>   
-            <td>{{$dato2->id}}</td>
+            
             <td>{{$dato2->nombres}} {{$dato2->apellido_paterno}} {{$dato2->apellido_materno}} </td>
             <td>{{$dato2->observaciones}}</td>
             <td>{{$dato2->fecha_creacion}}</td>

@@ -32,11 +32,11 @@
                         <tr>
 
                             <th class="card-title">Acciones</th>
-                            <th class="card-title">ID</th>
                             <th class="card-title">Nivel</th>
                             <th class="card-title">Grado</th>
                             <th class="card-title">Sección</th>                        
                             <th class="card-title">Estado</th>
+                            <th class="card-title">Descripción</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,11 +48,11 @@
                                         Editar
                                     </a>
                                 </td>
-                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $grupo->nivel }}</td>
                                 <td>{{ $grupo->grado }}</td>
                                 <td>{{ $grupo->seccion }}</td>
                                 <td>{{$grupo->estado}}</td>
+                                <td>{{$grupo->descripcion}}</td>
                             </tr>
                         @endforeach
                     </tbody>

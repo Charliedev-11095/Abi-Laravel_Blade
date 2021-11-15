@@ -38,24 +38,54 @@ class HistoricosDeportivosController extends Controller
         $historicos_deportivos = historicos_deportivos::all();
         
         if (Auth::user()->role == 'Administrador') {
-            $grupos = Grupos::all();
-            $alumnos = alumnos::all();
-            $datos2 = historicos_deportivos::all();
+            $grupos = DB::table('grupos')
+            ->where('grupos.estado', '=', 'Activo')
+            ->select('grupos.id as idgrup','grupos.*')
+            ->get();
+
+
+            $alumnos =   DB::table('alumnos')          
+            ->join('grupo_alumnos','grupo_alumnos.alumnos_id', '=','alumnos.id')
+            ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+            ->where('grupo_alumnos.estado', '=', 'Activo')
+            ->where('grupos.estado', '=', 'Activo')
+            ->select('alumnos.*')
+            ->get();
+
+
+
+            $datos2 = DB::table('historicos_deportivos')
+            ->join('grupo_alumnos','grupo_alumnos.id', '=','historicos_deportivos.relacion_grupo_alumnos')
+            ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+            ->join('alumnos','alumnos.id', '=','historicos_deportivos.alumnos_id')
+            ->where('grupo_alumnos.estado', '=', 'Activo')
+            ->where('grupos.estado', '=', 'Activo')
+            ->select('historicos_deportivos.id','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno','alumnos.id as identificadoralumno','historicos_deportivos.observaciones','historicos_deportivos.fecha_creacion','historicos_deportivos.updated_at')
+            ->get();
         }
         if (Auth::user()->role == 'Entrenador') {
-            $grupos=DB::table('grupos')
+            $grupos = DB::table('grupos')
             ->where('grupos.alta_usuario', '=', $id)
+            ->where('grupos.estado', '=', 'Activo')
             ->select('grupos.*')
             ->get();
 
-            $alumnos=DB::table('alumnos')
+            $alumnos =   DB::table('alumnos')          
+            ->join('grupo_alumnos','grupo_alumnos.alumnos_id', '=','alumnos.id')
+            ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
+            ->where('grupo_alumnos.estado', '=', 'Activo')
+            ->where('grupos.estado', '=', 'Activo')
             ->where('alumnos.alta_usuario', '=', $id)
             ->select('alumnos.*')
             ->get();
 
             $datos2 =DB::table('historicos_deportivos')
+            ->join('grupo_alumnos','grupo_alumnos.id', '=','historicos_deportivos.relacion_grupo_alumnos')
+            ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
             ->join('alumnos','alumnos.id', '=','historicos_deportivos.alumnos_id')
             ->where('historicos_deportivos.alta_usuario', '=', $id)
+            ->where('grupo_alumnos.estado', '=', 'Activo')
+            ->where('grupos.estado', '=', 'Activo')
             ->select('historicos_deportivos.id','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno','alumnos.id as identificadoralumno','historicos_deportivos.observaciones','historicos_deportivos.fecha_creacion','historicos_deportivos.updated_at')
             ->get();
 
@@ -83,8 +113,6 @@ class HistoricosDeportivosController extends Controller
            foreach ($datosgrupos as $valor) {
            $valormaximo = $valor->evaluaciones_maximo;
            }
-
-
 
 //Obtener los ids de los alumnos en el grupo
 $datosalumnos =DB::table('grupo_alumnos')
@@ -125,18 +153,14 @@ $datosalumnos =DB::table('grupo_alumnos')
 
         }
 
-      
-
-
-
-
-        //Se buscan los integrantesa del grupo para la vista
+        //Se buscan los integrantes del grupo para la vista
        
         $datos =DB::table('alumnos')
         ->join('grupo_alumnos','grupo_alumnos.alumnos_id', '=','alumnos.id')
         ->join('entrenadores','entrenadores.id', '=','grupo_alumnos.entrenadores_id')
         ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
         ->where('grupo_alumnos.grupos_id', '=', $nombregrupo)
+        ->where('grupo_alumnos.estado', '=', 'Activo')
         ->select('grupos.*','grupo_alumnos.id as idregistro','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno', 'entrenadores.nombres as nombresentrenador' ,'entrenadores.apellido_paterno as paternoentrenador' ,'entrenadores.apellido_materno as maternoentrenador','grupo_alumnos.calificacion_entrenamiento')
         ->get();
 
