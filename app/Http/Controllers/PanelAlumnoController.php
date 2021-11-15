@@ -198,12 +198,16 @@ $datosalumnos =DB::table('alumnos')
 
 
 
-        $historicos_deportivos = historicos_deportivos::all();
-        $alumnos = alumnos::all();
+       // $historicos_deportivos = historicos_deportivos::all();
+        //$alumnos = alumnos::all(); 
         
         $historicos_deportivos2 =DB::table('historicos_deportivos')
+        ->join('grupo_alumnos','grupo_alumnos.id', '=','historicos_deportivos.relacion_grupo_alumnos')
+        ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
         ->join('alumnos','alumnos.id', '=','historicos_deportivos.alumnos_id')
         ->where('alumnos.id', '=', $nombrealumno)
+        ->where('grupo_alumnos.estado', '=', 'Activo')
+        ->where('grupos.estado', '=', 'Activo')
         ->select('historicos_deportivos.*','alumnos.nombres','alumnos.apellido_paterno','alumnos.apellido_materno')
         ->get();
 
@@ -232,7 +236,10 @@ $nombregrupo = 0;
 
 $idgrupo_alumnos =DB::table('grupo_alumnos')
 ->join('alumnos','alumnos.id', '=','grupo_alumnos.alumnos_id')
+->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
 ->where('alumnos.id', '=', $nombrealumno)
+->where('grupo_alumnos.estado', '=', 'Activo')
+->where('grupos.estado', '=', 'Activo')
 ->select('grupo_alumnos.*')
 ->get(array('id'));
 
@@ -317,20 +324,6 @@ $datosalumnos =DB::table('grupo_alumnos')
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //Obtener los ids de los alumnos en el grupo
 $recorrido_alumnos =DB::table('grupo_alumnos')
         ->join('grupos','grupos.id', '=','grupo_alumnos.grupos_id')
@@ -370,23 +363,12 @@ $recorrido_alumnos =DB::table('grupo_alumnos')
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
      
 //Se envia a la vista los datos para su visualizacion
 
 $alumnoestadisticas =DB::table('grupo_alumnos')
 ->where('grupo_alumnos.id', '=', $nombregrupo_alumnos)
-->select('grupo_alumnos.*')
+->select('grupo_alumnos.*') 
 ->get();
 
 
