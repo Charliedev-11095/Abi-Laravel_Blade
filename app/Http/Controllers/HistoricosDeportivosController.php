@@ -67,7 +67,7 @@ class HistoricosDeportivosController extends Controller
             $grupos = DB::table('grupos')
             ->where('grupos.alta_usuario', '=', $id)
             ->where('grupos.estado', '=', 'Activo')
-            ->select('grupos.*')
+            ->select('grupos.id as idgrup','grupos.*')
             ->get();
 
             $alumnos =   DB::table('alumnos')          
